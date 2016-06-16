@@ -11,7 +11,7 @@ tagline:             '有路'
 description:         'Hieast的技术博客'
 url:                 http://hieast.github.io
 baseurl:             ''
-paginate:            1
+paginate:            2
 
 # About/contact
 author:
@@ -20,4 +20,4 @@ author:
   email:             caisudong@foxmail.com
 
 # Custom vars
-version:             0.0.2
+version:             0.2.0
