@@ -1,30 +1,23 @@
 ---
 layout: page
-title: 关于
+title: 关于本站
 ---
 
-<p class="message">
-  Hey there! This page is included as an example. Feel free to customize it for your own use upon downloading. Carry on!
-</p>
+## 源起
 
-In the novel, *The Strange Case of Dr. Jeykll and Mr. Hyde*, Mr. Poole is Dr. Jekyll's virtuous and loyal butler. Similarly, Poole is an upstanding and effective butler that helps you build Jekyll themes. It's made by [@mdo](https://twitter.com/mdo).
+本站最初创建于2016年3月，当时购买了sdcai.website顶级域名，使用了hexo静态网站生成器。但是由于hexo默认的界面太丑，而我当时只熟悉html，找不到点来修改模板，遂放弃。在两个多月中，我使用过前端的其他技术，同时用php编写过一些网站模板，不知不觉具备了修改网站模板的能力。  
 
-There are currently two themes built on Poole:
+在2016年6月15日时，我在win10的平台上安装了jekyll，基于[lanyon](https://github.com/poole/lanyon)模板生成了自己的网站，16日修复了一个生成网址错误的bug，上传到github pages并绑定了sdcai.website。至此，可以通过sdcai.website来访问我的个人网站了！
 
-* [Hyde](http://hyde.getpoole.com)
-* [Lanyon](http://lanyon.getpoole.com)
+## 为什么要建站？
 
-Learn more and contribute on [GitHub](https://github.com/poole).
+一开始是想找一个地方写个人计划，后来发现写个人总结效果更好，偶尔写写技术类的学习心得也很不错。新浪博客编辑器太次了，广告也不少，其他很多在线的技术博客也有这个问题，界面繁复。于是想自己建站写博客。
 
-## Setup
+这个时候我对网站的要求的简单就好，写作方便。
 
-Some fun facts about the setup of this project include:
+现在想来，还有什么比个人网站更适合磨练技术呢？这么一个空白的网站，之后我会给它加上一些功能，在这个过程中肯定能有所收获。这也是编程这项技能最奇妙的地方，实践出真知。
 
-* Built for [Jekyll](http://jekyllrb.com)
-* Developed on GitHub and hosted for free on [GitHub Pages](https://pages.github.com)
-* Coded with [Sublime Text 2](http://sublimetext.com), an amazing code editor
-* Designed and developed while listening to music like [Blood Bros Trilogy](https://soundcloud.com/maddecent/sets/blood-bros-series)
+## 未来发展方向？
 
-Have questions or suggestions? Feel free to [open an issue on GitHub](https://github.com/poole/issues/new) or [ask me on Twitter](https://twitter.com/mdo).
-
-Thanks for reading!
+小而美。  
+会给网站添加评论、tag、搜索等实用的功能，但是一定会是静态的、单用户的简单的个人小站。
