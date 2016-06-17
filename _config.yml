@@ -7,7 +7,7 @@ gems: [jekyll-paginate]
 
 # Setup
 title:               后山
-tagline:             '有路'
+tagline:             '静以修身，俭以养德'
 description:         'Hieast的技术博客'
 url:                 http://hieast.github.io
 baseurl:             ''
