@@ -30,6 +30,7 @@
 * 添加搜索
 * 添加公益404
 * 优化中文字体
+* 添加网站统计如Google Analytics
 
 ## License
 
