@@ -23,6 +23,9 @@
 
 * 添加了 disqus 评论功能，最大限度中文化，支持匿名评论。
 
+## 0.30版
+* 添加了serch 标题功能。感谢[codeboy](https://github.com/androiddevelop)的插件。
+
 ## 下一步
 
 * 完善内容
