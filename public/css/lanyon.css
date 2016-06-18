@@ -367,7 +367,7 @@ a.sidebar-nav-item:focus {
  * there are no more previous or next posts to show.
  */
 
-.pagination {
+.pagination2 {
   overflow: hidden; /* clearfix */
   margin-left: -1rem;
   margin-right: -1rem;
