@@ -13,18 +13,19 @@
 * <body class="sidebar-overlay">用于使导航栏覆盖内容
 * id为"sidebar-checkbox"的checkbox用于控制导航栏的出现和隐藏
 
-## 0.10版
+## 0.1版
 
 * 使用fonts.useso.com（不支持https）替换fonts.googleapis.com，由于众所周知的原因。
 * 修复了地址错误，由于生成网址时‘/’的不确定。
 * 优化了slide效果，导航栏滑出后文章仍在空白部分的中间。
 
-## 0.20版
+## 0.2版
 
 * 添加了 disqus 评论功能，最大限度中文化，支持匿名评论。
 
-## 0.30版
+## 0.3版
 * 添加了serch 标题功能。感谢[codeboy](https://github.com/androiddevelop)的插件。
+* 添加了 多说 评论功能， disqus仅用于留言板。优化了评论的展示。
 
 ## 下一步
 
