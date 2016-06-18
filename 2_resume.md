@@ -35,12 +35,10 @@ title: 我的简历
 - [MITx 6.00.2x](https://courses.edx.org/certificates/c23d70d6e23747dbb55f281bc970684a)
 - [Rice Fundamentals of Computing](https://www.coursera.org/account/accomplishments/certificate/Y8W9KPP9PXHV)
 
-## 技术文章
-- [暂缺](http://get.jobdeer.com/343.get) 
-
 # 技能清单
 
-能够使用以下技能进行开发：
+
+熟悉C语言，能够使用以下技能进行开发：
 
 - 后台开发语言：PHP/Python
 - Web框架：Laravel/Lumen
