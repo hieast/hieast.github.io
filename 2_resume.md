@@ -3,15 +3,6 @@ layout: page
 title: 我的简历
 ---
 
-# 联系方式
-
-- 手机：15889321024
-- Email：[caisudong@foxmail.com](mailto:caisudong@foxmail.com)
-- QQ：[408092547](http://wpa.qq.com/msgrd?v=3&uin=408092547&site=qq&menu=yes)
-- 微信：caisudong
-
----
-
 # 个人信息
 
  - 蔡苏东/男/1992 
