@@ -1,6 +1,7 @@
 --- 
 layout: post 
 title: 逃离制造业
+tags: summary
 category: 个人日记 
 ---
 <p>本博文为知乎问答<a TARGET="_blank" HREF="http://www.zhihu.com/question/26561498">”传统工科行业的工程师是否已经沦为新时代的农民工，被金融和IT行业完爆？<b>“</B></A>部分回答部分结论的拷贝，用以帮助本人进行人生规划，著作权分别归属各个答主，本人使用的目的仅限于为个人学习，为合理使用，未能知会所有答主还请谅解。</P>

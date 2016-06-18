@@ -1,6 +1,7 @@
 --- 
 layout: post 
 title: 2016年第12周总结
+tags: summary
 category: 个人日记
 ---
 

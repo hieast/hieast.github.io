@@ -1,6 +1,7 @@
 --- 
 layout: post 
 title: 使用jekyll过程中遇到的坑  
+tag: jekyll blog tips
 category: 技术
 ---
 
