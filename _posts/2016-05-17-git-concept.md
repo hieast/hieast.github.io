@@ -1,7 +1,7 @@
 --- 
 layout: post 
 title: git 核心概念简析 
-category: 技术 
+category: Tech 
 tags: git 
 ---
 

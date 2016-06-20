@@ -2,14 +2,15 @@
 layout: post 
 title: 使用jekyll过程中遇到的坑  
 tag: jekyll blog tips
-category: 技术 
+category: tech 
 ---
 
 * 运行环境：64位中文win10-powershell下的jekyll 3.1.6。  
 * 使用感受：安装顺利，操作便捷，只是确实对中文支持不太好，貌似对windows的支持也不如linux平台好。
 
 1. {{ site.baseurl }}有时是'/'，有时是''（当配置文件中设定为''时），解决方法是哪里出问题修哪里。
-2. post文件在jekyll自带本地服务器会莫名奇妙出现404错误（实际上文件存在），暂无解决方法。上传到github上后解析良好。
+2. post文件在jekyll自带本地服务器会莫名奇妙出现404错误（实际上文件存在），经试验URL生成主要利用了catagory和post文件名两处字符串，将这两处字符串均使用英文可以正常打开。上传到github上后解析良好。
 3. 在各个文件用于配置网站的地方注意不要使用中文的标点符号。
 4. 块元素标签太长有时不会被误添加&lt;p&gt;从而失效，失效案例： <div class="ds-thread" data-thread-key={{page.url}} data-title={{page.titel}} data-url={{page.url}}></div>。
 
+update at 2016年6月20日13:28:33

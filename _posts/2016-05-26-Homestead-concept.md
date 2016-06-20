@@ -1,7 +1,7 @@
 --- 
 layout: post 
 title: Homestead安装流程及注意点
-category: 技术 
+category: Tech  
 tags: Homestead laravel
 ---
 

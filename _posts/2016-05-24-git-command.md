@@ -1,7 +1,7 @@
 --- 
 layout: post 
 title: git基础命令
-category: 技术 
+category: Tech 
 tags: git 
 ---
 

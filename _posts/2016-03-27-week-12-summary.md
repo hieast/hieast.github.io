@@ -2,7 +2,7 @@
 layout: post 
 title: 2016年第12周总结
 tags: summary
-category: 个人日记
+category: Diary 
 ---
 
 ### 回顾了一下以前写的计划，发现问题如下：
