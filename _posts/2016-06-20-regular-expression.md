@@ -9,6 +9,7 @@ tags: 正则 php python
 我在此前的离散数学的形式化语言介绍中接触过这个概念，但没有实际在程序中使用过。现在专门学习一下php和python中的正则表达式语法和代码，学习巩固，并留给自己日后参考。
 
 # 正则表达式语法
+[来源](http://www.php100.com/manual/unze.html)
 
 ## 组成
 
@@ -33,8 +34,10 @@ tags: 正则 php python
 
 - 字符簇：把所有的需要的字符放在一个方括号，表示一个字符。用连字号可以表示一个字符的范围，如[a-z]匹配所有的小写字母，[a-zA-Z]匹配所有的字母。PHP的正规表达式有一些内置的通用字符簇。
  - ^表示字符串的开头，但它还有另外一个含义。当在一组方括号里使用^是，它表示“非”或“排除”的意思，常常用来剔除某个字符。如[^a-z]除了小写字母以外的所有字符 
+- 捕获组：使用小括号指定一个子表达式后，匹配这个子表达式的文本(也就是此分组捕获的内容)可以在表达式或其它程序中作进一步的处理。
+- 非捕获组：非捕获组只匹配结果，但不捕获结果，也不会分配组号，当然也不能在表达式和程序中做进一步处理。 
 
-以上是正则通用的语法，下面学习一些常用语言的例子。
+以上是正则通用的语法，下面学习一些例子。
 
 # 例子
 
@@ -46,4 +49,19 @@ tags: 正则 php python
 
 - /^[a-zA-Z ]*$/  若干个字母和空格
 - /([\w\-]+\@[\w\-]+\.[\w\-]+)/ 合法邮箱名（仅使用字母数字下划线和减号）
-- 
+- /\b(?:(?:http|https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i 合法的域名
+
+[一个用正则表达式分析URL的例子](http://harttle.com/2016/02/23/javascript-regular-expressions.html)，分析细致。
+
+{% highlight php %}
+var parse_url = /^(?:([A-Za-z]+):)?(\/{0,3})([0-9.\-A-Za-z]+)(?::(\d+))?(?:\/([^?#]*))?(?:\?([^#]*))?(?:#(.*))?$/;
+var url = "http://harttle.com:80/tags.html?simple=true#HTML",
+    result = parse_url.exec(url);
+    blanks = '       ';
+    fields = ['url', 'scheme', 'slash', 'host', 'port', 'path', 'query', 'hash'];
+fields.forEach(function(filed, i){
+    console.log(field + ':' + blanks.substr(field.length) + result[i]);
+});
+{% endhighlight %}
+
+使用了parse_url
