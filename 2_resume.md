@@ -1,12 +1,12 @@
----
+f---
 layout: page
 title: 我的简历
 ---
 
 # 个人信息
 
- - 蔡苏东/男/1992 
- - 本科/中南大学 
+ - 蔡苏东·男·1992
+ - 本科·中南大学·TOP30%
  - 工作年限：1年
  - 技术博客：[http://hieast.xyz](http://hieast.github.io/)
  - Github：[http://github.com/hieast](http://github.com/hieast) 
