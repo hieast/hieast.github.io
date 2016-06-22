@@ -50,7 +50,7 @@ tags: 正则 php python
 
 - /^[a-zA-Z ]*$/  若干个字母和空格
 - /([\w\-]+\@[\w\-]+\.[\w\-]+)/ 合法邮箱名（仅使用字母数字下划线和减号）
-- /\b(?:(?:http|https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i 合法的域名
+- /\b(?:(?:http\|https?\|ftp):\/\/\|www\.)[-a-z0-9+&@#\/%?=~_\|!:,.;]*[-a-z0-9+&@#\/%=~_\|]/i 合法的域名
 
 [一个用JS分析URL的例子](http://harttle.com/2016/02/23/javascript-regular-expressions.html)，分析细致。
 
@@ -70,3 +70,39 @@ fields.forEach(function(filed, i){
 php使用[parse_url函数](http://php.net/manual/zh/function.parse-url.php)可以达到相同的效果。
 
 最后附[菜鸟教程](http://www.runoob.com/regexp/regexp-tutorial.html)相关链接，记不得了可以去查查。
+
+## Python正则表达式
+
+Python 自1.5版本起增加了re 模块，它提供 Perl 风格的正则表达式模式。
+re 模块使 Python 语言拥有全部的正则表达式功能。  
+re.match(pattern, string, flags=0)  
+pattern为r'正则表达式'的格式
+匹配成功re.match方法返回一个匹配的对象，否则返回None。
+re.search 扫描整个字符串并返回第一个成功的匹配。
+
+{% highlight python %}
+
+#!/usr/bin/python
+import re
+
+line = "Cats are smarter than dogs"
+
+matchObj = re.match( r'(.*) are (.*?) .*', line, re.M|re.I)
+
+if matchObj:
+   print "matchObj.group() : ", matchObj.group()
+   print "matchObj.group(1) : ", matchObj.group(1)
+   print "matchObj.group(2) : ", matchObj.group(2)
+else:
+   print "No match!!"
+
+OutPut:
+matchObj.group() :  Cats are smarter than dogs
+matchObj.group(1) :  Cats
+matchObj.group(2) :  smarter
+{% endhighlight %}
+
+### re.match与re.search的区别
+re.match只匹配字符串的开始，如果字符串开始不符合正则表达式，则匹配失败，函数返回None；而re.search匹配整个字符串，直到找到一个匹配。
+
+更多[Python正则教程](http://www.runoob.com/python/python-reg-expressions.html)。
