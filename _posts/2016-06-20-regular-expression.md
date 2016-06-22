@@ -21,14 +21,15 @@ tags: 正则 php python
  - 定位符：用来描述字符串或单词的边界，^和$分别指字符串的开始与结束，\b描述单词的前或后边界，\B表示非单词边界。不能对定位符使用限定符。
  - 选择:用圆括号将所有选择项括起来，相邻的选择项之间用\|分隔。
 
-## 优先级
+## 优先级（重要！）
 
 相同优先级的从左到右进行运算，不同优先级的运算先高后低。各种操作符的优先级从高到低如下：
+
 - 转义符：\
 - 圆括号和方括号：(), (?:), (?=), []
 - 限定符：*, +, ?, {n}, {n,}, {n,m}
 - 位置和顺序：^, $, \anymetacharacter
-- “或”操作：|
+- “或”操作：\|
 
 ## 相关概念
 
@@ -51,9 +52,10 @@ tags: 正则 php python
 - /([\w\-]+\@[\w\-]+\.[\w\-]+)/ 合法邮箱名（仅使用字母数字下划线和减号）
 - /\b(?:(?:http|https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i 合法的域名
 
-[一个用正则表达式分析URL的例子](http://harttle.com/2016/02/23/javascript-regular-expressions.html)，分析细致。
+[一个用JS分析URL的例子](http://harttle.com/2016/02/23/javascript-regular-expressions.html)，分析细致。
 
 {% highlight php %}
+
 var parse_url = /^(?:([A-Za-z]+):)?(\/{0,3})([0-9.\-A-Za-z]+)(?::(\d+))?(?:\/([^?#]*))?(?:\?([^#]*))?(?:#(.*))?$/;
 var url = "http://harttle.com:80/tags.html?simple=true#HTML",
     result = parse_url.exec(url);
@@ -62,6 +64,9 @@ var url = "http://harttle.com:80/tags.html?simple=true#HTML",
 fields.forEach(function(filed, i){
     console.log(field + ':' + blanks.substr(field.length) + result[i]);
 });
+
 {% endhighlight %}
 
-使用了parse_url
+php使用[parse_url函数](http://php.net/manual/zh/function.parse-url.php)可以达到相同的效果。
+
+最后附[菜鸟教程](http://www.runoob.com/regexp/regexp-tutorial.html)相关链接，记不得了可以去查查。
