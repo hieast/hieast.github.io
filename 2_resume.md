@@ -10,9 +10,8 @@ title: 我的简历
  - 工作年限：1年
  - 技术博客：[http://hieast.xyz](http://hieast.github.io/)
  - Github：[http://github.com/hieast](http://github.com/hieast) 
- - 期望职位：PHP初级程序员或实习生
- - 期望薪资：月薪3k~5k，真爱可例外
- - 期望城市：深圳
+ - 期望职位：Python/PHP web开发/测试相关工作
+ - 期望薪资：月薪6k
 
 ---
 
@@ -31,23 +30,22 @@ title: 我的简历
 
 # 作品
 
-## 证书（全英文授课）
+## MOOC证书（全英文授课考试）
 - [MITx 6.00.2x](https://courses.edx.org/certificates/c23d70d6e23747dbb55f281bc970684a)
-- [Rice Fundamentals of Computing](https://www.coursera.org/account/accomplishments/certificate/Y8W9KPP9PXHV)
+- [Rice Fundamentals of Computing](https://www.coursera.org/account/accomplishments/specialization/XC4PC99Z969C)
 
 # 技能清单
 
-
-熟悉C语言，能够使用以下技能进行开发：
+熟悉Python web及Mysql，能够使用以下技能进行开发：
 
 - 后台开发语言：PHP/Python
-- Web框架：Laravel/Lumen
+- Web框架：PHP：Laravel/Lumen，Python：Flask
 - 前端相关：html/css/javascript/ajax/jquery/Bootstrap
 - 数据库相关：MySQL
 - 版本管理、文档和自动化部署工具：Git/Composer
-- 云和开放平台：SAE/微信应用开发
 
 ---
+
 
 # 致谢
 感谢您花时间阅读我的简历，期待能有机会和您共事。
