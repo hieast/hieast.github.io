@@ -4,6 +4,10 @@ title: 程序员修炼之道
 category: Tech 
 tags: program  
 ---
+
+这是一份《程序员修炼之道 》的原则清单，第一遍通读记录下来，提醒自己。（虽然并没什么卵用）。
+
+
 1. Care About Your Craft  
 关心你的技艺
 2. Think! About Your Work  

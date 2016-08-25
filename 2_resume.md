@@ -43,6 +43,7 @@ title: 我的简历
 - 前端相关：html/css/javascript/ajax/jquery/Bootstrap
 - 数据库相关：MySQL
 - 版本管理、文档和自动化部署工具：Git/Composer
+- 集成开发环境：Pycharm
 
 ---
 
