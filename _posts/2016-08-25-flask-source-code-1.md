@@ -69,11 +69,30 @@ Sphinx格式的文档,需要make
 这个是重点。
 
 ## flask.py 之 class Flask(object) 
-类属性：
-request_class = Request  
-response_class = Response  
-static_path = '/static'  
-secret_key = None （设定用于使用secure cookie）
+
+### 类属性：
+- request_class = Request  
+- response_class = Response  
+- static_path = '/static'  
+- secret_key = None （设定用于使用secure cookie）  
+- session_cookie_name = 'session'  
+- jinja_options （直接带入Jinja2环境的字典）
+
+### 类方法
+- def __init__(self, package_name)  
+需要传入一个包名字，初始化了多个函数序列，添加静态文件处理，生成了jinja_env（Environment类）。
+- def create_jinja_loader(self)  
+默认返回一个当前工作目录\'templates'的FileSystemLoader()，pkg_resources有定义则返回PackageLoader(self.package_name)
+- def update_template_context(self, context)  
+将template_context_processors中所有函数返回的字典更新到context中。默认是栈顶的 'request', 'session' and 'g'
+- def run(self, host='localhost', port=5000, **options)  
+from werkzeug import run_simple and run_simple(host, port, self, **options)
+- def test_client(self)  
+Client(self, self.response_class, use_cookies=True)
+- def open_resource(self, resource)  
+返回一个资源（文件）对象
+- 
+
 
 
 ## flask.py 之context locals
