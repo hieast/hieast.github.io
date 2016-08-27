@@ -18,7 +18,7 @@ flask的定位是微框架，其依赖关系比较简单，WSGI工具箱采用We
 - artwork  
 有一个svg格式的矢量logo
 - docs  
-Sphinx格式的文档,需要make
+Sphinx格式的文档,需要make(先安装Sphinx包）
 - examples  
 两个使用Flask和sqlite3写的小网站
 - tests
@@ -91,14 +91,40 @@ from werkzeug import run_simple and run_simple(host, port, self, **options)
 Client(self, self.response_class, use_cookies=True)
 - def open_resource(self, resource)  
 返回一个资源（文件）对象
-- 
-
+- def open_session(self, request)  
+当secret_key被设定时，再根据session_cookie_name返回一个新的session
+- def save_session(self, session, response)  
+- def add_url_rule(self, rule, endpoint, **options)  
+- def route(self, rule, **options)
+- def errorhandler(self, code)
+- def before_request(self, f)
+- def after_request(self, f)
+- def context_processor(self, f)  
+以上多个函数都是注册装饰器，用于将函数添加到对应的字典/列表中。
+- def match_request(self)  
+返回_request_ctx_stack.top.url_adapter.match()
+- def dispatch_request(self)  
+尝试返回self.view_functions\[endpoint\](**values)
+- def make_response(self, rv)  
+根据视图函数的返回值rv的类型make response（response_class类可以直接返回）
+- def preprocess_request(self)  
+运行所有before_request的函数，如rv不为None则中止并返回
+- def process_response(self, response)  
+调用所有after_request_funcs处理response，最后返回response
+- def wsgi_app(self, environ, start_response)  
+主要业务逻辑，真正的WSGI application，包括请求上下文载入，预处理请求（返回None时dispatch_request），生成响应，后处理响应，最后返回response(environ, start_response)。
+- def request_context(self, environ)
+返回一个class _RequestContext(object)
+- def test_request_context(self, *args, **kwargs)
+Creates a WSGI environment from the given values
+- def __call__(self, environ, start_response)
+return self.wsgi_app(environ, start_response)
 
 
 ## flask.py 之context locals
 
-_request_ctx_stack = LocalStack()
-current_app = LocalProxy(lambda: _request_ctx_stack.top.app)
-request = LocalProxy(lambda: _request_ctx_stack.top.request)
-session = LocalProxy(lambda: _request_ctx_stack.top.session)
-g = LocalProxy(lambda: _request_ctx_stack.top.g)
+- _request_ctx_stack = LocalStack()
+- current_app = LocalProxy(lambda: _request_ctx_stack.top.app)
+- request = LocalProxy(lambda: _request_ctx_stack.top.request)
+- session = LocalProxy(lambda: _request_ctx_stack.top.session)
+- g = LocalProxy(lambda: _request_ctx_stack.top.g)
