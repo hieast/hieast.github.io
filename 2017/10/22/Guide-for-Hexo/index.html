@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="教程 博客," />
+  <meta name="keywords" content="教程,博客," />
 
 
 
@@ -80,14 +80,14 @@
 
 
 <meta name="description" content="前言之前用过 Jekyll，也有过 Vue.js 拉 github issues api 的想法。但是因为前端功力不够，都没能继续下去。 决定用 Hexo 来搭建个人的博客了，个人的想法是：  Done is better then perfect. 不管怎么样，先上一个能用的博客再说，让自己把博客先更新起来。Hexo 的开发者很多，功能够用，也集成了很多第三方插件。 Keep it Simple">
-<meta name="keywords" content="教程 博客">
+<meta name="keywords" content="教程,博客">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Guide for Hexo">
 <meta property="og:url" content="http://yoursite.com/2017/10/22/Guide-for-Hexo/index.html">
 <meta property="og:site_name" content="后山">
 <meta property="og:description" content="前言之前用过 Jekyll，也有过 Vue.js 拉 github issues api 的想法。但是因为前端功力不够，都没能继续下去。 决定用 Hexo 来搭建个人的博客了，个人的想法是：  Done is better then perfect. 不管怎么样，先上一个能用的博客再说，让自己把博客先更新起来。Hexo 的开发者很多，功能够用，也集成了很多第三方插件。 Keep it Simple">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-10-22T18:05:47.000Z">
+<meta property="og:updated_time" content="2017-10-24T11:53:45.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Guide for Hexo">
 <meta name="twitter:description" content="前言之前用过 Jekyll，也有过 Vue.js 拉 github issues api 的想法。但是因为前端功力不够，都没能继续下去。 决定用 Hexo 来搭建个人的博客了，个人的想法是：  Done is better then perfect. 不管怎么样，先上一个能用的博客再说，让自己把博客先更新起来。Hexo 的开发者很多，功能够用，也集成了很多第三方插件。 Keep it Simple">
@@ -200,6 +200,26 @@
         </li>
       
         
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
@@ -281,6 +301,28 @@
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术杂学/" itemprop="url" rel="index">
+                    <span itemprop="name">技术杂学</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -374,6 +416,35 @@
     
 
     
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.png" alt="Hieast 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="Hieast 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
 
     
 
@@ -381,7 +452,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/教程-博客/" rel="tag"># 教程 博客</a>
+            <a href="/tags/教程/" rel="tag"># 教程</a>
+          
+            <a href="/tags/博客/" rel="tag"># 博客</a>
           
         </div>
       
@@ -481,15 +554,24 @@
             
 
             
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
 
             
               
               
               <div class="site-state-item site-state-tags">
-                
-                  <span class="site-state-item-count">1</span>
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">标签</span>
-                
+                </a>
               </div>
             
 
