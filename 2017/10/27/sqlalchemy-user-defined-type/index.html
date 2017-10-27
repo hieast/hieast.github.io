@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="教程,博客," />
+  <meta name="keywords" content="python,orm,sqlalchemy,sql," />
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="前言之前用过 Jekyll，也有过 Vue.js 拉 github issues api 的想法。但是因为前端功力不够，都没能继续下去。 决定用 Hexo 来搭建个人的博客了，个人的想法是：  Done is better then perfect. 不管怎么样，先上一个能用的博客再说，让自己把博客先更新起来。Hexo 的开发者很多，功能够用，也集成了很多第三方插件。 Keep it Simple">
-<meta name="keywords" content="教程,博客">
+<meta name="description" content="前言SQLAlchemy 版本：1.2 Mysql 这种数据库不支持 json 对象的存储，但是开发过程中又确实有这种需求。一种思路是使用字符串来存储该对象，入库时序列化，出库时反序列化。在业务代码中维护数据转换又很大的思维负担，还容易出错，因此这个功能的实现自然而然落在了 ORM 里。">
+<meta name="keywords" content="python,orm,sqlalchemy,sql">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Guide for Hexo">
-<meta property="og:url" content="http://yoursite.com/2017/10/22/Guide-for-Hexo/index.html">
+<meta property="og:title" content="SQLAlchemy 的用户自定义类型和 default 小坑">
+<meta property="og:url" content="http://yoursite.com/2017/10/27/sqlalchemy-user-defined-type/index.html">
 <meta property="og:site_name" content="后山">
-<meta property="og:description" content="前言之前用过 Jekyll，也有过 Vue.js 拉 github issues api 的想法。但是因为前端功力不够，都没能继续下去。 决定用 Hexo 来搭建个人的博客了，个人的想法是：  Done is better then perfect. 不管怎么样，先上一个能用的博客再说，让自己把博客先更新起来。Hexo 的开发者很多，功能够用，也集成了很多第三方插件。 Keep it Simple">
+<meta property="og:description" content="前言SQLAlchemy 版本：1.2 Mysql 这种数据库不支持 json 对象的存储，但是开发过程中又确实有这种需求。一种思路是使用字符串来存储该对象，入库时序列化，出库时反序列化。在业务代码中维护数据转换又很大的思维负担，还容易出错，因此这个功能的实现自然而然落在了 ORM 里。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-10-24T11:53:45.000Z">
+<meta property="og:updated_time" content="2017-10-27T09:00:18.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Guide for Hexo">
-<meta name="twitter:description" content="前言之前用过 Jekyll，也有过 Vue.js 拉 github issues api 的想法。但是因为前端功力不够，都没能继续下去。 决定用 Hexo 来搭建个人的博客了，个人的想法是：  Done is better then perfect. 不管怎么样，先上一个能用的博客再说，让自己把博客先更新起来。Hexo 的开发者很多，功能够用，也集成了很多第三方插件。 Keep it Simple">
+<meta name="twitter:title" content="SQLAlchemy 的用户自定义类型和 default 小坑">
+<meta name="twitter:description" content="前言SQLAlchemy 版本：1.2 Mysql 这种数据库不支持 json 对象的存储，但是开发过程中又确实有这种需求。一种思路是使用字符串来存储该对象，入库时序列化，出库时反序列化。在业务代码中维护数据转换又很大的思维负担，还容易出错，因此这个功能的实现自然而然落在了 ORM 里。">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/10/22/Guide-for-Hexo/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/10/27/sqlalchemy-user-defined-type/"/>
 
 
 
 
 
-  <title>Guide for Hexo | 后山</title>
+  <title>SQLAlchemy 的用户自定义类型和 default 小坑 | 后山</title>
   
 
 
@@ -262,7 +262,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/22/Guide-for-Hexo/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/27/sqlalchemy-user-defined-type/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Hieast">
@@ -279,7 +279,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Guide for Hexo</h1>
+          <h1 class="post-title" itemprop="name headline">SQLAlchemy 的用户自定义类型和 default 小坑</h1>
         
 
         <div class="post-meta">
@@ -291,8 +291,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-22T23:16:31+08:00">
-                2017-10-22
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-27T16:42:12+08:00">
+                2017-10-27
               </time>
             
 
@@ -314,8 +314,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/技术杂学/" itemprop="url" rel="index">
-                    <span itemprop="name">技术杂学</span>
+                  <a href="/categories/Python后端/" itemprop="url" rel="index">
+                    <span itemprop="name">Python后端</span>
                   </a>
                 </span>
 
@@ -332,9 +332,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/10/22/Guide-for-Hexo/#comments" itemprop="discussionUrl">
+                <a href="/2017/10/27/sqlalchemy-user-defined-type/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/10/22/Guide-for-Hexo/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2017/10/27/sqlalchemy-user-defined-type/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -362,50 +362,21 @@
       
 
       
-        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>之前用过 <a href="http://jekyllcn.com/" target="_blank" rel="external">Jekyll</a>，也有过 <a href="https://cn.vuejs.org/index.html" target="_blank" rel="external">Vue.js</a> 拉 github issues api 的想法。但是因为前端功力不够，都没能继续下去。</p>
-<p>决定用 Hexo 来搭建个人的博客了，个人的想法是：</p>
-<ol>
-<li>Done is better then perfect. 不管怎么样，先上一个能用的博客再说，让自己把博客先更新起来。Hexo 的开发者很多，功能够用，也集成了很多第三方插件。</li>
-<li>Keep it Simple and Stupid. 很喜欢 Hexo 里的一个主题，简洁大方，相当符合这个原则，而之前在 jekyll 里没看到。</li>
-<li>Hexo 基于 node 运行，更有助于熟悉通用的 Web 开发。</li>
-<li>静态网站不用折腾搞 SEO 了。</li>
-</ol>
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>SQLAlchemy 版本：1.2</p>
+<p>Mysql 这种数据库不支持 json 对象的存储，但是开发过程中又确实有这种需求。一种思路是使用字符串来存储该对象，入库时序列化，出库时反序列化。在业务代码中维护数据转换又很大的思维负担，还容易出错，因此这个功能的实现自然而然落在了 ORM 里。</p>
 <a id="more"></a>
-<h1 id="Mac-安装-Hexo-并配置第一个博客"><a href="#Mac-安装-Hexo-并配置第一个博客" class="headerlink" title="Mac 安装 Hexo 并配置第一个博客"></a>Mac 安装 Hexo 并配置第一个博客</h1><h2 id="node-环境安装"><a href="#node-环境安装" class="headerlink" title="node 环境安装"></a>node 环境安装</h2><h3 id="node-版本管理（可选）："><a href="#node-版本管理（可选）：" class="headerlink" title="node 版本管理（可选）："></a>node 版本管理（可选）：</h3><p>虽然运行 hexo 只需要一个指定版本的 node，但是仍然推荐使用 node 版本管理软件，推荐使用 <a href="https://github.com/creationix/nvm" target="_blank" rel="external">nvm</a> 安装最新版本的 node。<br>运行 <code>brew install nvm</code> 来安装 nvm。</p>
-<p>运行 <code>nvm --version</code> 来检查 nvm 是否按照成功。</p>
-<h3 id="node-本体安装："><a href="#node-本体安装：" class="headerlink" title="node 本体安装："></a>node 本体安装：</h3><p>运行 <code>brew install node</code> 安装最新版本的 node 环境或用 nvm 参照文档自行安装。<br>运行 <code>node -v</code> 来检查 node 是否按照成功。</p>
-<h3 id="设置国内镜像（可选）："><a href="#设置国内镜像（可选）：" class="headerlink" title="设置国内镜像（可选）："></a>设置国内镜像（可选）：</h3><p>由于众所周知的原因，国外的 npm 源稳定性和速度堪忧，所以默认的安装建议设置成淘宝的 npm 镜像。<br>运行 <code>npm config set registry https://registry.npm.taobao.org</code> 配置注册模块默认镜像<br>运行 <code>npm config get registry</code> 验证是否成功。</p>
-<h2 id="hexo-安装及初体验"><a href="#hexo-安装及初体验" class="headerlink" title="hexo 安装及初体验"></a>hexo 安装及初体验</h2><p>根据官网的提示，安装非常简单：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">npm install hexo-cli -g  # 全局安装 hexo-cli</div><div class="line">hexo init blog  # 创建第一个博客项目</div><div class="line">cd blog</div><div class="line">npm install  # 安装依赖</div><div class="line">hexo server  # 启动本地预览服务</div><div class="line">hexo clean  # 清除缓存</div></pre></td></tr></table></figure>
-<p>最后 hexo 在 <a href="http://localhost:4000/" target="_blank" rel="external">http://localhost:4000/</a> 提供了本地预览，打开可以看到发布新博文的教程：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">hexo new "My New Post"  # 创建新博文</div><div class="line">hexo server  # 动态预览</div><div class="line">hexo generate  # 生成静态文件</div><div class="line">hexo deploy  # 根据配置文件发布</div></pre></td></tr></table></figure>
-<p>以上的指令均有缩写，即子指令的首字母：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">hexo n "My New Post"  # 创建新博文</div><div class="line">hexo s  # 动态预览</div><div class="line">hexo g  # 生成静态文件</div><div class="line">hexo d  # 根据配置文件发布</div></pre></td></tr></table></figure>
-<h2 id="新博客个人配置"><a href="#新博客个人配置" class="headerlink" title="新博客个人配置"></a>新博客个人配置</h2><h3 id="下载-NexT-主题"><a href="#下载-NexT-主题" class="headerlink" title="下载 NexT 主题"></a>下载 NexT 主题</h3><p>先明确自己要用的主题，我一眼就看上了 <a href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="external">NexT</a> 主题，因此按照主题 Readme下方的提示，在博客的根目录中下载本主题。</p>
-<p>在博客根目录下运行</p>
- <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">mkdir themes/next$ curl -s https://api.github.com/repos/iissnan/hexo-theme-next/releases/latest | </div><div class="line">grep tarball_url | </div><div class="line">cut -d '"' -f 4 | </div><div class="line">wget -i - -O- | </div><div class="line">tar -zx -C themes/next --strip-components=1</div></pre></td></tr></table></figure>
-<p>在运行该命令的时候，我碰到了没有 wget 指令的尴尬，<code>brew install wget</code> 轻松解决。</p>
-<p>除了这个很长的指令以外，还有其他下载的途径，有兴趣的可以尝试。</p>
-<h3 id="配置博客"><a href="#配置博客" class="headerlink" title="配置博客"></a>配置博客</h3><p>博客的配置文件为 <code>_config.yml</code>。</p>
-<ol>
-<li>配置语言：<code>language: zh-Hans</code></li>
-<li>配置博主名称：<code>author: Hieast</code></li>
-<li>配置站点描述：<code>description: 他山之石</code></li>
-</ol>
-<h3 id="配置主题"><a href="#配置主题" class="headerlink" title="配置主题"></a>配置主题</h3><p>主题的配置文件为 <code>themes/next/_config.yml</code>。</p>
-<ol>
-<li>配置具体样式：<code>scheme: Pisces</code></li>
-<li>配置头像：<code>avatar: /images/avatar.png</code> 放置在 <code>source/images/</code> 目录下</li>
-</ol>
-<p>至此，基本可以上线了。</p>
-<h2 id="自动化部署配置"><a href="#自动化部署配置" class="headerlink" title="自动化部署配置"></a>自动化部署配置</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">Git</div><div class="line"></div><div class="line"><span class="meta">#</span> 安装 hexo-deployer-git。</div><div class="line">npm install hexo-deployer-git --save</div><div class="line"></div><div class="line"><span class="meta">#</span> 修改配置。</div><div class="line">deploy:</div><div class="line">  type: git</div><div class="line">  repo: &lt;repository url&gt;  # 这里注意配好密钥或者密码，免密登录</div><div class="line">  branch: [branch]  #</div><div class="line">  message: [message]</div></pre></td></tr></table></figure>
-<p>参考文档：</p>
-<p><a href="https://github.com/creationix/nvm" target="_blank" rel="external">https://github.com/creationix/nvm</a></p>
-<p><a href="https://hexo.io/zh-cn/" target="_blank" rel="external">https://hexo.io/zh-cn/</a></p>
-<p><a href="https://npm.taobao.org/" target="_blank" rel="external">https://npm.taobao.org/</a></p>
-<p><a href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="external">https://github.com/iissnan/hexo-theme-next</a></p>
-<p><a href="http://theme-next.iissnan.com/getting-started.html" target="_blank" rel="external">http://theme-next.iissnan.com/getting-started.html</a></p>
-<p><a href="https://hexo.io/zh-cn/docs/deployment.html" target="_blank" rel="external">https://hexo.io/zh-cn/docs/deployment.html</a></p>
+<h1 id="自定义类型"><a href="#自定义类型" class="headerlink" title="自定义类型"></a>自定义类型</h1><p>SQLAlchemy 支持自定义处理函数，继承 TypeDecorator 即可很方便得到用户自定义类型。代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> json</div><div class="line"><span class="keyword">from</span> sqlalchemy.types <span class="keyword">import</span> TypeDecorator, String</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">JSONEncodedDict</span><span class="params">(TypeDecorator)</span>:</span></div><div class="line">    <span class="string">"""Represents an immutable structure as a json-encoded string.</span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string">    Usage::</span></div><div class="line"><span class="string">        JSONEncodedDict(255)</span></div><div class="line"><span class="string">    """</span></div><div class="line"></div><div class="line">    impl = String</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">process_bind_param</span><span class="params">(self, value, dialect)</span>:</span></div><div class="line">      <span class="string">"""Receive a bound parameter value to be converted.</span></div><div class="line"><span class="string">      """</span></div><div class="line">        <span class="keyword">if</span> value <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">None</span>:</div><div class="line">            value = json.dumps(value)</div><div class="line"></div><div class="line">        <span class="keyword">return</span> value</div><div class="line">      </div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">process_result_value</span><span class="params">(self, value, dialect)</span>:</span></div><div class="line">      <span class="string">"""Receive a result-row column value to be converted.</span></div><div class="line"><span class="string">      """</span></div><div class="line">        <span class="keyword">if</span> value <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">None</span>:</div><div class="line">            value = json.loads(value)</div><div class="line">        <span class="keyword">return</span> value</div></pre></td></tr></table></figure>
+<p>这段代码扩展了原生的 String 类型，在处理 bind param 时将其序列化，在从数据库取出结果后反序列化。还有其他的可定义的步骤，如 process_literal_param，定义了如何处理一个 literal param。但是这里我用不到，就不定义了。</p>
+<h1 id="定义-Model"><a href="#定义-Model" class="headerlink" title="定义 Model"></a>定义 Model</h1><p>这里我踩到一个坑，结合 Model 定义来趟坑。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 定义数据库</span></div><div class="line"><span class="keyword">from</span> sqlalchemy <span class="keyword">import</span> create_engine</div><div class="line">engine = create_engine(<span class="string">'mysql+pymysql://root:123456@localhost:3306/public?charset=utf8mb4'</span>, echo=<span class="keyword">True</span>)</div><div class="line"></div><div class="line"><span class="comment"># 定义 Model</span></div><div class="line"><span class="keyword">from</span> sqlalchemy.ext.declarative <span class="keyword">import</span> declarative_base</div><div class="line">Base = declarative_base()</div><div class="line"><span class="keyword">from</span> sqlalchemy <span class="keyword">import</span> Column, Integer, String, text</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span><span class="params">(Base)</span>:</span></div><div class="line">    __tablename__ = <span class="string">'users'</span></div><div class="line">    id = Column(Integer, primary_key=<span class="keyword">True</span>)</div><div class="line">    name = Column(String(<span class="number">100</span>), nullable=<span class="keyword">True</span>)</div><div class="line">    fullname = Column(String(<span class="number">100</span>), server_default=text(<span class="string">"""'this is text default'"""</span>))</div><div class="line">    password = Column(String(<span class="number">100</span>), server_default=<span class="string">"'this is direct default'"</span>)</div><div class="line">    wrong_user_ids = Column(JSONEncodedDict(<span class="number">255</span>), default=<span class="string">'["this is default"]'</span>)</div><div class="line">    right_user_ids = Column(JSONEncodedDict(<span class="number">255</span>), default=[<span class="string">"this is default"</span>])</div><div class="line">Base.metadata.create_all(engine)</div></pre></td></tr></table></figure>
+<p>以下为打印出来的建表语句，可以看出，default 参数不影响建表语句，server_default 会影响，text() 函数将后面的 server_default 直接放在生成 SQL 对应位置，不使用该函数则会对 server_default 进行对应的转义。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">CREATE TABLE users (</div><div class="line">	id INTEGER NOT NULL AUTO_INCREMENT, </div><div class="line">	name VARCHAR(100), </div><div class="line">	fullname VARCHAR(100) DEFAULT &apos;this is text default&apos;, </div><div class="line">	password VARCHAR(100) DEFAULT &apos;&apos;&apos;this is direct default&apos;&apos;&apos;, </div><div class="line">	right_user_ids VARCHAR(255), </div><div class="line">	wrong_user_ids VARCHAR(255), </div><div class="line">	PRIMARY KEY (id)</div><div class="line">)</div></pre></td></tr></table></figure>
+<p>下面生成一个数据</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> sqlalchemy.orm <span class="keyword">import</span> sessionmaker</div><div class="line">Session = sessionmaker(bind=engine)</div><div class="line">session = Session()</div><div class="line">session.add(User(fullname=<span class="string">'Hieast'</span>, password=<span class="string">'123456'</span>))</div><div class="line">session.commit()</div><div class="line">obj = session.query(User).first()</div><div class="line">print(obj.right_user_ids)</div><div class="line">print(obj.wrong_user_ids)</div></pre></td></tr></table></figure>
+<p>print 的输出是 </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">([<span class="string">u'this is default'</span>], &lt;type <span class="string">'list'</span>&gt;)</div><div class="line">(<span class="string">u'["this is default"]'</span>, &lt;type <span class="string">'unicode'</span>&gt;)</div></pre></td></tr></table></figure>
+<p> 可以看到，default 在写入数据库的时候，是作为 bind_param 传入的，因此要经过 process_bind_param 的处理。如果我们定义的 process_bind_param 期望的输入是一个数组或字典，那么 default 也要赋值一个数组或字典，而不是已经序列化之后的字符串。</p>
 
       
     </div>
@@ -452,9 +423,13 @@
       
         <div class="post-tags">
           
-            <a href="/tags/教程/" rel="tag"># 教程</a>
+            <a href="/tags/python/" rel="tag"># python</a>
           
-            <a href="/tags/博客/" rel="tag"># 博客</a>
+            <a href="/tags/orm/" rel="tag"># orm</a>
+          
+            <a href="/tags/sqlalchemy/" rel="tag"># sqlalchemy</a>
+          
+            <a href="/tags/sql/" rel="tag"># sql</a>
           
         </div>
       
@@ -467,15 +442,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2017/10/22/Guide-for-Hexo/" rel="next" title="Guide for Hexo">
+                <i class="fa fa-chevron-left"></i> Guide for Hexo
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/10/27/sqlalchemy-user-defined-type/" rel="prev" title="SQLAlchemy 的用户自定义类型和 default 小坑">
-                SQLAlchemy 的用户自定义类型和 default 小坑 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -620,7 +595,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Mac-安装-Hexo-并配置第一个博客"><span class="nav-number">2.</span> <span class="nav-text">Mac 安装 Hexo 并配置第一个博客</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#node-环境安装"><span class="nav-number">2.1.</span> <span class="nav-text">node 环境安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#node-版本管理（可选）："><span class="nav-number">2.1.1.</span> <span class="nav-text">node 版本管理（可选）：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#node-本体安装："><span class="nav-number">2.1.2.</span> <span class="nav-text">node 本体安装：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设置国内镜像（可选）："><span class="nav-number">2.1.3.</span> <span class="nav-text">设置国内镜像（可选）：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#hexo-安装及初体验"><span class="nav-number">2.2.</span> <span class="nav-text">hexo 安装及初体验</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#新博客个人配置"><span class="nav-number">2.3.</span> <span class="nav-text">新博客个人配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#下载-NexT-主题"><span class="nav-number">2.3.1.</span> <span class="nav-text">下载 NexT 主题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置博客"><span class="nav-number">2.3.2.</span> <span class="nav-text">配置博客</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置主题"><span class="nav-number">2.3.3.</span> <span class="nav-text">配置主题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自动化部署配置"><span class="nav-number">2.4.</span> <span class="nav-text">自动化部署配置</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#自定义类型"><span class="nav-number">2.</span> <span class="nav-text">自定义类型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#定义-Model"><span class="nav-number">3.</span> <span class="nav-text">定义 Model</span></a></li></ol></div>
             
 
           </div>
@@ -794,9 +769,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://yoursite.com/2017/10/22/Guide-for-Hexo/';
-          this.page.identifier = '2017/10/22/Guide-for-Hexo/';
-          this.page.title = 'Guide for Hexo';
+          this.page.url = 'http://yoursite.com/2017/10/27/sqlalchemy-user-defined-type/';
+          this.page.identifier = '2017/10/27/sqlalchemy-user-defined-type/';
+          this.page.title = 'SQLAlchemy 的用户自定义类型和 default 小坑';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://houshan.disqus.com/embed.js';
