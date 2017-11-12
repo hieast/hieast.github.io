@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="python,http,flask,wsgi,werkzeug," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Flask 系列文章前言记得差不多两年前第一次听说 flask 的时候，是在知乎@萧井陌的答案中  只要能读懂 flask 的源码了，就能找到一份软件开发的工作。  网上关于 flask 源码的的教程很多，如：flask 源码解析，大部分都是从 flask 某个版本（主要是 0.1）的代码结构入手，横向分析各个部分的功能。本文尝试从 flask 的代码提交入手，从第一个提交到 0.1 版本，纵向比">
+<meta name="keywords" content="python,http,flask,wsgi,werkzeug">
+<meta property="og:type" content="article">
+<meta property="og:title" content="WSGI 和 Werkzeug ———— Flask 系列文章(一)">
+<meta property="og:url" content="http://yoursite.com/2017/11/11/flask-1/index.html">
+<meta property="og:site_name" content="后山">
+<meta property="og:description" content="Flask 系列文章前言记得差不多两年前第一次听说 flask 的时候，是在知乎@萧井陌的答案中  只要能读懂 flask 的源码了，就能找到一份软件开发的工作。  网上关于 flask 源码的的教程很多，如：flask 源码解析，大部分都是从 flask 某个版本（主要是 0.1）的代码结构入手，横向分析各个部分的功能。本文尝试从 flask 的代码提交入手，从第一个提交到 0.1 版本，纵向比">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-11-12T05:26:11.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="WSGI 和 Werkzeug ———— Flask 系列文章(一)">
+<meta name="twitter:description" content="Flask 系列文章前言记得差不多两年前第一次听说 flask 的时候，是在知乎@萧井陌的答案中  只要能读懂 flask 的源码了，就能找到一份软件开发的工作。  网上关于 flask 源码的的教程很多，如：flask 源码解析，大部分都是从 flask 某个版本（主要是 0.1）的代码结构入手，横向分析各个部分的功能。本文尝试从 flask 的代码提交入手，从第一个提交到 0.1 版本，纵向比">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/11/11/flask-1/"/>
+
+
+
+
+
+  <title>WSGI 和 Werkzeug ———— Flask 系列文章(一) | 后山</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-108500679-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">后山</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/11/flask-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Hieast">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="后山">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">WSGI 和 Werkzeug ———— Flask 系列文章(一)</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-11T18:55:53+08:00">
+                2017-11-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python后端/" itemprop="url" rel="index">
+                    <span itemprop="name">Python后端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/11/11/flask-1/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/11/11/flask-1/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Flask-系列文章前言"><a href="#Flask-系列文章前言" class="headerlink" title="Flask 系列文章前言"></a>Flask 系列文章前言</h1><p>记得差不多两年前第一次听说 flask 的时候，是在知乎@萧井陌的答案中</p>
+<blockquote>
+<p>只要能读懂 flask 的源码了，就能找到一份软件开发的工作。</p>
+</blockquote>
+<p>网上关于 flask 源码的的教程很多，如：<a href="http://cizixs.com/2017/01/10/flask-insight-introduction" target="_blank" rel="external">flask 源码解析</a>，大部分都是从 flask 某个版本（主要是 0.1）的代码结构入手，横向分析各个部分的功能。本文尝试从 flask 的代码提交入手，从第一个提交到 0.1 版本，纵向比较各个提交之间的差异，期望在 Python 代码以外，从 <a href="https://github.com/mitsuhiko" target="_blank" rel="external">Armin Ronacher</a> 大神身上学习到更多关于软件工程和开源项目相关的知识。每个知识点将独立成文，长短不一，每篇博文以用能用示例将概念理解透彻为目标。</p>
+<p>传送门：</p>
+<ol>
+<li><a href="../flask-1">WSGI 和 Werkzeug ——  Flask 系列文章（一）</a></li>
+</ol>
+<a id="more"></a>
+<h1 id="WSGI-——-Web-Server-Gateway-Interface"><a href="#WSGI-——-Web-Server-Gateway-Interface" class="headerlink" title="WSGI —— Web Server Gateway Interface"></a>WSGI —— Web Server Gateway Interface</h1><p>WSGI 是一个用来解耦 web 应用（框架）和 web 服务器的通用接口规范。符合该接口规范的 web 应用（框架）和 web 服务器之间可以自由组合，即某个 web 服务器可以驱动任意 web 应用（框架），某个 web 应用（框架）也可以由任意 web 服务器驱动。</p>
+<p>廖雪峰的教程  <a href="https://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000/001386832689740b04430a98f614b6da89da2157ea3efe2000" target="_blank" rel="external">WSGI 接口</a> 简单易懂，很形象地说明了 WSGI 是什么。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># -*- coding:utf-8 -*-</span></div><div class="line"><span class="string">""" The Application/Framework Side """</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">application</span><span class="params">(environ, start_response)</span>:</span></div><div class="line">    start_response(<span class="string">'200 OK'</span>, [(<span class="string">'Content-Type'</span>, <span class="string">'text/html'</span>)])</div><div class="line">    <span class="keyword">return</span> <span class="string">'&lt;h1&gt;Hello, web!&lt;/h1&gt;'</span></div><div class="line"> </div><div class="line"></div><div class="line"><span class="string">""" The Server/Gateway Side """</span> </div><div class="line"><span class="comment"># 从wsgiref模块导入:</span></div><div class="line"><span class="keyword">from</span> wsgiref.simple_server <span class="keyword">import</span> make_server</div><div class="line"></div><div class="line"><span class="comment"># 创建一个服务器，IP地址为空，21024，处理函数是application:</span></div><div class="line">httpd = make_server(<span class="string">''</span>, <span class="number">21024</span>, application)</div><div class="line"><span class="keyword">print</span> <span class="string">"Serving HTTP on port 21024..."</span></div><div class="line"><span class="comment"># 开始监听HTTP请求:</span></div><div class="line">httpd.serve_forever()</div></pre></td></tr></table></figure>
+<p>直接在终端执行， 启动成功后，打开浏览器，输入<code>http://localhost:21024/</code>，就可以看到结果了。更多内容可以学习原教程。</p>
+<h2 id="WSGI-官方定义"><a href="#WSGI-官方定义" class="headerlink" title="WSGI 官方定义"></a>WSGI 官方定义</h2><p>官方 WSGI 的定义和详细的说明都在这里：</p>
+<p><a href="https://www.python.org/dev/peps/pep-0333/" target="_blank" rel="external">PEP 333 – Python Web Server Gateway Interface v1.0</a></p>
+<p><a href="https://www.python.org/dev/peps/pep-3333/" target="_blank" rel="external">PEP 3333 – Python Web Server Gateway Interface v1.0.1</a> 这是升级版，改变不大。</p>
+<p>不是带着目标看这种英文文档很容易犯困，所以我在快速浏览过 PEP 333 之后，又找中文版的好好看了一遍，下面这个算是翻译得还不错的：</p>
+<p><a href="https://www.zybuluo.com/miaomiaomiao/note/48495" target="_blank" rel="external">PEP 333 中文版</a> <a href="https://github.com/mainframer/PEP333-zh-CN" target="_blank" rel="external">译者的 github</a></p>
+<p>看官方文档能够对细节了解得更多一点，期望以后看服务器实现和框架实现能理解更多背后的原因，挑我印象比较深的几个细节记录：</p>
+<ol>
+<li>WSGI 只是服务器与应用框架通信的规范，像 Cookies、Sessions 等特性往往实现在应用框架中，而 hop-by-hop 等对客户端跟服务器之间的持久连接产生影响的类似特性或头信息必须实现在 Web 服务器中。</li>
+<li>中间件可以扮演两端角色，意味着在服务器看来中间件是应用程序，而在应用程序看来中间件是服务器，中间件对两端来说是透明的，例如 <code>run_with_cgi(Latinator(foo_app))</code> 中的 Latinator 就是一个中间件。</li>
+<li>WSGI 规范中参数的传递都是位置参数，而不是关键字参数。</li>
+<li><code>start_response(status, response_headers, exc_info=None)</code>只在抛出异常的情况下调用两次。正常调用处理好返回头缓存起来，返回 writer 准备接受 body 数据。异常调用则主要处理非空的 exc_info，如果之前缓存了返回头，则可能进行一些修改。</li>
+<li><code>environ</code>变量用在 <code>application(environ, start_response)</code> 中，由服务器传入应用。服务器已经事先将请求解析成了 environ 规定的变量，并且按照规范尽量补全变量，再传入应用程序中。</li>
+<li>大多数应用只用到<code>environ</code>里面的唯一一个配置值来指示应用自身的配置文件地址。</li>
+</ol>
+<h1 id="Werkzeug-——-HTTP-和-WSGI-工具集"><a href="#Werkzeug-——-HTTP-和-WSGI-工具集" class="headerlink" title="Werkzeug ——  HTTP 和 WSGI 工具集"></a>Werkzeug ——  HTTP 和 WSGI 工具集</h1><p><a href="http://werkzeug.pocoo.org/docs/0.12/" target="_blank" rel="external">0.12版本文档</a></p>
+<p>Werkzeug 是 Flask 的作者 Armin Ronacher 很早就开发的，据说 Flask 被开发出来的初衷也是展示如何用 Werkzeug 定制出一个 Web 框架，可见 Werkzeug 的实用性和在 Flask 中的核心位置。</p>
+<p>Werkzeug 本身是一套 WSGI 工具集，包括强大的 debugger、全特性的 request 和 response 类，处理  Etag 头、cache control 头的 HTTP 工具函数、HTTP 日期、cookie 处理、文件上传，以及一个强大的路由系统，还有一系列社区贡献的插件。它支持 Unicode，对模板引擎、数据库接口、乃至请求的处理方式都十分灵活。</p>
+<p>下面就几个主要的功能进行阅读。</p>
+<h2 id="强大的路由和-URI-and-IRI-utilities"><a href="#强大的路由和-URI-and-IRI-utilities" class="headerlink" title="强大的路由和 URI and IRI utilities"></a>强大的路由和 URI and IRI utilities</h2><p>占坑</p>
+<h2 id="如何处理-HTTP-header"><a href="#如何处理-HTTP-header" class="headerlink" title="如何处理 HTTP header"></a>如何处理 HTTP header</h2><p>占坑</p>
+<h2 id="request-和-response"><a href="#request-和-response" class="headerlink" title="request 和 response"></a>request 和 response</h2><p>占坑</p>
+<h2 id="debugger"><a href="#debugger" class="headerlink" title="debugger"></a>debugger</h2><p>占坑</p>
+<h2 id="unicode"><a href="#unicode" class="headerlink" title="unicode"></a>unicode</h2><p>占坑</p>
+<h2 id="session-和-cookie-支持"><a href="#session-和-cookie-支持" class="headerlink" title="session 和 cookie 支持"></a>session 和 cookie 支持</h2><p>占坑</p>
+<h1 id="Cookbook"><a href="#Cookbook" class="headerlink" title="Cookbook"></a>Cookbook</h1><h3 id="对列表类型变量赋值和清空"><a href="#对列表类型变量赋值和清空" class="headerlink" title="对列表类型变量赋值和清空"></a>对列表类型变量赋值和清空</h3><ol>
+<li>链式赋值：status, response_headers = headers_sent[:] = headers_set<br>这里有个坑，python 链式赋值跟 C 语言语法上和效果上都不一样，效果上可以理解成把最右边的值从左往右赋值。<a href="https://segmentfault.com/a/1190000009325525" target="_blank" rel="external">我看到的用 dis 分析的过程</a></li>
+<li>删除：del transform_ok[:]</li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.png" alt="Hieast 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="Hieast 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/python/" rel="tag"># python</a>
+          
+            <a href="/tags/http/" rel="tag"># http</a>
+          
+            <a href="/tags/flask/" rel="tag"># flask</a>
+          
+            <a href="/tags/wsgi/" rel="tag"># wsgi</a>
+          
+            <a href="/tags/werkzeug/" rel="tag"># werkzeug</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/11/08/filco-FKBN87MC:EFB2/" rel="next" title="Filco 圣手二代87键 Mac 按键适配指南（全是私货）">
+                <i class="fa fa-chevron-left"></i> Filco 圣手二代87键 Mac 按键适配指南（全是私货）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+  
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="Hieast" />
+            
+              <p class="site-author-name" itemprop="name">Hieast</p>
+              <p class="site-description motion-element" itemprop="description">专注于挖掘数据的价值。从事 Python Web 后端开发，自媒体数据采集、分析和应用工作相关。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Flask-系列文章前言"><span class="nav-number">1.</span> <span class="nav-text">Flask 系列文章前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#WSGI-——-Web-Server-Gateway-Interface"><span class="nav-number">2.</span> <span class="nav-text">WSGI —— Web Server Gateway Interface</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#WSGI-官方定义"><span class="nav-number">2.1.</span> <span class="nav-text">WSGI 官方定义</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Werkzeug-——-HTTP-和-WSGI-工具集"><span class="nav-number">3.</span> <span class="nav-text">Werkzeug ——  HTTP 和 WSGI 工具集</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#强大的路由和-URI-and-IRI-utilities"><span class="nav-number">3.1.</span> <span class="nav-text">强大的路由和 URI and IRI utilities</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何处理-HTTP-header"><span class="nav-number">3.2.</span> <span class="nav-text">如何处理 HTTP header</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#request-和-response"><span class="nav-number">3.3.</span> <span class="nav-text">request 和 response</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#debugger"><span class="nav-number">3.4.</span> <span class="nav-text">debugger</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#unicode"><span class="nav-number">3.5.</span> <span class="nav-text">unicode</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#session-和-cookie-支持"><span class="nav-number">3.6.</span> <span class="nav-text">session 和 cookie 支持</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Cookbook"><span class="nav-number">4.</span> <span class="nav-text">Cookbook</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#对列表类型变量赋值和清空"><span class="nav-number">4.0.1.</span> <span class="nav-text">对列表类型变量赋值和清空</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2016 &mdash; <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Hieast</span>
+
+  
+</div>
+
+
+
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a></div>
+
+
+
+
+        
+
+
+<script>
+  	var _mtac = {};
+  	(function() {
+  		var mta = document.createElement("script");
+  		mta.src = "https://pingjs.qq.com/h5/stats.js?v2.0.4";
+  		mta.setAttribute("name", "MTAH5");
+  		mta.setAttribute("sid", "500538962");
+
+  		var s = document.getElementsByTagName("script")[0];
+  		s.parentNode.insertBefore(mta, s);
+  	})();
+</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=63947260";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://houshan.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://yoursite.com/2017/11/11/flask-1/';
+          this.page.identifier = '2017/11/11/flask-1/';
+          this.page.title = 'WSGI 和 Werkzeug ———— Flask 系列文章(一)';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://houshan.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="python,orm,sqlalchemy,sql," />
+  <meta name="keywords" content="硬件,键盘,filco," />
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="前言SQLAlchemy 版本：1.2 Mysql 这种数据库不支持 json 对象的存储，但是开发过程中又确实有这种需求。一种思路是使用字符串来存储该对象，入库时序列化，出库时反序列化。在业务代码中维护数据转换又很大的思维负担，还容易出错，因此这个功能的实现自然而然落在了 ORM 里。">
-<meta name="keywords" content="python,orm,sqlalchemy,sql">
+<meta name="description" content="前言2016 款的 MBPR 15 选用了蝶式键盘，键程很短。刚用的时候感觉很硬，敲了一年感觉变软了很多，再用下去可能手感就不能接受了。正好买的转接头上还有多余的 USB 接口，所以打算买一个机械键盘改善工作条件。 非蓝牙、87键以内的小键盘，挑来挑去，我就在 大 F 的圣手二代 和 hhkb pro 2 之间纠结了好几天，最后买了 FKBN87MC/EFB2 黑色青轴入坑。 笔记本型号： 201">
+<meta name="keywords" content="硬件,键盘,filco">
 <meta property="og:type" content="article">
-<meta property="og:title" content="SQLAlchemy 的用户自定义类型和 default 小坑">
-<meta property="og:url" content="http://yoursite.com/2017/10/27/sqlalchemy-user-defined-type/index.html">
+<meta property="og:title" content="Filco 圣手二代87键 Mac 按键适配指南（全是私货）">
+<meta property="og:url" content="http://yoursite.com/2017/11/08/filco-FKBN87MC:EFB2/index.html">
 <meta property="og:site_name" content="后山">
-<meta property="og:description" content="前言SQLAlchemy 版本：1.2 Mysql 这种数据库不支持 json 对象的存储，但是开发过程中又确实有这种需求。一种思路是使用字符串来存储该对象，入库时序列化，出库时反序列化。在业务代码中维护数据转换又很大的思维负担，还容易出错，因此这个功能的实现自然而然落在了 ORM 里。">
+<meta property="og:description" content="前言2016 款的 MBPR 15 选用了蝶式键盘，键程很短。刚用的时候感觉很硬，敲了一年感觉变软了很多，再用下去可能手感就不能接受了。正好买的转接头上还有多余的 USB 接口，所以打算买一个机械键盘改善工作条件。 非蓝牙、87键以内的小键盘，挑来挑去，我就在 大 F 的圣手二代 和 hhkb pro 2 之间纠结了好几天，最后买了 FKBN87MC/EFB2 黑色青轴入坑。 笔记本型号： 201">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-10-27T09:04:10.000Z">
+<meta property="og:updated_time" content="2017-11-08T17:12:58.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="SQLAlchemy 的用户自定义类型和 default 小坑">
-<meta name="twitter:description" content="前言SQLAlchemy 版本：1.2 Mysql 这种数据库不支持 json 对象的存储，但是开发过程中又确实有这种需求。一种思路是使用字符串来存储该对象，入库时序列化，出库时反序列化。在业务代码中维护数据转换又很大的思维负担，还容易出错，因此这个功能的实现自然而然落在了 ORM 里。">
+<meta name="twitter:title" content="Filco 圣手二代87键 Mac 按键适配指南（全是私货）">
+<meta name="twitter:description" content="前言2016 款的 MBPR 15 选用了蝶式键盘，键程很短。刚用的时候感觉很硬，敲了一年感觉变软了很多，再用下去可能手感就不能接受了。正好买的转接头上还有多余的 USB 接口，所以打算买一个机械键盘改善工作条件。 非蓝牙、87键以内的小键盘，挑来挑去，我就在 大 F 的圣手二代 和 hhkb pro 2 之间纠结了好几天，最后买了 FKBN87MC/EFB2 黑色青轴入坑。 笔记本型号： 201">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/10/27/sqlalchemy-user-defined-type/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/11/08/filco-FKBN87MC:EFB2/"/>
 
 
 
 
 
-  <title>SQLAlchemy 的用户自定义类型和 default 小坑 | 后山</title>
+  <title>Filco 圣手二代87键 Mac 按键适配指南（全是私货） | 后山</title>
   
 
 
@@ -262,7 +262,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/27/sqlalchemy-user-defined-type/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/08/filco-FKBN87MC:EFB2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Hieast">
@@ -279,7 +279,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">SQLAlchemy 的用户自定义类型和 default 小坑</h1>
+          <h1 class="post-title" itemprop="name headline">Filco 圣手二代87键 Mac 按键适配指南（全是私货）</h1>
         
 
         <div class="post-meta">
@@ -291,8 +291,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-27T16:42:12+08:00">
-                2017-10-27
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-08T13:49:53+08:00">
+                2017-11-08
               </time>
             
 
@@ -314,8 +314,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python后端/" itemprop="url" rel="index">
-                    <span itemprop="name">Python后端</span>
+                  <a href="/categories/硬件外设/" itemprop="url" rel="index">
+                    <span itemprop="name">硬件外设</span>
                   </a>
                 </span>
 
@@ -332,9 +332,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/10/27/sqlalchemy-user-defined-type/#comments" itemprop="discussionUrl">
+                <a href="/2017/11/08/filco-FKBN87MC:EFB2/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/10/27/sqlalchemy-user-defined-type/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2017/11/08/filco-FKBN87MC:EFB2/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -362,21 +362,34 @@
       
 
       
-        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>SQLAlchemy 版本：1.2</p>
-<p>Mysql 这种数据库不支持 json 对象的存储，但是开发过程中又确实有这种需求。一种思路是使用字符串来存储该对象，入库时序列化，出库时反序列化。在业务代码中维护数据转换又很大的思维负担，还容易出错，因此这个功能的实现自然而然落在了 ORM 里。</p>
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>2016 款的 MBPR 15 选用了蝶式键盘，键程很短。刚用的时候感觉很硬，敲了一年感觉变软了很多，再用下去可能手感就不能接受了。正好买的转接头上还有多余的 USB 接口，所以打算买一个机械键盘改善工作条件。</p>
+<p>非蓝牙、87键以内的小键盘，挑来挑去，我就在 大 F 的圣手二代 和 hhkb pro 2 之间纠结了好几天，最后买了 FKBN87MC/EFB2 黑色青轴入坑。</p>
+<p>笔记本型号： 2016款 15寸 MBPR 带 touchbar</p>
+<p>操作系统：10.12.6</p>
 <a id="more"></a>
-<h1 id="自定义类型"><a href="#自定义类型" class="headerlink" title="自定义类型"></a>自定义类型</h1><p>SQLAlchemy 支持自定义处理函数，继承 <code>TypeDecorator</code> 即可很方便得到用户自定义类型。代码如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> json</div><div class="line"><span class="keyword">from</span> sqlalchemy.types <span class="keyword">import</span> TypeDecorator, String</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">JSONEncodedDict</span><span class="params">(TypeDecorator)</span>:</span></div><div class="line">    <span class="string">"""Represents an immutable structure as a json-encoded string.</span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string">    Usage::</span></div><div class="line"><span class="string">        JSONEncodedDict(255)</span></div><div class="line"><span class="string">    """</span></div><div class="line"></div><div class="line">    impl = String</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">process_bind_param</span><span class="params">(self, value, dialect)</span>:</span></div><div class="line">      <span class="string">"""Receive a bound parameter value to be converted.</span></div><div class="line"><span class="string">      """</span></div><div class="line">        <span class="keyword">if</span> value <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">None</span>:</div><div class="line">            value = json.dumps(value)</div><div class="line"></div><div class="line">        <span class="keyword">return</span> value</div><div class="line">      </div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">process_result_value</span><span class="params">(self, value, dialect)</span>:</span></div><div class="line">      <span class="string">"""Receive a result-row column value to be converted.</span></div><div class="line"><span class="string">      """</span></div><div class="line">        <span class="keyword">if</span> value <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">None</span>:</div><div class="line">            value = json.loads(value)</div><div class="line">        <span class="keyword">return</span> value</div></pre></td></tr></table></figure>
-<p>这段代码扩展了原生的 String 类型，在处理 bind param 时将其序列化，在从数据库取出结果后反序列化。还有其他的可定义的步骤，如 <code>process_literal_param</code>，定义了如何处理一个 literal param。但是这里我用不到，就不定义了。</p>
-<h1 id="定义-Model"><a href="#定义-Model" class="headerlink" title="定义 Model"></a>定义 Model</h1><p>这里我踩到一个坑，结合 Model 定义来趟坑。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 定义数据库</span></div><div class="line"><span class="keyword">from</span> sqlalchemy <span class="keyword">import</span> create_engine</div><div class="line">engine = create_engine(<span class="string">'mysql+pymysql://root:123456@localhost:3306/public?charset=utf8mb4'</span>, echo=<span class="keyword">True</span>)</div><div class="line"></div><div class="line"><span class="comment"># 定义 Model</span></div><div class="line"><span class="keyword">from</span> sqlalchemy.ext.declarative <span class="keyword">import</span> declarative_base</div><div class="line">Base = declarative_base()</div><div class="line"><span class="keyword">from</span> sqlalchemy <span class="keyword">import</span> Column, Integer, String, text</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span><span class="params">(Base)</span>:</span></div><div class="line">    __tablename__ = <span class="string">'users'</span></div><div class="line">    id = Column(Integer, primary_key=<span class="keyword">True</span>)</div><div class="line">    name = Column(String(<span class="number">100</span>), nullable=<span class="keyword">True</span>)</div><div class="line">    fullname = Column(String(<span class="number">100</span>), server_default=text(<span class="string">"""'this is text default'"""</span>))</div><div class="line">    password = Column(String(<span class="number">100</span>), server_default=<span class="string">"'this is direct default'"</span>)</div><div class="line">    wrong_user_ids = Column(JSONEncodedDict(<span class="number">255</span>), default=<span class="string">'["this is default"]'</span>)</div><div class="line">    right_user_ids = Column(JSONEncodedDict(<span class="number">255</span>), default=[<span class="string">"this is default"</span>])</div><div class="line">Base.metadata.create_all(engine)</div></pre></td></tr></table></figure>
-<p>以下为打印出来的建表语句，可以看出，<code>default</code> 参数不影响建表语句，<code>server_default</code> 会影响，<code>text()</code> 函数将后面的 <code>server_default</code> 直接放在生成 SQL 对应位置，不使用该函数则会对 <code>server_default</code> 进行对应的转义。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">CREATE TABLE users (</div><div class="line">	id INTEGER NOT NULL AUTO_INCREMENT, </div><div class="line">	name VARCHAR(100), </div><div class="line">	fullname VARCHAR(100) DEFAULT &apos;this is text default&apos;, </div><div class="line">	password VARCHAR(100) DEFAULT &apos;&apos;&apos;this is direct default&apos;&apos;&apos;, </div><div class="line">	right_user_ids VARCHAR(255), </div><div class="line">	wrong_user_ids VARCHAR(255), </div><div class="line">	PRIMARY KEY (id)</div><div class="line">)</div></pre></td></tr></table></figure>
-<p>下面生成一个数据</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> sqlalchemy.orm <span class="keyword">import</span> sessionmaker</div><div class="line">Session = sessionmaker(bind=engine)</div><div class="line">session = Session()</div><div class="line">session.add(User(fullname=<span class="string">'Hieast'</span>, password=<span class="string">'123456'</span>))</div><div class="line">session.commit()</div><div class="line">obj = session.query(User).first()</div><div class="line">print(obj.right_user_ids)</div><div class="line">print(obj.wrong_user_ids)</div></pre></td></tr></table></figure>
-<p><code>print</code> 的输出是 </p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">([<span class="string">u'this is default'</span>], &lt;type <span class="string">'list'</span>&gt;)</div><div class="line">(<span class="string">u'["this is default"]'</span>, &lt;type <span class="string">'unicode'</span>&gt;)</div></pre></td></tr></table></figure>
-<p> 可以看到，<code>default</code> 在写入数据库的时候，是作为 bind_param 传入的，因此要经过 <code>process_bind_param</code> 的处理。如果我们定义的 <code>process_bind_param</code> 期望的输入是一个数组或字典，那么 <code>default</code> 也要赋值一个数组或字典，而不是已经序列化之后的字符串。</p>
+<h1 id="Mac-适配操作"><a href="#Mac-适配操作" class="headerlink" title="Mac 适配操作"></a>Mac 适配操作</h1><p>由于不同的键盘有不同的键位设计，特别是大部分键盘的默认键位都是为 windows 系统进行的适配，直接用在 MBPR 上面会有很多不习惯的地方。有两个方法可以改善。</p>
+<h2 id="Keyboard"><a href="#Keyboard" class="headerlink" title="Keyboard"></a>Keyboard</h2><p>系统自带的 Keyboard 设置可以配置主要的键盘使用偏好。</p>
+<p>个人比较重视的几个：</p>
+<ol>
+<li>按键重复速度设为最快，重复前延迟设为次最短。原因是经常用方向键移动光标，速度不能慢，但是如果重复前延迟时间设置得太短，打字的时候就很容易出现错误的按键重复。</li>
+<li>快捷键，个人习惯 Control + Space 唤醒 Spotlight，Command + Space 切换输入法。</li>
+<li>输入法只保留搜狗拼音（支持微软双拼），最多再加一个美式英语键盘，避免切换输入法的时候选项过多，需要思考。</li>
+</ol>
+<p>这里新加了一块 USB 键盘，因此会用到以下功能：</p>
+<p>System Preferences -&gt; Keyboard -&gt; Modifier Keys… -&gt; Select Keyboard (choose USB Keyboard) -&gt; switch Option Key and Command Key</p>
+<p>由于 macOS 中的 Option 与 Win 10 中的 Alt 对应，Command 与 Win 对应，但是 Win 10 的 Alt 键比 Win  键更靠近 Space 而 macOS  中的 Command 键比 Option 键更接近 Space。因此本人把 macOS 中外接的 USB 键盘对应的 Option 键和 Command 键对调，再把键盘上对应键位的键帽对调即可。</p>
+<p>如此键盘基本可以满足 macOS 的使用习惯。但是假如需要更加灵活的配置，更加高级的组合键，那么就需要借助 Karabiner 帮助了。亲测使用 Karabiner 的时候在 Keyboard 中对调的按键会失效，因此在 Karabiner 中需要再次设置。</p>
+<h2 id="Karabiner"><a href="#Karabiner" class="headerlink" title="Karabiner"></a>Karabiner</h2><p>首先是下载软件，<a href="https://pqrs.org/osx/karabiner/" target="_blank" rel="external">首页</a> 就有很多版本可以下载，不同的软件版本对应不同的系统版本，千万不要下错了。我下载的是 Karabiner-Elements-11.1.0，目前最新的版本，支持10.12 以及更新的 10.13。</p>
+<p>软件功能强大，不再赘言，简单说一下我自己的配置。</p>
+<ol>
+<li>将 Option 键和 Command 键对调，这需要四条简单配置。</li>
+<li>将应用 application 键（也有人叫目录键）映射到 fn 键，功能键平时就保持 F1~F12，这样需要时可以组合出全功能键。</li>
+<li>开启右边 command 和 hjkl 组合方向键，将 capslock 换成 右边的 command 键。这样可以在右手不离开主键盘区的情况下控制光标的移动了。缺点是没有 Capslock 键，不过这个键我本来也没用过，中英文切换一直用 shift 足矣。</li>
+<li>右上角的九个按键暂时没用上，有待开发。</li>
+</ol>
+<h1 id="相关链接："><a href="#相关链接：" class="headerlink" title="相关链接："></a>相关链接：</h1><ol>
+<li><a href="https://wuyf.me/2015/12/30/filco-majestouch-seriesFKBN87ML-EFB2-KEY-MAP-FOR-MAC/" target="_blank" rel="external">Filco 圣手二代87键 Mac 键对应</a></li>
+</ol>
 
       
     </div>
@@ -423,13 +436,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/python/" rel="tag"># python</a>
+            <a href="/tags/硬件/" rel="tag"># 硬件</a>
           
-            <a href="/tags/orm/" rel="tag"># orm</a>
+            <a href="/tags/键盘/" rel="tag"># 键盘</a>
           
-            <a href="/tags/sqlalchemy/" rel="tag"># sqlalchemy</a>
-          
-            <a href="/tags/sql/" rel="tag"># sql</a>
+            <a href="/tags/filco/" rel="tag"># filco</a>
           
         </div>
       
@@ -442,8 +453,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/10/22/Guide-for-Hexo/" rel="next" title="Guide for Hexo">
-                <i class="fa fa-chevron-left"></i> Guide for Hexo
+              <a href="/2017/10/27/sqlalchemy-user-defined-type/" rel="next" title="SQLAlchemy 的用户自定义类型和 default 小坑">
+                <i class="fa fa-chevron-left"></i> SQLAlchemy 的用户自定义类型和 default 小坑
               </a>
             
           </div>
@@ -452,8 +463,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/11/08/filco-FKBN87MC:EFB2/" rel="prev" title="Filco 圣手二代87键 Mac 按键适配指南（全是私货）">
-                Filco 圣手二代87键 Mac 按键适配指南（全是私货） <i class="fa fa-chevron-right"></i>
+              <a href="/2017/11/11/flask-1/" rel="prev" title="WSGI 和 Werkzeug ———— Flask 系列文章(一)">
+                WSGI 和 Werkzeug ———— Flask 系列文章(一) <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -599,7 +610,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#自定义类型"><span class="nav-number">2.</span> <span class="nav-text">自定义类型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#定义-Model"><span class="nav-number">3.</span> <span class="nav-text">定义 Model</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Mac-适配操作"><span class="nav-number">2.</span> <span class="nav-text">Mac 适配操作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Keyboard"><span class="nav-number">2.1.</span> <span class="nav-text">Keyboard</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Karabiner"><span class="nav-number">2.2.</span> <span class="nav-text">Karabiner</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#相关链接："><span class="nav-number">3.</span> <span class="nav-text">相关链接：</span></a></li></ol></div>
             
 
           </div>
@@ -773,9 +784,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://yoursite.com/2017/10/27/sqlalchemy-user-defined-type/';
-          this.page.identifier = '2017/10/27/sqlalchemy-user-defined-type/';
-          this.page.title = 'SQLAlchemy 的用户自定义类型和 default 小坑';
+          this.page.url = 'http://yoursite.com/2017/11/08/filco-FKBN87MC:EFB2/';
+          this.page.identifier = '2017/11/08/filco-FKBN87MC:EFB2/';
+          this.page.title = 'Filco 圣手二代87键 Mac 按键适配指南（全是私货）';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://houshan.disqus.com/embed.js';
