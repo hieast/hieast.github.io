@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="python,orm,sqlalchemy,sql," />
+  <meta name="keywords" content="High Sierra,Ruby,tmuxinator," />
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="前言SQLAlchemy 版本：1.2 Mysql 这种数据库不支持 json 对象的存储，但是开发过程中又确实有这种需求。一种思路是使用字符串来存储该对象，入库时序列化，出库时反序列化。在业务代码中维护数据转换又很大的思维负担，还容易出错，因此这个功能的实现自然而然落在了 ORM 里。">
-<meta name="keywords" content="python,orm,sqlalchemy,sql">
+<meta name="description" content="前言之前试玩过 tmux 和  tmuxinator，用来配置特定环境的窗口挺方便的。High Sierra 出来也有段时间了，一直没敢升级，怕有 bug。结果前几天手贱升级了，tmuxinator 不能用了。 报 zsh: /usr/local/bin/tmuxinator: bad interpreter: /System/Library/Frameworks/Ruby.framework/V">
+<meta name="keywords" content="High Sierra,Ruby,tmuxinator">
 <meta property="og:type" content="article">
-<meta property="og:title" content="SQLAlchemy 的用户自定义类型和 default 小坑">
-<meta property="og:url" content="http://yoursite.com/2017/10/27/sqlalchemy-user-defined-type/index.html">
+<meta property="og:title" content="fix-bad-interpreter-in-high-sierra">
+<meta property="og:url" content="http://yoursite.com/2017/11/22/fix-bad-interpreter-in-high-sierra/index.html">
 <meta property="og:site_name" content="后山">
-<meta property="og:description" content="前言SQLAlchemy 版本：1.2 Mysql 这种数据库不支持 json 对象的存储，但是开发过程中又确实有这种需求。一种思路是使用字符串来存储该对象，入库时序列化，出库时反序列化。在业务代码中维护数据转换又很大的思维负担，还容易出错，因此这个功能的实现自然而然落在了 ORM 里。">
+<meta property="og:description" content="前言之前试玩过 tmux 和  tmuxinator，用来配置特定环境的窗口挺方便的。High Sierra 出来也有段时间了，一直没敢升级，怕有 bug。结果前几天手贱升级了，tmuxinator 不能用了。 报 zsh: /usr/local/bin/tmuxinator: bad interpreter: /System/Library/Frameworks/Ruby.framework/V">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-10-27T09:04:10.000Z">
+<meta property="og:updated_time" content="2017-11-22T07:01:54.950Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="SQLAlchemy 的用户自定义类型和 default 小坑">
-<meta name="twitter:description" content="前言SQLAlchemy 版本：1.2 Mysql 这种数据库不支持 json 对象的存储，但是开发过程中又确实有这种需求。一种思路是使用字符串来存储该对象，入库时序列化，出库时反序列化。在业务代码中维护数据转换又很大的思维负担，还容易出错，因此这个功能的实现自然而然落在了 ORM 里。">
+<meta name="twitter:title" content="fix-bad-interpreter-in-high-sierra">
+<meta name="twitter:description" content="前言之前试玩过 tmux 和  tmuxinator，用来配置特定环境的窗口挺方便的。High Sierra 出来也有段时间了，一直没敢升级，怕有 bug。结果前几天手贱升级了，tmuxinator 不能用了。 报 zsh: /usr/local/bin/tmuxinator: bad interpreter: /System/Library/Frameworks/Ruby.framework/V">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/10/27/sqlalchemy-user-defined-type/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/11/22/fix-bad-interpreter-in-high-sierra/"/>
 
 
 
 
 
-  <title>SQLAlchemy 的用户自定义类型和 default 小坑 | 后山</title>
+  <title>fix-bad-interpreter-in-high-sierra | 后山</title>
   
 
 
@@ -262,7 +262,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/27/sqlalchemy-user-defined-type/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/22/fix-bad-interpreter-in-high-sierra/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Hieast">
@@ -279,7 +279,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">SQLAlchemy 的用户自定义类型和 default 小坑</h1>
+          <h1 class="post-title" itemprop="name headline">fix-bad-interpreter-in-high-sierra</h1>
         
 
         <div class="post-meta">
@@ -291,8 +291,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-27T16:42:12+08:00">
-                2017-10-27
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-22T14:40:23+08:00">
+                2017-11-22
               </time>
             
 
@@ -314,8 +314,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python后端/" itemprop="url" rel="index">
-                    <span itemprop="name">Python后端</span>
+                  <a href="/categories/技术杂学/" itemprop="url" rel="index">
+                    <span itemprop="name">技术杂学</span>
                   </a>
                 </span>
 
@@ -332,9 +332,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/10/27/sqlalchemy-user-defined-type/#comments" itemprop="discussionUrl">
+                <a href="/2017/11/22/fix-bad-interpreter-in-high-sierra/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/10/27/sqlalchemy-user-defined-type/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2017/11/22/fix-bad-interpreter-in-high-sierra/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -362,21 +362,17 @@
       
 
       
-        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>SQLAlchemy 版本：1.2</p>
-<p>Mysql 这种数据库不支持 json 对象的存储，但是开发过程中又确实有这种需求。一种思路是使用字符串来存储该对象，入库时序列化，出库时反序列化。在业务代码中维护数据转换又很大的思维负担，还容易出错，因此这个功能的实现自然而然落在了 ORM 里。</p>
-<a id="more"></a>
-<h1 id="自定义类型"><a href="#自定义类型" class="headerlink" title="自定义类型"></a>自定义类型</h1><p>SQLAlchemy 支持自定义处理函数，继承 <code>TypeDecorator</code> 即可很方便得到用户自定义类型。代码如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> json</div><div class="line"><span class="keyword">from</span> sqlalchemy.types <span class="keyword">import</span> TypeDecorator, String</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">JSONEncodedDict</span><span class="params">(TypeDecorator)</span>:</span></div><div class="line">    <span class="string">"""Represents an immutable structure as a json-encoded string.</span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string">    Usage::</span></div><div class="line"><span class="string">        JSONEncodedDict(255)</span></div><div class="line"><span class="string">    """</span></div><div class="line"></div><div class="line">    impl = String</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">process_bind_param</span><span class="params">(self, value, dialect)</span>:</span></div><div class="line">      <span class="string">"""Receive a bound parameter value to be converted.</span></div><div class="line"><span class="string">      """</span></div><div class="line">        <span class="keyword">if</span> value <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">None</span>:</div><div class="line">            value = json.dumps(value)</div><div class="line"></div><div class="line">        <span class="keyword">return</span> value</div><div class="line">      </div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">process_result_value</span><span class="params">(self, value, dialect)</span>:</span></div><div class="line">      <span class="string">"""Receive a result-row column value to be converted.</span></div><div class="line"><span class="string">      """</span></div><div class="line">        <span class="keyword">if</span> value <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">None</span>:</div><div class="line">            value = json.loads(value)</div><div class="line">        <span class="keyword">return</span> value</div></pre></td></tr></table></figure>
-<p>这段代码扩展了原生的 String 类型，在处理 bind param 时将其序列化，在从数据库取出结果后反序列化。还有其他的可定义的步骤，如 <code>process_literal_param</code>，定义了如何处理一个 literal param。但是这里我用不到，就不定义了。</p>
-<h1 id="定义-Model"><a href="#定义-Model" class="headerlink" title="定义 Model"></a>定义 Model</h1><p>这里我踩到一个坑，结合 Model 定义来趟坑。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 定义数据库</span></div><div class="line"><span class="keyword">from</span> sqlalchemy <span class="keyword">import</span> create_engine</div><div class="line">engine = create_engine(<span class="string">'mysql+pymysql://root:123456@localhost:3306/public?charset=utf8mb4'</span>, echo=<span class="keyword">True</span>)</div><div class="line"></div><div class="line"><span class="comment"># 定义 Model</span></div><div class="line"><span class="keyword">from</span> sqlalchemy.ext.declarative <span class="keyword">import</span> declarative_base</div><div class="line">Base = declarative_base()</div><div class="line"><span class="keyword">from</span> sqlalchemy <span class="keyword">import</span> Column, Integer, String, text</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span><span class="params">(Base)</span>:</span></div><div class="line">    __tablename__ = <span class="string">'users'</span></div><div class="line">    id = Column(Integer, primary_key=<span class="keyword">True</span>)</div><div class="line">    name = Column(String(<span class="number">100</span>), nullable=<span class="keyword">True</span>)</div><div class="line">    fullname = Column(String(<span class="number">100</span>), server_default=text(<span class="string">"""'this is text default'"""</span>))</div><div class="line">    password = Column(String(<span class="number">100</span>), server_default=<span class="string">"'this is direct default'"</span>)</div><div class="line">    wrong_user_ids = Column(JSONEncodedDict(<span class="number">255</span>), default=<span class="string">'["this is default"]'</span>)</div><div class="line">    right_user_ids = Column(JSONEncodedDict(<span class="number">255</span>), default=[<span class="string">"this is default"</span>])</div><div class="line">Base.metadata.create_all(engine)</div></pre></td></tr></table></figure>
-<p>以下为打印出来的建表语句，可以看出，<code>default</code> 参数不影响建表语句，<code>server_default</code> 会影响，<code>text()</code> 函数将后面的 <code>server_default</code> 直接放在生成 SQL 对应位置，不使用该函数则会对 <code>server_default</code> 进行对应的转义。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">CREATE TABLE users (</div><div class="line">	id INTEGER NOT NULL AUTO_INCREMENT, </div><div class="line">	name VARCHAR(100), </div><div class="line">	fullname VARCHAR(100) DEFAULT &apos;this is text default&apos;, </div><div class="line">	password VARCHAR(100) DEFAULT &apos;&apos;&apos;this is direct default&apos;&apos;&apos;, </div><div class="line">	right_user_ids VARCHAR(255), </div><div class="line">	wrong_user_ids VARCHAR(255), </div><div class="line">	PRIMARY KEY (id)</div><div class="line">)</div></pre></td></tr></table></figure>
-<p>下面生成一个数据</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> sqlalchemy.orm <span class="keyword">import</span> sessionmaker</div><div class="line">Session = sessionmaker(bind=engine)</div><div class="line">session = Session()</div><div class="line">session.add(User(fullname=<span class="string">'Hieast'</span>, password=<span class="string">'123456'</span>))</div><div class="line">session.commit()</div><div class="line">obj = session.query(User).first()</div><div class="line">print(obj.right_user_ids)</div><div class="line">print(obj.wrong_user_ids)</div></pre></td></tr></table></figure>
-<p><code>print</code> 的输出是 </p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">([<span class="string">u'this is default'</span>], &lt;type <span class="string">'list'</span>&gt;)</div><div class="line">(<span class="string">u'["this is default"]'</span>, &lt;type <span class="string">'unicode'</span>&gt;)</div></pre></td></tr></table></figure>
-<p> 可以看到，<code>default</code> 在写入数据库的时候，是作为 bind_param 传入的，因此要经过 <code>process_bind_param</code> 的处理。如果我们定义的 <code>process_bind_param</code> 期望的输入是一个数组或字典，那么 <code>default</code> 也要赋值一个数组或字典，而不是已经序列化之后的字符串。</p>
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>之前试玩过 tmux 和  tmuxinator，用来配置特定环境的窗口挺方便的。High Sierra 出来也有段时间了，一直没敢升级，怕有 bug。结果前几天手贱升级了，tmuxinator 不能用了。</p>
+<p>报 <code>zsh: /usr/local/bin/tmuxinator: bad interpreter: /System/Library/Frameworks/Ruby.framework/Versions/2.0/usr/bin: no such file or directory</code> 异常，看起来似乎是系统升级导致解释器没有了，沿着路径一路找下去，发现现在的解释器地址在 <code>/System/Library/Frameworks/Ruby.framework/Versions/2.3/usr/bin</code> 。</p>
+<p>发现 /usr/local/bin/tmuxinator 原来是下面这样的一个脚本：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">head `<span class="built_in">which</span> tmuxinator`</div><div class="line"><span class="comment">#!/System/Library/Frameworks/Ruby.framework/Versions/2.3/usr/bin/ruby</span></div><div class="line"><span class="comment">#</span></div><div class="line"><span class="comment"># This file was generated by RubyGems.</span></div><div class="line"><span class="comment">#</span></div><div class="line"><span class="comment"># The application 'tmuxinator' is installed as part of a gem, and</span></div><div class="line"><span class="comment"># this file is here to facilitate running it.</span></div><div class="line"><span class="comment">#</span></div><div class="line"></div><div class="line">require <span class="string">'rubygems'</span></div></pre></td></tr></table></figure>
+<p>所以只有把第一行的路径改掉即可，如果新的 gem 里面没有安装 tmuxinator，<code>sudo gem install tmuxinator</code> 安装即可。</p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ol>
+<li><a href="https://github.com/tmuxinator/tmuxinator/issues/562" target="_blank" rel="external">tmuxinator 相关 issue</a></li>
+</ol>
+<ol>
+<li><a href="https://github.com/CocoaPods/CocoaPods/issues/6778" target="_blank" rel="external">CocoaPods 同样的问题</a></li>
+</ol>
 
       
     </div>
@@ -423,13 +419,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/python/" rel="tag"># python</a>
+            <a href="/tags/High-Sierra/" rel="tag"># High Sierra</a>
           
-            <a href="/tags/orm/" rel="tag"># orm</a>
+            <a href="/tags/Ruby/" rel="tag"># Ruby</a>
           
-            <a href="/tags/sqlalchemy/" rel="tag"># sqlalchemy</a>
-          
-            <a href="/tags/sql/" rel="tag"># sql</a>
+            <a href="/tags/tmuxinator/" rel="tag"># tmuxinator</a>
           
         </div>
       
@@ -442,8 +436,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/10/22/Guide-for-Hexo/" rel="next" title="Guide for Hexo">
-                <i class="fa fa-chevron-left"></i> Guide for Hexo
+              <a href="/2017/11/21/coursera-enable-bilingual-subtitle/" rel="next" title="临时开启 Coursera 双语字幕的方法">
+                <i class="fa fa-chevron-left"></i> 临时开启 Coursera 双语字幕的方法
               </a>
             
           </div>
@@ -451,10 +445,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/11/08/filco-FKBN87MC:EFB2/" rel="prev" title="Filco 圣手二代87键 Mac 按键适配指南（全是私货）">
-                Filco 圣手二代87键 Mac 按键适配指南（全是私货） <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -599,7 +589,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#自定义类型"><span class="nav-number">2.</span> <span class="nav-text">自定义类型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#定义-Model"><span class="nav-number">3.</span> <span class="nav-text">定义 Model</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-number">2.</span> <span class="nav-text">参考</span></a></li></ol></div>
             
 
           </div>
@@ -773,9 +763,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://yoursite.com/2017/10/27/sqlalchemy-user-defined-type/';
-          this.page.identifier = '2017/10/27/sqlalchemy-user-defined-type/';
-          this.page.title = 'SQLAlchemy 的用户自定义类型和 default 小坑';
+          this.page.url = 'http://yoursite.com/2017/11/22/fix-bad-interpreter-in-high-sierra/';
+          this.page.identifier = '2017/11/22/fix-bad-interpreter-in-high-sierra/';
+          this.page.title = 'fix-bad-interpreter-in-high-sierra';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://houshan.disqus.com/embed.js';
