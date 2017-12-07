@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>后山</title>
+  
+  
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://yoursite.com/"/>
+  <updated>2017-12-07T12:20:22.936Z</updated>
+  <id>http://yoursite.com/</id>
+  
+  <author>
+    <name>Hieast</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>初次使用 TensorFlow</title>
+    <link href="http://yoursite.com/2017/12/07/tensorflow-demo/"/>
+    <id>http://yoursite.com/2017/12/07/tensorflow-demo/</id>
+    <published>2017-12-07T11:56:16.000Z</published>
+    <updated>2017-12-07T12:20:22.936Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+      <category term="人工智能" scheme="http://yoursite.com/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/"/>
+    
+    
+      <category term="机器学习" scheme="http://yoursite.com/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>理想中的我</title>
+    <link href="http://yoursite.com/2017/12/03/ideal-me/"/>
+    <id>http://yoursite.com/2017/12/03/ideal-me/</id>
+    <published>2017-12-03T15:27:53.000Z</published>
+    <updated>2017-12-07T12:15:18.164Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;我要成为什么样的人&quot;&gt;&lt;a href=&quot;#我要成为什么样的人&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="日记" scheme="http://yoursite.com/categories/%E6%97%A5%E8%AE%B0/"/>
+    
+    
+      <category term="日记" scheme="http://yoursite.com/tags/%E6%97%A5%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>修了一个因为升级 High Sierra 解释器路径变化报错</title>
+    <link href="http://yoursite.com/2017/11/22/fix-bad-interpreter-in-high-sierra/"/>
+    <id>http://yoursite.com/2017/11/22/fix-bad-interpreter-in-high-sierra/</id>
+    <published>2017-11-22T06:40:23.000Z</published>
+    <updated>2017-11-23T15:57:41.630Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;之前试玩过 tmux 和  tmuxinator，用来配置特定环境的窗口挺方便的。High Sierra
+        
+      
+    
+    </summary>
+    
+      <category term="技术杂学" scheme="http://yoursite.com/categories/%E6%8A%80%E6%9C%AF%E6%9D%82%E5%AD%A6/"/>
+    
+    
+      <category term="High Sierra" scheme="http://yoursite.com/tags/High-Sierra/"/>
+    
+      <category term="Ruby" scheme="http://yoursite.com/tags/Ruby/"/>
+    
+      <category term="tmuxinator" scheme="http://yoursite.com/tags/tmuxinator/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>临时开启 Coursera 双语字幕的方法</title>
+    <link href="http://yoursite.com/2017/11/21/coursera-enable-bilingual-subtitle/"/>
+    <id>http://yoursite.com/2017/11/21/coursera-enable-bilingual-subtitle/</id>
+    <published>2017-11-20T16:12:07.000Z</published>
+    <updated>2017-11-20T16:21:42.982Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;偷了点闲在家看 Coursera
+        
+      
+    
+    </summary>
+    
+      <category term="技术杂学" scheme="http://yoursite.com/categories/%E6%8A%80%E6%9C%AF%E6%9D%82%E5%AD%A6/"/>
+    
+    
+      <category term="MOOC" scheme="http://yoursite.com/tags/MOOC/"/>
+    
+      <category term="效率" scheme="http://yoursite.com/tags/%E6%95%88%E7%8E%87/"/>
+    
+      <category term="Coursera" scheme="http://yoursite.com/tags/Coursera/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>我的生产工具列表</title>
+    <link href="http://yoursite.com/2017/11/12/my-productivity/"/>
+    <id>http://yoursite.com/2017/11/12/my-productivity/</id>
+    <published>2017-11-12T08:52:55.000Z</published>
+    <updated>2017-11-13T08:47:22.281Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;本文仅仅是用来记录个人觉得能够提升生产效率的工具，以及个人的使用方式。提供传送门到工具的官方文档或者第三方教程。&lt;/p&gt;
+&lt;p&gt;仅考虑 macOS 10.12.6 系统。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="技术杂学" scheme="http://yoursite.com/categories/%E6%8A%80%E6%9C%AF%E6%9D%82%E5%AD%A6/"/>
+    
+    
+      <category term="效率" scheme="http://yoursite.com/tags/%E6%95%88%E7%8E%87/"/>
+    
+      <category term="Mac" scheme="http://yoursite.com/tags/Mac/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>WSGI 和 Werkzeug ———— Flask 系列文章(一)</title>
+    <link href="http://yoursite.com/2017/11/11/flask-1/"/>
+    <id>http://yoursite.com/2017/11/11/flask-1/</id>
+    <published>2017-11-11T10:55:53.000Z</published>
+    <updated>2017-11-16T16:55:50.424Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;Flask-系列文章前言&quot;&gt;&lt;a href=&quot;#Flask-系列文章前言&quot; class=&quot;headerlink&quot; title=&quot;Flask 系列文章前言&quot;&gt;&lt;/a&gt;Flask 系列文章前言&lt;/h1&gt;&lt;p&gt;记得差不多两年前第一次听说 flask 的时候，是在知乎@萧井陌的答案中&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;只要能读懂 flask 的源码了，就能找到一份软件开发的工作。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;网上关于 flask 源码的的教程很多，如：&lt;a href=&quot;http://cizixs.com/2017/01/10/flask-insight-introduction&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;flask 源码解析&lt;/a&gt;，大部分都是从 flask 某个版本（主要是 0.1）的代码结构入手，横向分析各个部分的功能。本文尝试从 flask 的代码提交入手，从第一个提交到 0.1 版本，纵向比较各个提交之间的差异，期望在 Python 代码以外，从 &lt;a href=&quot;https://github.com/mitsuhiko&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Armin Ronacher&lt;/a&gt; 大神身上学习到更多关于软件工程和开源项目相关的知识。每个知识点将独立成文，长短不一，每篇博文以用能用示例将概念理解透彻为目标。&lt;/p&gt;
+&lt;p&gt;传送门：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&quot;/2017/11/11/flask-1/&quot; title=&quot;WSGI 和 Werkzeug ———— Flask 系列文章(一)&quot;&gt;WSGI 和 Werkzeug ———— Flask 系列文章(一)&lt;/a&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+    
+    </summary>
+    
+      <category term="Python后端" scheme="http://yoursite.com/categories/Python%E5%90%8E%E7%AB%AF/"/>
+    
+    
+      <category term="python" scheme="http://yoursite.com/tags/python/"/>
+    
+      <category term="http" scheme="http://yoursite.com/tags/http/"/>
+    
+      <category term="flask" scheme="http://yoursite.com/tags/flask/"/>
+    
+      <category term="wsgi" scheme="http://yoursite.com/tags/wsgi/"/>
+    
+      <category term="werkzeug" scheme="http://yoursite.com/tags/werkzeug/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Filco 圣手二代87键 Mac 按键适配指南（全是私货）</title>
+    <link href="http://yoursite.com/2017/11/08/filco-FKBN87MC:EFB2/"/>
+    <id>http://yoursite.com/2017/11/08/filco-FKBN87MC:EFB2/</id>
+    <published>2017-11-08T05:49:53.000Z</published>
+    <updated>2017-11-12T08:53:41.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;2016 款的 MBPR 15 选用了蝶式键盘，键程很短。刚用的时候感觉很硬，敲了一年感觉变软了很多，再用下去可能手感就不能接受了。正好买的转接头上还有多余的 USB 接口，所以打算买一个机械键盘改善工作条件。&lt;/p&gt;
+&lt;p&gt;非蓝牙、87键以内的小键盘，挑来挑去，我就在 大 F 的圣手二代 和 hhkb pro 2 之间纠结了好几天，最后买了 FKBN87MC/EFB2 黑色青轴入坑。&lt;/p&gt;
+&lt;p&gt;笔记本型号： 2016款 15寸 MBPR 带 touchbar&lt;/p&gt;
+&lt;p&gt;操作系统：10.12.6&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="硬件外设" scheme="http://yoursite.com/categories/%E7%A1%AC%E4%BB%B6%E5%A4%96%E8%AE%BE/"/>
+    
+    
+      <category term="硬件" scheme="http://yoursite.com/tags/%E7%A1%AC%E4%BB%B6/"/>
+    
+      <category term="键盘" scheme="http://yoursite.com/tags/%E9%94%AE%E7%9B%98/"/>
+    
+      <category term="filco" scheme="http://yoursite.com/tags/filco/"/>
+    
+      <category term="Mac" scheme="http://yoursite.com/tags/Mac/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>SQLAlchemy 的用户自定义类型和 default 小坑</title>
+    <link href="http://yoursite.com/2017/10/27/sqlalchemy-user-defined-type/"/>
+    <id>http://yoursite.com/2017/10/27/sqlalchemy-user-defined-type/</id>
+    <published>2017-10-27T08:42:12.000Z</published>
+    <updated>2017-10-27T09:04:10.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;SQLAlchemy 版本：1.2&lt;/p&gt;
+&lt;p&gt;Mysql 这种数据库不支持 json 对象的存储，但是开发过程中又确实有这种需求。一种思路是使用字符串来存储该对象，入库时序列化，出库时反序列化。在业务代码中维护数据转换又很大的思维负担，还容易出错，因此这个功能的实现自然而然落在了 ORM 里。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Python后端" scheme="http://yoursite.com/categories/Python%E5%90%8E%E7%AB%AF/"/>
+    
+    
+      <category term="python" scheme="http://yoursite.com/tags/python/"/>
+    
+      <category term="orm" scheme="http://yoursite.com/tags/orm/"/>
+    
+      <category term="sqlalchemy" scheme="http://yoursite.com/tags/sqlalchemy/"/>
+    
+      <category term="sql" scheme="http://yoursite.com/tags/sql/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Guide for Hexo</title>
+    <link href="http://yoursite.com/2017/10/22/Guide-for-Hexo/"/>
+    <id>http://yoursite.com/2017/10/22/Guide-for-Hexo/</id>
+    <published>2017-10-22T15:16:31.000Z</published>
+    <updated>2017-10-24T11:53:45.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;之前用过 &lt;a href=&quot;http://jekyllcn.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Jekyll&lt;/a&gt;，也有过 &lt;a href=&quot;https://cn.vuejs.org/index.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Vue.js&lt;/a&gt; 拉 github issues api 的想法。但是因为前端功力不够，都没能继续下去。&lt;/p&gt;
+&lt;p&gt;决定用 Hexo 来搭建个人的博客了，个人的想法是：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Done is better then perfect. 不管怎么样，先上一个能用的博客再说，让自己把博客先更新起来。Hexo 的开发者很多，功能够用，也集成了很多第三方插件。&lt;/li&gt;
+&lt;li&gt;Keep it Simple and Stupid. 很喜欢 Hexo 里的一个主题，简洁大方，相当符合这个原则，而之前在 jekyll 里没看到。&lt;/li&gt;
+&lt;li&gt;Hexo 基于 node 运行，更有助于熟悉通用的 Web 开发。&lt;/li&gt;
+&lt;li&gt;静态网站不用折腾搞 SEO 了。&lt;/li&gt;
+&lt;/ol&gt;
+    
+    </summary>
+    
+      <category term="技术杂学" scheme="http://yoursite.com/categories/%E6%8A%80%E6%9C%AF%E6%9D%82%E5%AD%A6/"/>
+    
+    
+      <category term="教程" scheme="http://yoursite.com/tags/%E6%95%99%E7%A8%8B/"/>
+    
+      <category term="博客" scheme="http://yoursite.com/tags/%E5%8D%9A%E5%AE%A2/"/>
+    
+  </entry>
+  
+</feed>
