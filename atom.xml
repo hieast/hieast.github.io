@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://hieast.github.io/"/>
-  <updated>2017-12-07T12:20:22.936Z</updated>
+  <updated>2018-04-10T07:18:12.894Z</updated>
   <id>https://hieast.github.io/</id>
   
   <author>
@@ -17,13 +17,104 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Airflow 时区故障</title>
+    <link href="https://hieast.github.io/2018/04/10/Airflow-%E6%97%B6%E5%8C%BA%E6%95%85%E9%9A%9C/"/>
+    <id>https://hieast.github.io/2018/04/10/Airflow-时区故障/</id>
+    <published>2018-04-10T07:17:24.000Z</published>
+    <updated>2018-04-10T07:18:12.894Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;关于时区的整理&quot;&gt;&lt;a href=&quot;#关于时区的整理&quot; class=&quot;headerlink&quot; title=&quot;关于时区的整理&quot;&gt;&lt;/a&gt;关于时区的整理&lt;/h2&gt;&lt;p&gt;一旦涉及跨服务器的服务，那么难免碰到时区同步的问题，而 Web 服务很少是单机提供的，因此做现在的
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Airflow 工作目录详解</title>
+    <link href="https://hieast.github.io/2018/03/26/Airflow-%E5%B7%A5%E4%BD%9C%E7%9B%AE%E5%BD%95%E8%AF%A6%E8%A7%A3/"/>
+    <id>https://hieast.github.io/2018/03/26/Airflow-工作目录详解/</id>
+    <published>2018-03-26T07:18:47.000Z</published>
+    <updated>2018-03-26T09:15:21.066Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;在使用 airflow 的过程中对于 airflow 的工作目录一直不是很了解，今天有空就好好学习一下。&lt;/p&gt;
+&lt;h2 id=&quot;Python-的目录环境&quot;&gt;&lt;a href=&quot;#Python-的目录环境&quot; class=&quot;headerlink&quot; title=&quot;Python
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Python" scheme="https://hieast.github.io/tags/Python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>elasticsearch 搜索优化</title>
+    <link href="https://hieast.github.io/2018/01/04/elasticsearch-%E6%90%9C%E7%B4%A2%E4%BC%98%E5%8C%96/"/>
+    <id>https://hieast.github.io/2018/01/04/elasticsearch-搜索优化/</id>
+    <published>2018-01-04T02:53:19.000Z</published>
+    <updated>2018-01-04T02:53:19.465Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>thrift&amp;thriftpy</title>
+    <link href="https://hieast.github.io/2017/12/08/thrift-thriftpy/"/>
+    <id>https://hieast.github.io/2017/12/08/thrift-thriftpy/</id>
+    <published>2017-12-08T06:30:46.000Z</published>
+    <updated>2017-12-11T08:21:11.653Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot; title=&quot;简介&quot;&gt;&lt;/a&gt;简介&lt;/h1&gt;&lt;p&gt;The Apache Thrift software framework, for scalable cross-language
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
     <title>初次使用 TensorFlow</title>
     <link href="https://hieast.github.io/2017/12/07/tensorflow-demo/"/>
     <id>https://hieast.github.io/2017/12/07/tensorflow-demo/</id>
     <published>2017-12-07T11:56:16.000Z</published>
-    <updated>2017-12-07T12:20:22.936Z</updated>
+    <updated>2018-01-04T02:52:02.034Z</updated>
     
     <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;TensorFlow™ 是一个使用数据流图进行数值计算的开源软件库。图中的节点代表数学运算，
+        
+      
     
     </summary>
     
