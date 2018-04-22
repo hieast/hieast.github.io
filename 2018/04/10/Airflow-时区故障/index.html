@@ -88,7 +88,7 @@
 <meta property="og:site_name" content="后山">
 <meta property="og:description" content="关于时区的整理一旦涉及跨服务器的服务，那么难免碰到时区同步的问题，而 Web 服务很少是单机提供的，因此做现在的 Web 架构中应当处理好时区问题。 之前在写业务接口的时候，将系统所有的入口和出口都做了时区转换的处理，在内部各函数之间使用无时区的 datetime 格式传递时间，避免一些常见的小错误：  单方面使用 arrow 库的对象 将带时区和不带时区的 datetime 作比较 将零时区的日">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-10T07:18:12.894Z">
+<meta property="og:updated_time" content="2018-04-22T06:58:20.329Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Airflow 时区故障">
 <meta name="twitter:description" content="关于时区的整理一旦涉及跨服务器的服务，那么难免碰到时区同步的问题，而 Web 服务很少是单机提供的，因此做现在的 Web 架构中应当处理好时区问题。 之前在写业务接口的时候，将系统所有的入口和出口都做了时区转换的处理，在内部各函数之间使用无时区的 datetime 格式传递时间，避免一些常见的小错误：  单方面使用 arrow 库的对象 将带时区和不带时区的 datetime 作比较 将零时区的日">
@@ -348,6 +348,7 @@
 <li>将带时区和不带时区的 datetime 作比较</li>
 <li>将零时区的日期入库导致差错</li>
 </ol>
+<a id="more"></a>
 <p>结果今天 airflow 从 1.8.0 升级到 1.9.0，也发生了时区问题，具体表现为 scheduler 成功调度了一个 DAG，但是却没有真正生成 DAG RUN，手动执行 airflow run 也无法执行。所以需要基于几个原则进行排查，看错误发生在哪一步：</p>
 <ol>
 <li>所有的服务（包括数据库、终端 UI）都是有时区的</li>
@@ -436,6 +437,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2018/04/22/王道单科计组/" rel="prev" title="2019年王道单科计组-内容讨论">
+                2019年王道单科计组-内容讨论 <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -512,7 +517,7 @@
                 alt="Hieast" />
             
               <p class="site-author-name" itemprop="name">Hieast</p>
-              <p class="site-description motion-element" itemprop="description">永远的学习者，专注于挖掘数据的价值。目前从事 Python Web 后端开发，自媒体数据采集、分析和应用相关工作。</p>
+              <p class="site-description motion-element" itemprop="description">快速学习者，高校慕课平台深度使用者，专注于挖掘数据的价值。目前从事 Python 数据开发，自媒体数据采集、分析和应用相关工作。</p>
           </div>
 
           <nav class="site-state motion-element">
@@ -522,7 +527,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">17</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -544,7 +549,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">26</span>
+                  <span class="site-state-item-count">29</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -562,6 +567,20 @@
           
 
           <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/hieast" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:caisudong@foxmail.com" target="_blank" title="E-Mail">
+                    
+                      <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
             
           </div>
 

@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="计算机基础,计组," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="后山" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="前言准备把机器学习基础学一遍，顺便考个研。有点耽误赚钱，不过我还年轻。 这篇文章记录做 2019 年王道单科计组那本书的时候的一些疑问，有书里的错误，也有我的肤浅，希望和各位读者探讨考究一番。 我之前看过一次 CSAPP，做过练习题。这次大概花了 7 周的业余时间，跟着中国大学 MOOC 上刘宏伟老师和袁春风老师的视频和袁老师的教材过完了王道单科一轮，还剩 5~7 章的部分大题没做。 这门课给我最">
+<meta name="keywords" content="计算机基础,计组">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2019年王道单科计组-内容讨论">
+<meta property="og:url" content="https://hieast.github.io/2018/04/22/王道单科计组/index.html">
+<meta property="og:site_name" content="后山">
+<meta property="og:description" content="前言准备把机器学习基础学一遍，顺便考个研。有点耽误赚钱，不过我还年轻。 这篇文章记录做 2019 年王道单科计组那本书的时候的一些疑问，有书里的错误，也有我的肤浅，希望和各位读者探讨考究一番。 我之前看过一次 CSAPP，做过练习题。这次大概花了 7 周的业余时间，跟着中国大学 MOOC 上刘宏伟老师和袁春风老师的视频和袁老师的教材过完了王道单科一轮，还剩 5~7 章的部分大题没做。 这门课给我最">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-04-22T10:36:20.681Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="2019年王道单科计组-内容讨论">
+<meta name="twitter:description" content="前言准备把机器学习基础学一遍，顺便考个研。有点耽误赚钱，不过我还年轻。 这篇文章记录做 2019 年王道单科计组那本书的时候的一些疑问，有书里的错误，也有我的肤浅，希望和各位读者探讨考究一番。 我之前看过一次 CSAPP，做过练习题。这次大概花了 7 周的业余时间，跟着中国大学 MOOC 上刘宏伟老师和袁春风老师的视频和袁老师的教材过完了王道单科一轮，还剩 5~7 章的部分大题没做。 这门课给我最">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://hieast.github.io/2018/04/22/王道单科计组/"/>
+
+
+
+
+
+  <title>2019年王道单科计组-内容讨论 | 后山</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-108500679-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">后山</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://hieast.github.io/2018/04/22/王道单科计组/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Hieast">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="后山">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">2019年王道单科计组-内容讨论</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-22T16:14:58+08:00">
+                2018-04-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/04/22/王道单科计组/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/04/22/王道单科计组/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>准备把机器学习基础学一遍，顺便考个研。有点耽误赚钱，不过我还年轻。</p>
+<p>这篇文章记录做 2019 年王道单科计组那本书的时候的一些疑问，有书里的错误，也有我的肤浅，希望和各位读者探讨考究一番。</p>
+<p>我之前看过一次 CSAPP，做过练习题。这次大概花了 7 周的业余时间，跟着中国大学 MOOC 上刘宏伟老师和袁春风老师的视频和袁老师的教材过完了王道单科一轮，还剩 5~7 章的部分大题没做。</p>
+<p>这门课给我最大的感受就是术语不统一，不同的教材（老师）对于术语的使用和少数概念的划分都有所不同。因此在学习过程中需要博采众长，真正理解计算机不同部分的功能和组成之间的关系，把术语进行归类，牢记同义术语和英文原文，做到以不变应万变。</p>
+<a id="more"></a>
+<p>内容上的疑问：</p>
+<ol>
+<li>p31.一.16 CRC 码和海明码都能发现两位错误并纠正一位错的编码</li>
+<li>p71.一.29 答案解析中 “右移一位变成 11101” 应为 “右移一位变成 11001” </li>
+<li>p73.二.3 答案解析中的指数用二进制表示，缺少标记</li>
+<li>p74.二.10 第一问答案解析是基于 n=0 的情况，但是题意也可以理解为 n 可以取任意值。我倾向于后者，考察的知识点更多。</li>
+<li>p85 表2-9 无符号定点小数，最前面不应该有小数点，更不应该为 0，因为没有符号位。最大值也算错了。</li>
+<li>p89.一.2和3 第 2 题答案最后一句应该是粘贴错了，正确的位置应该在第 3 题最后。</li>
+<li>p89.一.8 答案最后一句解释错误，本题没有哪里出现过 1024。</li>
+<li>p91.二.2 这道题里面的 cache/主存系统效率的定义之前从来没看到过，关键是求平均访问时间竟然在求效率之前。</li>
+<li>p93 袁教材中描述电容的数据有效保存期上限为 64ms，与王道中的描述的 2ms 相差 32 倍，我们并不能直接把这个 2ms 当成真理，而且我也不认为会直接考这个值，p98.二.2 这道题就很没有意思。谁知道这两个数据的出处在哪里？</li>
+<li>p121 倒数第四行，“其他各行计数器均加 1” 应为 “其他小于命中行的各行计数器均加 1”</li>
+<li>p137.一.9 第3个说法应该是错的，页面大是缺页代价高而降低操作速度，页面调度频率是不如页面小的情况的。</li>
+<li>p143.二.4 解答是错误的，应该由 LRU 替换位标记替换顺序，而不是移动数据。</li>
+<li>p153.二.3.3) 的解答中缺少向上取整的符号，R 应该为整数。</li>
+<li>p180.一.12 存储器容量（主存容量） -&gt; 主存地址位数-&gt; 程序计数器位数，答案是这个逻辑。但是实际上是程序计数器的位数决定了可寻址空间，因果关系不对。</li>
+<li>p187.一.7与 p180.一.11 重复。</li>
+<li>p190 最下面 5.3.2 数据通路的基本结构那一块基本上是乱的，应该是想分成内部总线和专用数据通道两类，但是硬生生写了三端。</li>
+<li>p208 的注意内容和 p213.一.16 结合起来看很有意思，为什么只有取址、中断要优化成单独的微程序，而间址不需要。</li>
+<li>p217.一.18 解答最后一个逗号应该为句号，前面的解释和第四个说法正确没有关系。</li>
+<li>p266.二 这道大题假设了每个磁道的容量相等，即内层位密度大于外层位密度，但是实际上现代硬盘并不满足这个假设。也可以假设位密度不变，因此该题目不严谨。</li>
+<li>p271.一.7 这道题是选说法不可能的是，而不是说法错误的。</li>
+<li>p278 DMA 控制器组成第2各个主要功能中间缺少主语，接管总线控制权的是 DMA 而不是 CPU。</li>
+<li>p291.一.40 这里数据应该是送到了 DMA 控制器的数据缓冲寄存器中，而不是 DMA 控制器的 DMAC 中。</li>
+</ol>
+<p>其他更苛刻的要求：</p>
+<ol>
+<li>许多选择题中有两个括号，有的只需一个选项，有的需要选两个选项。都比较变扭。p3.一.3、p161.一.24等。</li>
+<li>数据的表示与运算部分逗号和小数点混用。</li>
+<li>部分题目在知识点之前，不合理。p16.二.1，p125.二.6，p139.二.2，p181.一.22</li>
+<li>浮点数的表示范围联考大纲已删除，但是还有大量的习题保留。</li>
+<li>关于 p127 页用蒋本珊教材中的方式，是否有更好的处理方案，而不是故意让同学们做错。</li>
+<li>有的题放错章节了。p138.一.12 应该在上一节。</li>
+</ol>
+<p>欢迎打脸，不打脸就给个 star 呗。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.png" alt="Hieast 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="Hieast 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/计算机基础/" rel="tag"># 计算机基础</a>
+          
+            <a href="/tags/计组/" rel="tag"># 计组</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/04/10/Airflow-时区故障/" rel="next" title="Airflow 时区故障">
+                <i class="fa fa-chevron-left"></i> Airflow 时区故障
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+  
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="Hieast" />
+            
+              <p class="site-author-name" itemprop="name">Hieast</p>
+              <p class="site-description motion-element" itemprop="description">快速学习者，高校慕课平台深度使用者，专注于挖掘数据的价值。目前从事 Python 数据开发，自媒体数据采集、分析和应用相关工作。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/hieast" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:caisudong@foxmail.com" target="_blank" title="E-Mail">
+                    
+                      <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2016 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Hieast</span>
+
+  
+</div>
+
+
+
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a></div>
+
+
+
+
+        
+
+
+<script>
+  	var _mtac = {};
+  	(function() {
+  		var mta = document.createElement("script");
+  		mta.src = "https://pingjs.qq.com/h5/stats.js?v2.0.4";
+  		mta.setAttribute("name", "MTAH5");
+  		mta.setAttribute("sid", "500538962");
+
+  		var s = document.getElementsByTagName("script")[0];
+  		s.parentNode.insertBefore(mta, s);
+  	})();
+</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=63947260";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://houshan.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'https://hieast.github.io/2018/04/22/王道单科计组/';
+          this.page.identifier = '2018/04/22/王道单科计组/';
+          this.page.title = '2019年王道单科计组-内容讨论';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://houshan.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
