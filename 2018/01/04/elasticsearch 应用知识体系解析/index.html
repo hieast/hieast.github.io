@@ -1,0 +1,1102 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="搜索,elasticsearch," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="后山" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="前言使用 elasticsearch 做开发一年多了，主要查的文档是权威指南和接口详情，这篇文章只是把相关的知识点和重点罗列一下。其中部分经验仅适用于资源较少的情况，资源较多、稳定性要求高的场景应设计更适合的配置和运维流程。 我没有升级过大版本，一直都是用的 5.x 版本。最开始查资料，很多查询都是基于 2.x 的接口写的，已经没有用了。所以以下内容仅基于 5.x 版本。 ES 相关的知识点主要可">
+<meta name="keywords" content="搜索,elasticsearch">
+<meta property="og:type" content="article">
+<meta property="og:title" content="elasticsearch 应用知识体系解析">
+<meta property="og:url" content="https://hieast.github.io/2018/01/04/elasticsearch 应用知识体系解析/index.html">
+<meta property="og:site_name" content="后山">
+<meta property="og:description" content="前言使用 elasticsearch 做开发一年多了，主要查的文档是权威指南和接口详情，这篇文章只是把相关的知识点和重点罗列一下。其中部分经验仅适用于资源较少的情况，资源较多、稳定性要求高的场景应设计更适合的配置和运维流程。 我没有升级过大版本，一直都是用的 5.x 版本。最开始查资料，很多查询都是基于 2.x 的接口写的，已经没有用了。所以以下内容仅基于 5.x 版本。 ES 相关的知识点主要可">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-04-22T06:00:19.899Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="elasticsearch 应用知识体系解析">
+<meta name="twitter:description" content="前言使用 elasticsearch 做开发一年多了，主要查的文档是权威指南和接口详情，这篇文章只是把相关的知识点和重点罗列一下。其中部分经验仅适用于资源较少的情况，资源较多、稳定性要求高的场景应设计更适合的配置和运维流程。 我没有升级过大版本，一直都是用的 5.x 版本。最开始查资料，很多查询都是基于 2.x 的接口写的，已经没有用了。所以以下内容仅基于 5.x 版本。 ES 相关的知识点主要可">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://hieast.github.io/2018/01/04/elasticsearch 应用知识体系解析/"/>
+
+
+
+
+
+  <title>elasticsearch 应用知识体系解析 | 后山</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-108500679-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">后山</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://hieast.github.io/2018/01/04/elasticsearch 应用知识体系解析/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Hieast">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="后山">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">elasticsearch 应用知识体系解析</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-04T10:53:19+08:00">
+                2018-01-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/01/04/elasticsearch 应用知识体系解析/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/01/04/elasticsearch 应用知识体系解析/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>使用 elasticsearch 做开发一年多了，主要查的文档是权威指南和接口详情，这篇文章只是把相关的知识点和重点罗列一下。其中部分经验仅适用于资源较少的情况，资源较多、稳定性要求高的场景应设计更适合的配置和运维流程。</p>
+<p>我没有升级过大版本，一直都是用的 5.x 版本。最开始查资料，很多查询都是基于 2.x 的接口写的，已经没有用了。所以以下内容仅基于 5.x 版本。</p>
+<p>ES 相关的知识点主要可以分成以下几块：</p>
+<ol>
+<li>基本增删查改（类比 WHERE）和聚合查询语句（类比 GROUP）</li>
+<li>集群内的原理、分片内部原理、索引原理</li>
+<li>集群管理、监控和部署</li>
+<li>数据建模 （类比关系型数据库的表设计）</li>
+<li>其他高级特性（高级搜索、高级数据类型）</li>
+<li>elasticsearch-sql、elasticsearch-dsl 等扩展</li>
+</ol>
+<a id="more"></a>
+<p>前端或者后端（非数据开发）岗位有需要时熟悉 1  即可，学习 2、6 有助于提高开发效率和查询执行效率。</p>
+<p>数据开发岗位需要熟悉 1、2、4，学习 3、6 有助于提高开发效率和便于调试。需要使用新特性时需要学习 5。</p>
+<p>运维岗位需要熟悉 3，集群规模较大时也需要熟悉 2。</p>
+<p><strong>学习以上知识点时强烈推荐从<a href="https://www.elastic.co/guide/cn/elasticsearch/guide/current/index.html" target="_blank" rel="external">权威指南</a>中学习概念，然后到<a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html" target="_blank" rel="external">官方网站</a>中查阅与使用的 ES 版本对应的 Reference。</strong></p>
+<h1 id="基本增删查改和聚合查询语句"><a href="#基本增删查改和聚合查询语句" class="headerlink" title="基本增删查改和聚合查询语句"></a>基本增删查改和聚合查询语句</h1><p>增删改主要是针对的单独一个文档，对应的是接口是 <a href="https://www.elastic.co/guide/en/elasticsearch/reference/5.4/docs.html" target="_blank" rel="external">Document APIs</a>，而查对应的搜索接口是 <a href="https://www.elastic.co/guide/en/elasticsearch/reference/5.4/search.html" target="_blank" rel="external">Search APIs</a> 和 <a href="https://www.elastic.co/guide/en/elasticsearch/reference/5.4/query-dsl.html" target="_blank" rel="external">Query DSL</a> 。<a href="https://www.elastic.co/guide/cn/elasticsearch/guide/current/_document_oriented.html" target="_blank" rel="external">文档</a>在 ES 中是最小可索引单位，类比于关系型数据库中的记录。 </p>
+<p>名词解释：<a href="https://www.elastic.co/guide/cn/elasticsearch/guide/current/_indexing_employee_documents.html" target="_blank" rel="external">索引</a> </p>
+<h2 id="API-约定"><a href="#API-约定" class="headerlink" title="API 约定"></a>API 约定</h2><p>ES 文档的原始的地址由三部分组成，索引名称（index）、类型名称（type）和 ID（id），操作方法符合 <a href="https://restfulapi.net/" target="_blank" rel="external">RESTful</a> 的风格。</p>
+<p>相关的接口在 <a href="https://www.elastic.co/guide/en/elasticsearch/reference/5.4/api-conventions.html" target="_blank" rel="external">API Conventions</a>。这里只说下重点。</p>
+<ol>
+<li>索引名称的位置可以使用逗号分隔、通配符、时间数学计算、别名等方式来支持同时对多个索引名称进行操作，但是只能在一个索引名称上生效的接口会报错。</li>
+<li>类型名称在未来的版本中会被弃用，不要使用。</li>
+</ol>
+<h2 id="文档接口简介"><a href="#文档接口简介" class="headerlink" title="文档接口简介"></a>文档接口简介</h2><p><strong>Single document APIs</strong></p>
+<ul>
+<li><a href="https://www.elastic.co/guide/en/elasticsearch/reference/5.4/docs-index_.html" target="_blank" rel="external">Index API</a> 新增一个文档</li>
+<li><a href="https://www.elastic.co/guide/en/elasticsearch/reference/5.4/docs-get.html" target="_blank" rel="external">Get API</a> 获取一个文档</li>
+<li><a href="https://www.elastic.co/guide/en/elasticsearch/reference/5.4/docs-delete.html" target="_blank" rel="external">Delete API</a> 删除一个文档</li>
+<li><a href="https://www.elastic.co/guide/en/elasticsearch/reference/5.4/docs-update.html" target="_blank" rel="external">Update API</a> 修改一个文档</li>
+</ul>
+<p><strong>Multi-document APIs</strong></p>
+<ul>
+<li><a href="https://www.elastic.co/guide/en/elasticsearch/reference/5.4/docs-multi-get.html" target="_blank" rel="external">Multi Get API</a> 获取多个文档，需要这些文档的完整路径</li>
+<li><a href="https://www.elastic.co/guide/en/elasticsearch/reference/5.4/docs-bulk.html" target="_blank" rel="external">Bulk API</a> 操作多个文档，需要分别指定对每个文档的操作方式</li>
+<li><a href="https://www.elastic.co/guide/en/elasticsearch/reference/5.4/docs-delete-by-query.html" target="_blank" rel="external">Delete By Query API</a> 删除符合搜索条件的所有文档，涉及到搜索语句</li>
+<li><a href="https://www.elastic.co/guide/en/elasticsearch/reference/5.4/docs-update-by-query.html" target="_blank" rel="external">Update By Query API</a> 修改符合搜索条件的所有文档，涉及到搜索语句</li>
+<li><a href="https://www.elastic.co/guide/en/elasticsearch/reference/5.4/docs-reindex.html" target="_blank" rel="external">Reindex API</a> 重索引，即将相关文档从一个索引名称中迁移到另外一个索引名称中，常用来做大批量导出。</li>
+</ul>
+<p>以上接口中需要注意的是 bulk 和 reindex。</p>
+<ul>
+<li>bulk<ul>
+<li>bulk 的 body 部分是一行操作一行操作内容间隔的， 拼起来比较麻烦，容易出错，在数据开发中不推荐手写 body，推荐使用各个语言的 Elasticsearch Client，有帮助函数可以使用。</li>
+<li>用于客户端对 ES 集群批量操作数据。</li>
+<li>以下是 python clinet 的代码片段，用于将一篇文章通过 bulk 接口发到集群中。</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> elasticsearch.helpers <span class="keyword">import</span> streaming_bulk</div><div class="line">actions = [</div><div class="line">    &#123;</div><div class="line">        <span class="string">"_op_type"</span>: op_type,</div><div class="line">        <span class="string">"_index"</span>: index,</div><div class="line">        <span class="string">"_type"</span>: type,</div><div class="line">        <span class="string">"_id"</span>: id,</div><div class="line">        <span class="string">"_source"</span>: _source</div><div class="line">    &#125;</div><div class="line">]</div><div class="line">result = streaming_bulk(es_client, actions, raise_on_error=<span class="keyword">False</span>)</div></pre></td></tr></table></figure>
+<ul>
+<li>reindex <ul>
+<li>字面意思是重新索引，实际上就是把一批文档从一个索引名称迁移到另外一个索引名称中。这个接口比较灵活。</li>
+<li>默认是迁移索引名称中的全部文档，也可以增加查询语句只选中指定文档进行迁移。</li>
+<li>默认是在本机上的索引名称之间进行迁移，也可以在相互信任（需要配置）的 es 集群中迁移。</li>
+<li>默认是重新索引原始文档，也可以通过脚本在迁移过程中对文档内容进行修改、添加字段等。</li>
+<li>用于集群内部或集群之间的索引名称级别的数据迁移。</li>
+<li>以下请求用于将远程的一个索引重索引到本地的同名索引中，并设置了较高的限速，每秒 5000 个文档。另外的命令是用来查询 reindex 任务的执行状态的、取消任务的执行。</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">POST _reindex?requests_per_second=5000</div><div class="line">GET /_tasks?detailed=true&amp;actions=*reindex</div><div class="line">POST _tasks/<span class="number">9</span>SsDuTAwQ72Z0VXVUsVt4g:<span class="number">808539</span>/_cancel</div></pre></td></tr></table></figure>
+<h2 id="查询条件简介"><a href="#查询条件简介" class="headerlink" title="查询条件简介"></a>查询条件简介</h2><p>这一部分专门介绍 <a href="https://www.elastic.co/guide/en/elasticsearch/reference/5.4/query-dsl.html" target="_blank" rel="external">Query DSL</a> 语句，该语句一般作为 query 的值用在各个接口中，最为常见的就是用在请求体搜索和聚合搜索中。</p>
+<p>Query DSL 语句可以分为 Leaf query clauses 和 Compound query clauses，即叶查询子句和复合查询子句。</p>
+<ul>
+<li>叶查询子句是用于具体字段的具体查询的，例如 <a href="https://www.elastic.co/guide/en/elasticsearch/reference/5.4/query-dsl-match-query.html" target="_blank" rel="external"><code>match</code></a>, <a href="https://www.elastic.co/guide/en/elasticsearch/reference/5.4/query-dsl-term-query.html" target="_blank" rel="external"><code>term</code></a> 或 <a href="https://www.elastic.co/guide/en/elasticsearch/reference/5.4/query-dsl-range-query.html" target="_blank" rel="external"><code>range</code></a>。这些查询可以单独使用，不可嵌套。</li>
+</ul>
+<ul>
+<li>复合查询子句用于将叶查询子句和其他复合查询子句以一定的逻辑关系组合起来。</li>
+</ul>
+<p>利用这两种子句可以组合出非常灵活的查询条件。查询子句的实际查询行为在查询上下文和过滤上下文中并不相同，效率相差很大，在不影响结果的情况下应当尽量将查询条件放在过滤上下文中。具体原理见 <a href="https://www.elastic.co/guide/cn/elasticsearch/guide/cn/_queries_and_filters.html" target="_blank" rel="external">查询与过滤</a>。</p>
+<h3 id="搜索接口"><a href="#搜索接口" class="headerlink" title="搜索接口"></a>搜索接口</h3><p>全部的搜索相关接口文档可以参考 <a href="https://www.elastic.co/guide/en/elasticsearch/reference/5.4/search.html" target="_blank" rel="external">Search APIs</a>，这里讲四个常用的接口。</p>
+<ul>
+<li><a href="https://www.elastic.co/guide/en/elasticsearch/reference/5.4/search-uri-request.html" target="_blank" rel="external">URI Search</a> 叫查询字符串搜索，是指将查询需求用 <a href="https://www.elastic.co/guide/en/elasticsearch/reference/5.4/query-dsl-query-string-query.html#query-string-syntax" target="_blank" rel="external">Query String Query</a> 的语法写进一个请求变量 q 里面，仅适用于简单的、内部的查询，对复杂的查询支持不好，且安全性难以保障，不适用于复杂的、开放的查询。</li>
+</ul>
+<ul>
+<li><a href="https://www.elastic.co/guide/en/elasticsearch/reference/5.4/search-request-body.html" target="_blank" rel="external">Request Body Search</a> 叫请求体搜索，请求体的查询条件部分即 <a href="https://www.elastic.co/guide/en/elasticsearch/reference/5.4/query-dsl.html" target="_blank" rel="external">Query DSL</a> ，用于全功能的复杂查询，由于可以将用户的输入赋值到查询的任意位置，因此更加安全。这部分查询条件部分比较重要，在很多接口中缩小文章范围都需要用到。</li>
+</ul>
+<ul>
+<li><a href="https://www.elastic.co/guide/en/elasticsearch/reference/5.4/search-count.html" target="_blank" rel="external">Count API</a> 即匹配文档数查询，查询条件部分与请求体相同，只返回匹配的文档数和各节点的状态。由于不返回具体文档，具体文档相关的参数是不可用的。</li>
+</ul>
+<ul>
+<li><a href="https://www.elastic.co/guide/en/elasticsearch/reference/5.4/search-explain.html" target="_blank" rel="external">Explain API</a> 用于解释单篇文档是否符合查询条件，以及匹配分数的详细计算过程。</li>
+</ul>
+<h2 id="聚合查询简介"><a href="#聚合查询简介" class="headerlink" title="聚合查询简介"></a>聚合查询简介</h2><p>Elasticsearch有一个功能叫做<strong>聚合(aggregations)</strong>，它允许你在数据上生成复杂的分析统计。它很像SQL中的<code>GROUP BY</code>但是功能更强大。接口文档 <a href="https://www.elastic.co/guide/en/elasticsearch/reference/5.4/search-aggregations.html" target="_blank" rel="external">Aggregations</a>。</p>
+<p>类似于 DSL 查询表达式， 聚合也有可组合的语法：独立单元的功能可以被混合起来提供你需要的自定义行为。这意味着只需要学习很少的基本概念，就可以得到几乎无尽的组合。</p>
+<p>要掌握聚合，你只需要明白两个主要的概念：</p>
+<ul>
+<li><p><em>桶（Buckets）</em></p>
+<p>满足特定条件的文档的集合</p>
+</li>
+</ul>
+<ul>
+<li><p><em>指标（Metrics）</em></p>
+<p>对桶内的文档进行统计计算</p>
+</li>
+</ul>
+<p>聚合语句可以和查询语句一起使用，只对符合查询条件的文档进行聚合。script 与 query 类似，也是在多处都会用到的通用组件，本文不做详细介绍，可以参考 <a href="https://www.elastic.co/guide/en/elasticsearch/painless/5.5/painless-specification.html" target="_blank" rel="external">Painless Language Specification</a>。</p>
+<h2 id="推荐学习内容"><a href="#推荐学习内容" class="headerlink" title="推荐学习内容"></a>推荐学习内容</h2><p>学习 <a href="https://www.elastic.co/guide/cn/elasticsearch/guide/current/getting-started.html" target="_blank" rel="external">基础入门</a> 中没有强调补充、高级的相关章节、搜索相关部分以及以上相关接口文档（<a href="https://www.elastic.co/guide/en/elasticsearch/reference/5.4/getting-started.html" target="_blank" rel="external">Getting Started</a> <a href="https://www.elastic.co/guide/en/elasticsearch/reference/5.4/api-conventions.html" target="_blank" rel="external">API Conventions</a> <a href="https://www.elastic.co/guide/en/elasticsearch/reference/5.4/docs.html" target="_blank" rel="external">Document APIs</a> <a href="https://www.elastic.co/guide/en/elasticsearch/reference/5.4/search.html" target="_blank" rel="external">Search APIs</a> <a href="https://www.elastic.co/guide/en/elasticsearch/reference/5.4/search-aggregations.html" target="_blank" rel="external">Aggregations</a> <a href="https://www.elastic.co/guide/en/elasticsearch/reference/5.4/query-dsl.html" target="_blank" rel="external">Query DSL</a>）。</p>
+<h1 id="集群内的原理、分片内部原理"><a href="#集群内的原理、分片内部原理" class="headerlink" title="集群内的原理、分片内部原理"></a>集群内的原理、分片内部原理</h1><h2 id="集群原理简介"><a href="#集群原理简介" class="headerlink" title="集群原理简介"></a>集群原理简介</h2><p>集群这部分原理主要是通过比较高层次的概念，以节点和分片为最小粒度讲解集群的工作原理。简介的流程将是自上而下的。</p>
+<p>集群是由一个或者多个拥有相同 <code>cluster.name</code> 配置的节点组成。</p>
+<p>节点是一个运行中的 Elasticsearch 实例。</p>
+<p>节点有不同的类型，通过node.master 和 node.data 两个参数配置：</p>
+<ul>
+<li>主节点负责管理集群范围内的所有变更，例如增加、删除索引，或者增加、删除节点等。</li>
+<li>数据节点保存数据和执行数据相关的操作，如增删改查，搜索，和聚合。</li>
+<li><a href="https://www.elastic.co/guide/cn/elasticsearch/guide/cn/_talking_to_elasticsearch.html" target="_blank" rel="external">客户端节点 </a>作为集群的一部分，可以响应用户的情况，把相关操作发送到其他节点。</li>
+<li>部落节点（Tribe Node）是协调集群与集群之间的节点，这里不做过多介绍。</li>
+</ul>
+<p>我们可以将请求发送到 集群中的<strong>任何</strong>节点 ，包括主节点，该节点负责从各个包含我们所需文档的节点收集回数据，并将最终结果返回給客户端，可以简称该节点为协调节点。</p>
+<p>索引名称实际上是指向一个或者多个物理分片的逻辑命名空间。</p>
+<p>分片有两种：</p>
+<ul>
+<li>主分片是必须存在的，所有主分片的数据加起来就是全部数据。创建索引名称后主分片数量不能修改。</li>
+<li>副本分片作为硬件故障时保护数据不丢失的冗余备份，并为搜索和返回文档等读操作提供服务。</li>
+</ul>
+<p>分片是一个分片是一个 Lucene 的实例，即底层的工作单元，它仅保存了全部数据的一部分，但是具有完整的搜索功能。创建索引名称时至少有一个主分片，可以没有副本分片。</p>
+<ol>
+<li><p>当我们创建索引时，协调节点将创建请求转发到主节点，主节点负责创建主、副本分片并将结果返回。</p>
+</li>
+<li><p><a href="https://www.elastic.co/guide/cn/elasticsearch/guide/cn/distributed-docs.html" target="_blank" rel="external">分布式文档存储</a></p>
+<p>当我们增删查改或者使用 mget、bulk 请求时，协调节点仅将请求转发到包含对应文档主分片的节点上，待该节点完成副本分片的更新后返回，然后协调节点将各对应节点的结果收集并返回。此时协调节点与所需节点通信一次。</p>
+</li>
+<li><p><a href="https://www.elastic.co/guide/cn/elasticsearch/guide/cn/distributed-search.html" target="_blank" rel="external">执行分布式检索</a></p>
+<p>当我们搜索、聚合时，协调节点首先需要使用一个优先级队列来管理从所需节点获取的文档元数据（聚合数据）、排序数据，然后再排序，最后再根据真正匹配的文档元数据再与所需节点通信获取返回文档信息。<br>如果 size 为 0，此时协调节点仍只与所需节点通信一次，如果 size 不为 0，则协调节点不仅需要 (size + from) *  number_of_shards 长度的优先队列重排序，而且需要与所需节点通信第二次取回命中文档的具体字段。<br>如果聚合是非全量的、需要排序的，则有可能出现聚合结果不准确的情况。 <a href="https://www.elastic.co/guide/en/elasticsearch/reference/5.4/search-aggregations-bucket-terms-aggregation.html" target="_blank" rel="external">聚合不准确的例子文档</a></p>
+</li>
+</ol>
+<h2 id="分片原理简介"><a href="#分片原理简介" class="headerlink" title="分片原理简介"></a>分片原理简介</h2><p>分片(shards) 是最小的工作单元，这部分简介分片是如何工作的。我们不妨假设在一个已有一定数据的索引名称中添加一个文档，看看它是怎么工作的。</p>
+<p><a href="https://www.elastic.co/guide/cn/elasticsearch/guide/current/inverted-index.html" target="_blank" rel="external">倒排索引</a>：倒排索引包含一个有序列表，列表包含所有文档出现过的不重复个体，或称为 <em>词项</em> ，对于每一个词项，包含了它所有曾出现过文档的列表。每个被索引的字段都有自己的倒排索引。倒排索引是不可变的，这带来了很多速度上的优势，为了这些优势，es 宁可定期重建索引。</p>
+<p>段(segment)： 每一段本身都是一个倒排索引段，也是不可修改的。一个分片包含一个提交点（一个列出了所有已知段的文件）和多个段。搜索分片就是对所有段的结果进行聚合，修改和删除只是在提交点做一个标记，需要到段合并的时候才真正进行。</p>
+<p>事务日志(translog)：每一次对 Elasticsearch 进行操作时均进行了日志记录。</p>
+<ol>
+<li>文档被写入内存缓冲区和事务日志</li>
+<li>如果设置了每次写请求完成之后执行 tranlog 落盘，在整个请求被 <code>fsync</code> 到主分片和复制分片的translog之前，你的客户端不会得到一个 200 OK 响应。</li>
+<li>如果到了刷新（refresh）时间，内存缓冲区会被清空，事务日志保留，内存缓冲区的文档被写到一个临时段中可以被搜索到。</li>
+<li>如果到了刷新（flush）时间，内存缓冲区和事务日志都会被清空，一个最新的段通过 fsync 写入硬盘。</li>
+<li>如果 flush 时存在多个较小的段，可能会触发段合并，多个较小的段被合并到一个大段中，同时进行实质的文档删除。大的段搜索性能更好。</li>
+</ol>
+<p>从 refresh、flush 到段合并，消耗的系统资源逐渐增大，目前我们的数据实时搜索的要求不那么高，因此目前采取的 30s 的 refresh 间隔和 30min 的 flush 间隔，并且不对段合并采取强制的限制。</p>
+<h2 id="索引原理简介"><a href="#索引原理简介" class="headerlink" title="索引原理简介"></a>索引原理简介</h2><p>默认情况下：一个文档入索引名称时，需要根据映射中的配置决定：</p>
+<ul>
+<li><ol>
+<li>根据路由决定进入哪个分片</li>
+</ol>
+</li>
+</ul>
+<blockquote>
+<p>shard = hash(routing) % number_of_primary_shards<br>routing 是一个可变值，默认是文档的 _id ，也可以设置成一个自定义的值。 routing 通过 hash 函数生成一个数字，然后这个数字再除以 number_of_primary_shards （主分片的数量）后得到 余数 。这个分布在 0 到 number_of_primary_shards-1 之间的余数，就是我们所寻求的文档所在分片的位置。</p>
+</blockquote>
+<p>修改 routing 会影响分片的选择。</p>
+<ul>
+<li><ol>
+<li>根据每个域的配置，决定是否创建倒排索引、是否单独保存域值、是否创建用于聚合排序的字段</li>
+</ol>
+</li>
+</ul>
+<p>是否创建倒排索引，默认开启：object 类型使用 enabled 控制，nested 无，其他类型使用 index 。</p>
+<p>是否单独保存域值，默认关闭：object 和 nested 无，其他类型使用 store 控制。</p>
+<p>是否创建用于聚合排序的字段，默认除 text 外均开启：object 和 nested 无，text 使用 fielddata，其他类型使用 doc_value 控制。</p>
+<p>doc_value 是在索引文档时保存到硬盘。fielddata 是在查询时在内存中生成，会消耗大量资源。一般保留默认值即可。</p>
+<p>创建倒排索引的分析器可以配置，自由度很高。</p>
+<ul>
+<li><ol>
+<li>根据映射中元域(meta-field)的配置决定是否保存原始文档、是否开启 _all 字段。</li>
+</ol>
+</li>
+</ul>
+<p>_source 字段默认为 true，保存原始文档。</p>
+<p>_all 字段默认为 true，用于非特定字段的全文搜索。</p>
+<h2 id="推荐学习内容-1"><a href="#推荐学习内容-1" class="headerlink" title="推荐学习内容"></a>推荐学习内容</h2><p>学习 <a href="https://www.elastic.co/guide/cn/elasticsearch/guide/current/getting-started.html" target="_blank" rel="external">基础入门</a> 补充、高级章节。</p>
+<h1 id="集群管理、监控和部署"><a href="#集群管理、监控和部署" class="headerlink" title="集群管理、监控和部署"></a>集群管理、监控和部署</h1><p><a href="https://www.elastic.co/guide/cn/elasticsearch/guide/cn/administration.html" target="_blank" rel="external">管理、监控和部署</a></p>
+<p>本书大部分介绍了使用 Elasticsearch 作为后端创建应用程序。本章节稍微不同。在这里，你将学习到如何管理 Elasticsearch 自身。Elasticsearch 是一个复杂的软件，有许多可移动组件，大量的 API 设计用来帮助管理你的 Elasticsearch 部署。</p>
+<p>在这个章节，我们涵盖三个主题：</p>
+<ul>
+<li>根据监控你的集群重要数据的统计，去了解哪些行为是正常的，哪些应该引起警告，并解释 Elasticsearch 提供的各种统计信息。</li>
+<li>部署你的集群到生产环境，包括最佳实践和应该（或不应该！）修改的重要配置。</li>
+<li>部署后的维护，如 Rolling Restart 或备份你的集群</li>
+</ul>
+<h2 id="监控"><a href="#监控" class="headerlink" title="监控"></a>监控</h2><p><a href="https://www.elastic.co/guide/cn/elasticsearch/guide/cn/cluster-admin.html" target="_blank" rel="external">监控</a> 文档。权威指南中提到的 marvel 监控现在已经作为 x-pack 的一部分，集成到了 kibana 中，即 Monitoring 部分。Monitoring 的界面简单易懂，易于使用。</p>
+<p>当前我们自建集群的 kibana-monitoring 地址为 <a href="http://kibana.tarsocial.com/app/monitoring，使用公司的静态" target="_blank" rel="external">http://kibana.tarsocial.com/app/monitoring，使用公司的静态</a> IP 可以访问。</p>
+<p>当 Monitoring 卡死，很久打不开时，说明集群负载极高，或者已经挂掉了，这个时候需要使用一些简单的监控接口，直接获取集群的状态。</p>
+<p>集群的状态有三种：</p>
+<ul>
+<li><code>green</code><br>所有的主分片和副本分片都已分配。你的集群是 100% 可用的。</li>
+<li><code>yellow</code><br>所有的主分片已经分片了，但至少还有一个副本是缺失的。不会有数据丢失，所以搜索结果依然是完整的。不过，你的高可用性在某种程度上被弱化。如果 <em>更多的</em> 分片消失，你就会丢数据了。把 <code>yellow</code> 想象成一个需要及时调查的警告。</li>
+<li><code>red</code><br>至少一个主分片（以及它的全部副本）都在缺失中。这意味着你在缺少数据：搜索只能返回部分数据，而分配到这个分片上的写入请求会返回一个异常。</li>
+</ul>
+<p>全部的相关接口在 <a href="https://www.elastic.co/guide/en/elasticsearch/reference/5.4/cluster.html" target="_blank" rel="external">Cluster APIs</a> 和 <a href="https://www.elastic.co/guide/en/elasticsearch/reference/5.4/cat.html" target="_blank" rel="external">cat APIs </a>，这些接口大都不常用。</p>
+<h2 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h2><p><a href="https://www.elastic.co/guide/cn/elasticsearch/guide/cn/deploy.html" target="_blank" rel="external">部署</a> 文档。</p>
+<p>硬件：内存至少 8G，最多 64G，CPU 倾向于多核，硬盘易成为瓶颈，最好使用 SSD。总得来讲，中配或者高配机器更好。</p>
+<p>系统环境：使用推荐范围内最新的 JVM，<a href="https://www.elastic.co/guide/cn/elasticsearch/guide/cn/_file_descriptors_and_mmap.html" target="_blank" rel="external">文件描述符</a> 数量足够。</p>
+<p>配置文件：当服务器较多时务必使用配置管理工具（ Puppet，Chef，Ansible），保证配置文件的正确。</p>
+<p>当前使用的插件：x-pack（监控，收费） 和 ik（分词）</p>
+<p>当前的部署信息：<br>应用安装路径：/home/es<br>log4j2.properties、x-pack 的配置使用的均为默认值，未作修改。</p>
+<h2 id="部署后"><a href="#部署后" class="headerlink" title="部署后"></a>部署后</h2><p>可以通过 <a href="https://www.elastic.co/guide/en/elasticsearch/reference/5.4/cluster-update-settings.html" target="_blank" rel="external">Cluster Update Settings</a> 在系统运行时动态地修改配置，使其临时或永久生效。尤其是在大量操作数据时，常常需要临时修改一些配置。不过动态修改的一般是某个或某几个索引名称的配置，因此需要使用 <a href="https://www.elastic.co/guide/en/elasticsearch/reference/5.4/indices-get-settings.html" target="_blank" rel="external">Get Settings</a> 相关接口，不需要重启集群。</p>
+<ul>
+<li><p>大批量导入时可以把 index.refresh_interval 设置为 -1 关闭刷新，数据导完再设置为 30s（注意单位，一定要有 s）</p>
+</li>
+<li><p>大批量导入时理论上也可以把 index.number_of_replicas 临时设置为 0，我们该参数一般也设为 0，以占用更小的硬盘为代价放弃了数据拷贝。</p>
+</li>
+</ul>
+<h2 id="运维实战"><a href="#运维实战" class="headerlink" title="运维实战"></a>运维实战</h2><p>按照分布式系统的惯例，在同一时刻只能有不超过一半机器安全下线，否则就需要人工进行故障恢复。</p>
+<h3 id="查看线程池状态"><a href="#查看线程池状态" class="headerlink" title="查看线程池状态"></a>查看线程池状态</h3><p>ES 的 bulk、搜索等操作会放到缓冲队列中，由线程池缓慢消费，有时需要诊断 ES 的写入和查询是否超过了其所能承受的极限，可以通过查看 bulk 队列来观察写入和查询是否持续积压中。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">GET _cat/thread_pool</div></pre></td></tr></table></figure>
+<p>bulk 队列常用于批量写，当 queue 积压得很高，说明写入压力比较大。</p>
+<p>同理，search 队列积压得很高，说明读压力比较大，搜索延迟会很高。</p>
+<h3 id="恢复失联分片"><a href="#恢复失联分片" class="headerlink" title="恢复失联分片"></a>恢复失联分片</h3><p>因为异常原因，某些分片挂了</p>
+<p><strong>查看分片</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">GET _cat/shards</div></pre></td></tr></table></figure>
+<p>尝试由集群<strong>自动重路由</strong>分配失败的分片</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">POST _cluster/reroute?retry_failed</div></pre></td></tr></table></figure>
+<p>重分配多次后，仍然不可用，应<strong>手动迁移</strong>分片</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">POST _cluster/reroute</div><div class="line">&#123;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>查看手动迁移时所需的 node id</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">GET _nodes/process</div></pre></td></tr></table></figure>
+<h3 id="数据冷热迁移"><a href="#数据冷热迁移" class="headerlink" title="数据冷热迁移"></a>数据冷热迁移</h3><p>每当硬盘不足时，我们会登录机器，<strong>按照磁盘情况</strong>将比较古老的冷数据归档到冷节点上。</p>
+<p>第一步 <strong>备份数据</strong></p>
+<p>参考<a href="#集群的备份和恢复">集群的备份和恢复</a></p>
+<p>第二步 <strong>给 ES 实例打标签</strong></p>
+<p>登录机器修改 ES 配置文件，<code>node.attr.&lt;tag_name&gt;: &quot;&lt;tag_value&gt;&quot;</code></p>
+<p>比如我们 ES master 机器的配置是 <code>node.attr.box_type: &quot;hot&quot;</code></p>
+<p>第三步 <strong>将任意一个索引根据 box_type 迁移到指定节点</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">PUT /&lt;index_name&gt;/_settings</div><div class="line">&#123;&quot;index.routing.allocation.include.&lt;tag_name&gt;&quot; : &quot;&lt;tag_value&gt;&quot;&#125;</div></pre></td></tr></table></figure>
+<p>修改配置后，ES 集群会自动生成再平衡任务，将索引数据按照标签传输到对应的节点上。</p>
+<p>第四步 <strong>查看当前传输任务进度</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">GET _cat/recovery active_only==true</div></pre></td></tr></table></figure>
+<h3 id="集群扩容"><a href="#集群扩容" class="headerlink" title="集群扩容"></a>集群扩容</h3><p>添加一个新的机器节点，或者在现有节点上添加一个新的 ES 实例。</p>
+<p>扩容前要确认的：</p>
+<ol>
+<li>新机器配置项是否和原有机器相同，尤其确认 XPack、队列长度和 Discovery 配置项（discovery.zen.ping）</li>
+<li>线上是否还有压力比较大的写入 ES 的进程，暂停它们</li>
+<li>阅读故障恢复手册中的分片恢复部分</li>
+<li>确认 ES 配置，限制内网流量（重要）</li>
+</ol>
+<p>扩容后要确认的：</p>
+<ol>
+<li>观察集群内网流量，防止流量太大导致磁盘写满、机器故障或脑裂（偶数台节点）</li>
+<li>如果脑裂，应迅速取消再平衡，调低内网流量配置，等待集群恢复的同时手动重分配分片</li>
+<li>如果是 master 节点，负载均衡加入新机器，按照新节点配置分配权重</li>
+<li>第二天早上看日志，看高负载情况下有没有发生脑裂和宕机</li>
+</ol>
+<h3 id="滚动重启"><a href="#滚动重启" class="headerlink" title="滚动重启"></a>滚动重启</h3><p><a href="https://www.elastic.co/guide/cn/elasticsearch/guide/cn/_rolling_restarts.html" target="_blank" rel="external">滚动重启</a>（用于存在复制分片的索引）</p>
+<p><strong>关闭再平衡功能，防止重启时再平衡导致异常流量</strong></p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">PUT /_cluster/settings</div><div class="line">&#123;</div><div class="line">    <span class="attr">"transient"</span> : &#123;</div><div class="line">        <span class="attr">"cluster.routing.allocation.enable"</span> : <span class="string">"none"</span></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><strong>关闭、升级、开启服务</strong></p>
+<p><strong>开启再平衡功能</strong></p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">PUT /_cluster/settings</div><div class="line">  &#123;</div><div class="line">    <span class="attr">"transient"</span> : &#123;</div><div class="line">        <span class="attr">"cluster.routing.allocation.enable"</span> : <span class="string">"all"</span></div><div class="line">    &#125;</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
+<h3 id="数据强制迁移"><a href="#数据强制迁移" class="headerlink" title="数据强制迁移"></a>数据强制迁移</h3><p>将数据从某个节点的某块硬盘迁移到另一块硬盘或另一个节点</p>
+<p><strong>手动迁移分片</strong></p>
+<p>参见 <a href="#恢复失联分片">恢复失联分片</a></p>
+<p><strong>通过机器属性标签平衡数据</strong></p>
+<p>参见 <a href="#数据冷热迁移">数据冷热迁移</a></p>
+<p><strong>查看迁移进度</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">GET _cat/recovery active_only==true</div></pre></td></tr></table></figure>
+<h2 id="配置调优"><a href="#配置调优" class="headerlink" title="配置调优"></a>配置调优</h2><p>以下是一次与知乎工程师交流 ES 使用经验的记录。</p>
+<ol>
+<li>提前创建好 index, 不要通过 Logstash 做。因为会在同一时刻去做这个事，会造成 Logstash 一段时间无法写入，而且 ES 会压力很大，同时收到太多创建 Index 请求。最好放在晚上压力不高的时候去创建。</li>
+<li>Mapping 里如果提前知道字段，就不要用自动创建的 dynamic_string。</li>
+<li>查询时用 bool query</li>
+<li>Sharding 要平衡，否则可能导致一个节点上 Load 特别高</li>
+<li>LogStash 慎用，性能有问题，如果数据量大的话， Logstash 是需要很多才能追上数据，还要去调优参数。并且会经常线程跑到 100% 死掉</li>
+<li>使用 MQ，削峰填谷</li>
+</ol>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="attr">"persistent"</span>: &#123;&#125;,</div><div class="line">  <span class="attr">"transient"</span>: &#123;</div><div class="line">    <span class="attr">"cluster"</span>: &#123;</div><div class="line">      <span class="attr">"routing"</span>: &#123;</div><div class="line">        <span class="attr">"allocation"</span>: &#123;</div><div class="line">          <span class="attr">"balance"</span>: &#123;</div><div class="line">            <span class="attr">"index"</span>: <span class="string">"0.998"</span>,</div><div class="line">            <span class="attr">"threshold"</span>: <span class="string">"1.0"</span>,</div><div class="line">            <span class="attr">"shard"</span>: <span class="string">"0.002"</span></div><div class="line">          &#125;,</div><div class="line">          <span class="attr">"disk"</span>: &#123;</div><div class="line">            <span class="attr">"watermark"</span>: &#123;</div><div class="line">              <span class="attr">"low"</span>: <span class="string">"75%"</span>,</div><div class="line">              <span class="attr">"high"</span>: <span class="string">"85%"</span></div><div class="line">            &#125;</div><div class="line">          &#125;,</div><div class="line">          <span class="attr">"enable"</span>: <span class="string">"all"</span></div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>ES master 节点 分配 shards 线程 CPU 100%： 这个是由于之前设置了一些 disk 相关的限制，导致每次分配都会遇到很长时间的检查过程，导致创建 indices 速度非常慢。解决方法：把 ES 中的 disk 相关的限制去掉。</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="attr">"transient"</span>: &#123;</div><div class="line">    <span class="attr">"cluster"</span>: &#123;</div><div class="line">      <span class="attr">"routing"</span>: &#123;</div><div class="line">        <span class="attr">"allocation"</span>: &#123;</div><div class="line">          <span class="attr">"enable"</span>: <span class="string">"all"</span>,</div><div class="line">          <span class="attr">"disk"</span>: &#123;</div><div class="line">             <span class="attr">"threshold_enabled"</span>: <span class="literal">false</span></div><div class="line">          &#125;</div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>ES 查询分配数量的坑： “action.search.shard_count.limit” : “15000” ， 提高这个值对性能有一定消耗，但是会使得尽量多个 topics 可以同时查询。<br>扩容 ES 节点的时候， 由于新加入的节点没有任何 indices 和 shards， 会导致 第二天的 indices 和 shards 的尽可能的分布在新加的节点上。所以加入新 ES 节点的时候， 最好有一批机器同时加入，这样能保证第二天的稳定。由于目前在 ES 中的数据都是 Rolling 的， 所以这个过程最终一定会稳定。</p>
+<p>由于一些 ES 节点 压力很大，会频繁的 GC， 过程中可能导致 ES master 节点认为 节点离开集群，所以目前 ES 设置了 cluster.routing.rebalance.enable: “none”， 来避免无用的 rebalance。</p>
+<h2 id="推荐学习内容-2"><a href="#推荐学习内容-2" class="headerlink" title="推荐学习内容"></a>推荐学习内容</h2><p><a href="https://www.elastic.co/guide/cn/elasticsearch/guide/cn/administration.html" target="_blank" rel="external">管理、监控和部署</a> 的全部内容以及上述设计的接口文档。</p>
+<h1 id="数据建模"><a href="#数据建模" class="headerlink" title="数据建模"></a>数据建模</h1><p>主要分为两部分，一是单个 index 的映射怎么写，另外一个是如何处理文档间的关联关系。 相关的文档大概有：</p>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/5.4/mapping.html" target="_blank" rel="external">Mapping</a></p>
+<p><a href="https://www.elastic.co/guide/cn/elasticsearch/guide/cn/modeling-your-data.html" target="_blank" rel="external">数据建模</a></p>
+<h2 id="映射类型"><a href="#映射类型" class="headerlink" title="映射类型"></a>映射类型</h2><p>字段类型：表示应该将该字段看成哪种数据格式进行索引，不同的数据格式索引的方式不同。elasticsearch 是基于 JSON 的，对应的字段类型是 <a href="https://www.elastic.co/guide/en/elasticsearch/reference/5.4/object.html" target="_blank" rel="external">Object datatype</a> 。文档最外层的参数与 object 意义和用法是相同的。</p>
+<p>有一个很重要的概念要动态映射 <a href="https://www.elastic.co/guide/en/elasticsearch/reference/5.4/dynamic-mapping.html" target="_blank" rel="external">Dynamic Mapping</a> ，是 elasticsearch 新建索引的默认行为，根据第一次传入的字段数值通过一个进行类型推断，然后进行索引</p>
+<ul>
+<li>数组类型 <a href="https://www.elastic.co/guide/en/elasticsearch/reference/5.4/array.html" target="_blank" rel="external">Array datatype</a>：es 并没有真正的数组类型，任意真实类型的字段都可以索引多个值，对象、嵌套类型比较特殊，单独讲。</li>
+<li>数字类型 <a href="https://www.elastic.co/guide/en/elasticsearch/reference/5.4/number.html" target="_blank" rel="external">Numeric datatypes</a>：long、integer、short 等不同范围的整数类型，以及 double、float 等不同范围的浮点数类型，在聚合中的行为是基本一致的。</li>
+<li>字符串类型 <a href="https://www.elastic.co/guide/en/elasticsearch/reference/5.4/string.html" target="_blank" rel="external">String datatype</a>：在较新的版本中有 keyword 和 text 两种字符串类型，索引方式不同，keyword 仅支持精确匹配，text 仅支持全文检索。</li>
+<li>日期类型 <a href="https://www.elastic.co/guide/en/elasticsearch/reference/5.4/date.html" target="_blank" rel="external">Date datatype</a> ：输入时为字符串，通过解析器（可自定义）索引成数字，支持范围查询，按天、按小时查询比较方便，需要注意时区问题。</li>
+<li>对象类型 <a href="https://www.elastic.co/guide/en/elasticsearch/reference/5.4/object.html" target="_blank" rel="external">Object datatype</a> ：即索引一个 JSON 文档，可以取子字段进行查询。当该数据类型索引多值时，同一个文档内部字段的关联被忽略了。不适用于需要搜索的文档。</li>
+<li>嵌套类型 <a href="https://www.elastic.co/guide/en/elasticsearch/reference/5.4/nested.html" target="_blank" rel="external">Nested datatype</a> ：与对象类型相比，保留了同一个文档内部字段的关联，适用于需要搜索的文档，搜索语法略有不同。</li>
+</ul>
+<p>##索引下的映射操作</p>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/5.4/indices-put-mapping.html" target="_blank" rel="external">Put Mapping</a></p>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/5.4/indices-get-mapping.html" target="_blank" rel="external">Get Mapping</a></p>
+<p>已创建的字段映射类型不可修改，只能增加新字段、修改已有的部分参数，使用的接口就是上面两个，一个获取，一个更新。使用一下接口时必须注意请求体中 JSON 的嵌套层级，层级错了是肯定会报错的。</p>
+<h2 id="关联关系"><a href="#关联关系" class="headerlink" title="关联关系"></a>关联关系</h2><ul>
+<li><a href="https://www.elastic.co/guide/cn/elasticsearch/guide/current/application-joins.html" target="_blank" rel="external">应用层联接</a></li>
+<li><a href="https://www.elastic.co/guide/cn/elasticsearch/guide/current/denormalization.html" target="_blank" rel="external">非规范化你的数据</a></li>
+<li><a href="https://www.elastic.co/guide/cn/elasticsearch/guide/current/top-hits.html" target="_blank" rel="external">字段折叠</a></li>
+<li><a href="https://www.elastic.co/guide/cn/elasticsearch/guide/current/denormalization-concurrency.html" target="_blank" rel="external">非规范化和并发</a></li>
+<li><a href="https://www.elastic.co/guide/cn/elasticsearch/guide/current/concurrency-solutions.html" target="_blank" rel="external">解决并发问题</a></li>
+</ul>
+<p>关于数据建模的东西我实践的也不多，es 这方面也不是强项，可以用别的工具来处理。</p>
+<h1 id="其他高级特性"><a href="#其他高级特性" class="headerlink" title="其他高级特性"></a>其他高级特性</h1><p><a href="https://www.elastic.co/guide/cn/elasticsearch/guide/cn/search-in-depth.html" target="_blank" rel="external">深入搜索</a></p>
+<p><a href="https://www.elastic.co/guide/cn/elasticsearch/guide/cn/languages.html" target="_blank" rel="external">处理人类语言</a></p>
+<p><a href="https://www.elastic.co/guide/cn/elasticsearch/guide/cn/aggregations.html" target="_blank" rel="external">聚合</a></p>
+<p><a href="https://www.elastic.co/guide/cn/elasticsearch/guide/cn/geoloc.html" target="_blank" rel="external">地理位置</a></p>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/5.4/analysis.html" target="_blank" rel="external">Analysis</a></p>
+<p>……</p>
+<h1 id="附相关信息来源"><a href="#附相关信息来源" class="headerlink" title="附相关信息来源"></a>附相关信息来源</h1><p>官方网站中文首页：<a href="https://www.elastic.co/cn/" target="_blank" rel="external">https://www.elastic.co/cn/</a></p>
+<p>官方英文文档首页：<a href="https://www.elastic.co/guide/index.html" target="_blank" rel="external">https://www.elastic.co/guide/index.html</a></p>
+<p>官方英文社区：<a href="https://discuss.elastic.co/" target="_blank" rel="external">https://discuss.elastic.co/</a></p>
+<p>官方中文社区：<a href="https://elasticsearch.cn/" target="_blank" rel="external">https://elasticsearch.cn/</a></p>
+<p>官方中文社区 github：<a href="https://github.com/elasticsearch-cn" target="_blank" rel="external">https://github.com/elasticsearch-cn</a></p>
+<p>官方中文社区微信公众号（WeChat ID: elastic-cn）：<a href="https://mp.weixin.qq.com/mp/profile_ext?action=home&amp;__biz=MzI2NDExNTk5Mg==&amp;scene=124&amp;#wechat_redirect" target="_blank" rel="external">https://mp.weixin.qq.com/mp/profile_ext?action=home&amp;__biz=MzI2NDExNTk5Mg==&amp;scene=124&amp;#wechat_redirect</a></p>
+<p>Elastic 情报局(聚合了所有相关资源的搜索工具)：<a href="https://index.elasticsearch.cn/" target="_blank" rel="external">https://index.elasticsearch.cn/</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.png" alt="Hieast 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="Hieast 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/搜索/" rel="tag"># 搜索</a>
+          
+            <a href="/tags/elasticsearch/" rel="tag"># elasticsearch</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/12/08/thrift-thriftpy/" rel="next" title="thrift&thriftpy">
+                <i class="fa fa-chevron-left"></i> thrift&thriftpy
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/03/26/Airflow 工作原理/" rel="prev" title="Airflow 工作原理（未完成）">
+                Airflow 工作原理（未完成） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+  
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="Hieast" />
+            
+              <p class="site-author-name" itemprop="name">Hieast</p>
+              <p class="site-description motion-element" itemprop="description">永远的学习者，专注于挖掘数据的价值。目前从事 Python Web 后端开发，自媒体数据采集、分析和应用相关工作。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">26</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#基本增删查改和聚合查询语句"><span class="nav-number">2.</span> <span class="nav-text">基本增删查改和聚合查询语句</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#API-约定"><span class="nav-number">2.1.</span> <span class="nav-text">API 约定</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文档接口简介"><span class="nav-number">2.2.</span> <span class="nav-text">文档接口简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查询条件简介"><span class="nav-number">2.3.</span> <span class="nav-text">查询条件简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#搜索接口"><span class="nav-number">2.3.1.</span> <span class="nav-text">搜索接口</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#聚合查询简介"><span class="nav-number">2.4.</span> <span class="nav-text">聚合查询简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#推荐学习内容"><span class="nav-number">2.5.</span> <span class="nav-text">推荐学习内容</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#集群内的原理、分片内部原理"><span class="nav-number">3.</span> <span class="nav-text">集群内的原理、分片内部原理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#集群原理简介"><span class="nav-number">3.1.</span> <span class="nav-text">集群原理简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分片原理简介"><span class="nav-number">3.2.</span> <span class="nav-text">分片原理简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#索引原理简介"><span class="nav-number">3.3.</span> <span class="nav-text">索引原理简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#推荐学习内容-1"><span class="nav-number">3.4.</span> <span class="nav-text">推荐学习内容</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#集群管理、监控和部署"><span class="nav-number">4.</span> <span class="nav-text">集群管理、监控和部署</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#监控"><span class="nav-number">4.1.</span> <span class="nav-text">监控</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#部署"><span class="nav-number">4.2.</span> <span class="nav-text">部署</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#部署后"><span class="nav-number">4.3.</span> <span class="nav-text">部署后</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#运维实战"><span class="nav-number">4.4.</span> <span class="nav-text">运维实战</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#查看线程池状态"><span class="nav-number">4.4.1.</span> <span class="nav-text">查看线程池状态</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#恢复失联分片"><span class="nav-number">4.4.2.</span> <span class="nav-text">恢复失联分片</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据冷热迁移"><span class="nav-number">4.4.3.</span> <span class="nav-text">数据冷热迁移</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#集群扩容"><span class="nav-number">4.4.4.</span> <span class="nav-text">集群扩容</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#滚动重启"><span class="nav-number">4.4.5.</span> <span class="nav-text">滚动重启</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据强制迁移"><span class="nav-number">4.4.6.</span> <span class="nav-text">数据强制迁移</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置调优"><span class="nav-number">4.5.</span> <span class="nav-text">配置调优</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#推荐学习内容-2"><span class="nav-number">4.6.</span> <span class="nav-text">推荐学习内容</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数据建模"><span class="nav-number">5.</span> <span class="nav-text">数据建模</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#映射类型"><span class="nav-number">5.1.</span> <span class="nav-text">映射类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关联关系"><span class="nav-number">5.2.</span> <span class="nav-text">关联关系</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#其他高级特性"><span class="nav-number">6.</span> <span class="nav-text">其他高级特性</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#附相关信息来源"><span class="nav-number">7.</span> <span class="nav-text">附相关信息来源</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2016 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Hieast</span>
+
+  
+</div>
+
+
+
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a></div>
+
+
+
+
+        
+
+
+<script>
+  	var _mtac = {};
+  	(function() {
+  		var mta = document.createElement("script");
+  		mta.src = "https://pingjs.qq.com/h5/stats.js?v2.0.4";
+  		mta.setAttribute("name", "MTAH5");
+  		mta.setAttribute("sid", "500538962");
+
+  		var s = document.getElementsByTagName("script")[0];
+  		s.parentNode.insertBefore(mta, s);
+  	})();
+</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=63947260";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://houshan.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'https://hieast.github.io/2018/01/04/elasticsearch 应用知识体系解析/';
+          this.page.identifier = '2018/01/04/elasticsearch 应用知识体系解析/';
+          this.page.title = 'elasticsearch 应用知识体系解析';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://houshan.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

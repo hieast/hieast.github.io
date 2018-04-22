@@ -39,41 +39,53 @@
   </entry>
   
   <entry>
-    <title>Airflow 工作目录详解</title>
-    <link href="https://hieast.github.io/2018/03/26/Airflow-%E5%B7%A5%E4%BD%9C%E7%9B%AE%E5%BD%95%E8%AF%A6%E8%A7%A3/"/>
-    <id>https://hieast.github.io/2018/03/26/Airflow-工作目录详解/</id>
+    <title>Airflow 工作原理（未完成）</title>
+    <link href="https://hieast.github.io/2018/03/26/Airflow%20%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/"/>
+    <id>https://hieast.github.io/2018/03/26/Airflow 工作原理/</id>
     <published>2018-03-26T07:18:47.000Z</published>
-    <updated>2018-03-26T09:15:21.066Z</updated>
+    <updated>2018-04-22T05:36:45.916Z</updated>
     
     <summary type="html">
     
-      
-      
-        
-        
-          &lt;p&gt;在使用 airflow 的过程中对于 airflow 的工作目录一直不是很了解，今天有空就好好学习一下。&lt;/p&gt;
-&lt;h2 id=&quot;Python-的目录环境&quot;&gt;&lt;a href=&quot;#Python-的目录环境&quot; class=&quot;headerlink&quot; title=&quot;Python
-        
-      
+      &lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;使用 airflow 一年，出现了以下几个问题，虽然不是非常致命，却时常影响效率，需要重启解决。因此这次梳理一下 airflow。&lt;/p&gt;
+&lt;p&gt;注意以下阅读的是 1.8.0 的源码。安装包的名字由 &lt;code&gt;airflow&lt;/code&gt; 变成了 &lt;code&gt;apache-airflow&lt;/code&gt;，原来的安装包不支持后面的升级了。目前（2018年04月22日）发布的稳定版本是 1.9.0 ，正在开发的版本是 1.10.0。&lt;/p&gt;
     
     </summary>
     
     
       <category term="Python" scheme="https://hieast.github.io/tags/Python/"/>
     
+      <category term="workflow" scheme="https://hieast.github.io/tags/workflow/"/>
+    
   </entry>
   
   <entry>
-    <title>elasticsearch 搜索优化</title>
-    <link href="https://hieast.github.io/2018/01/04/elasticsearch-%E6%90%9C%E7%B4%A2%E4%BC%98%E5%8C%96/"/>
-    <id>https://hieast.github.io/2018/01/04/elasticsearch-搜索优化/</id>
+    <title>elasticsearch 应用知识体系解析</title>
+    <link href="https://hieast.github.io/2018/01/04/elasticsearch%20%E5%BA%94%E7%94%A8%E7%9F%A5%E8%AF%86%E4%BD%93%E7%B3%BB%E8%A7%A3%E6%9E%90/"/>
+    <id>https://hieast.github.io/2018/01/04/elasticsearch 应用知识体系解析/</id>
     <published>2018-01-04T02:53:19.000Z</published>
-    <updated>2018-01-04T02:53:19.465Z</updated>
+    <updated>2018-04-22T06:00:19.899Z</updated>
     
     <summary type="html">
     
+      &lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;使用 elasticsearch 做开发一年多了，主要查的文档是权威指南和接口详情，这篇文章只是把相关的知识点和重点罗列一下。其中部分经验仅适用于资源较少的情况，资源较多、稳定性要求高的场景应设计更适合的配置和运维流程。&lt;/p&gt;
+&lt;p&gt;我没有升级过大版本，一直都是用的 5.x 版本。最开始查资料，很多查询都是基于 2.x 的接口写的，已经没有用了。所以以下内容仅基于 5.x 版本。&lt;/p&gt;
+&lt;p&gt;ES 相关的知识点主要可以分成以下几块：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;基本增删查改（类比 WHERE）和聚合查询语句（类比 GROUP）&lt;/li&gt;
+&lt;li&gt;集群内的原理、分片内部原理、索引原理&lt;/li&gt;
+&lt;li&gt;集群管理、监控和部署&lt;/li&gt;
+&lt;li&gt;数据建模 （类比关系型数据库的表设计）&lt;/li&gt;
+&lt;li&gt;其他高级特性（高级搜索、高级数据类型）&lt;/li&gt;
+&lt;li&gt;elasticsearch-sql、elasticsearch-dsl 等扩展&lt;/li&gt;
+&lt;/ol&gt;
+    
     </summary>
     
+    
+      <category term="搜索" scheme="https://hieast.github.io/tags/%E6%90%9C%E7%B4%A2/"/>
+    
+      <category term="elasticsearch" scheme="https://hieast.github.io/tags/elasticsearch/"/>
     
   </entry>
   
@@ -82,17 +94,11 @@
     <link href="https://hieast.github.io/2017/12/08/thrift-thriftpy/"/>
     <id>https://hieast.github.io/2017/12/08/thrift-thriftpy/</id>
     <published>2017-12-08T06:30:46.000Z</published>
-    <updated>2017-12-11T08:21:11.653Z</updated>
+    <updated>2018-04-22T06:01:10.970Z</updated>
     
     <summary type="html">
     
-      
-      
-        
-        
-          &lt;h1 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot; title=&quot;简介&quot;&gt;&lt;/a&gt;简介&lt;/h1&gt;&lt;p&gt;The Apache Thrift software framework, for scalable cross-language
-        
-      
+      &lt;h1 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot; title=&quot;简介&quot;&gt;&lt;/a&gt;简介&lt;/h1&gt;&lt;p&gt;The Apache Thrift software framework, for scalable cross-language services development, combines a software stack with a code generation engine to build services that work efficiently and seamlessly between C++, Java, Python, PHP, Ruby, Erlang, Perl, Haskell, C#, Cocoa, JavaScript, Node.js, Smalltalk, OCaml and Delphi and other languages.&lt;/p&gt;
     
     </summary>
     

@@ -425,7 +425,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://hieast.github.io/2018/03/26/Airflow-工作目录详解/">
+    <link itemprop="mainEntityOfPage" href="https://hieast.github.io/2018/03/26/Airflow 工作原理/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Hieast">
@@ -444,7 +444,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/03/26/Airflow-工作目录详解/" itemprop="url">Airflow 工作目录详解</a></h1>
+                <a class="post-title-link" href="/2018/03/26/Airflow 工作原理/" itemprop="url">Airflow 工作原理（未完成）</a></h1>
         
 
         <div class="post-meta">
@@ -475,9 +475,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/03/26/Airflow-工作目录详解/#comments" itemprop="discussionUrl">
+                <a href="/2018/03/26/Airflow 工作原理/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/03/26/Airflow-工作目录详解/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2018/03/26/Airflow 工作原理/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -506,12 +506,15 @@
 
       
         
-          
-            <p>在使用 airflow 的过程中对于 airflow 的工作目录一直不是很了解，今天有空就好好学习一下。</p>
-<h2 id="Python-的目录环境"><a href="#Python-的目录环境" class="headerlink" title="Python 的目录环境"></a>Python 的目录环境</h2><p>由于 2 已经在退环境，因此主要参考 3 的文档。<a href="https://docs.python.org/3/using/cmdline.html" target="_blank" rel="external">https://docs.python.org/3/using/cmdline.html</a></p>
-<p><a href="https://docs.python.org/3/library/sys.html#sys.path" target="_blank" rel="external"><code>sys.path</code></a></p>
-
-          
+          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>使用 airflow 一年，出现了以下几个问题，虽然不是非常致命，却时常影响效率，需要重启解决。因此这次梳理一下 airflow。</p>
+<p>注意以下阅读的是 1.8.0 的源码。安装包的名字由 <code>airflow</code> 变成了 <code>apache-airflow</code>，原来的安装包不支持后面的升级了。目前（2018年04月22日）发布的稳定版本是 1.9.0 ，正在开发的版本是 1.10.0。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/03/26/Airflow 工作原理/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -558,7 +561,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://hieast.github.io/2018/01/04/elasticsearch-搜索优化/">
+    <link itemprop="mainEntityOfPage" href="https://hieast.github.io/2018/01/04/elasticsearch 应用知识体系解析/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Hieast">
@@ -577,7 +580,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/01/04/elasticsearch-搜索优化/" itemprop="url">elasticsearch 搜索优化</a></h1>
+                <a class="post-title-link" href="/2018/01/04/elasticsearch 应用知识体系解析/" itemprop="url">elasticsearch 应用知识体系解析</a></h1>
         
 
         <div class="post-meta">
@@ -608,9 +611,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/01/04/elasticsearch-搜索优化/#comments" itemprop="discussionUrl">
+                <a href="/2018/01/04/elasticsearch 应用知识体系解析/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/01/04/elasticsearch-搜索优化/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2018/01/04/elasticsearch 应用知识体系解析/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -639,9 +642,24 @@
 
       
         
-          
-            
-          
+          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>使用 elasticsearch 做开发一年多了，主要查的文档是权威指南和接口详情，这篇文章只是把相关的知识点和重点罗列一下。其中部分经验仅适用于资源较少的情况，资源较多、稳定性要求高的场景应设计更适合的配置和运维流程。</p>
+<p>我没有升级过大版本，一直都是用的 5.x 版本。最开始查资料，很多查询都是基于 2.x 的接口写的，已经没有用了。所以以下内容仅基于 5.x 版本。</p>
+<p>ES 相关的知识点主要可以分成以下几块：</p>
+<ol>
+<li>基本增删查改（类比 WHERE）和聚合查询语句（类比 GROUP）</li>
+<li>集群内的原理、分片内部原理、索引原理</li>
+<li>集群管理、监控和部署</li>
+<li>数据建模 （类比关系型数据库的表设计）</li>
+<li>其他高级特性（高级搜索、高级数据类型）</li>
+<li>elasticsearch-sql、elasticsearch-dsl 等扩展</li>
+</ol>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/01/04/elasticsearch 应用知识体系解析/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -769,39 +787,14 @@
 
       
         
-          
-            <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>The Apache Thrift software framework, for scalable cross-language services development, combines a software stack with a code generation engine to build services that work efficiently and seamlessly between C++, Java, Python, PHP, Ruby, Erlang, Perl, Haskell, C#, Cocoa, JavaScript, Node.js, Smalltalk, OCaml and Delphi and other languages.</p>
-<h1 id="Thrift"><a href="#Thrift" class="headerlink" title="Thrift"></a>Thrift</h1><p><img src="https://github.com/tonydeng/thrift-demo/raw/master/thrift-server-and-client.png" alt=""></p>
-<ol>
-<li>你通过Thrift脚本文件生成的代码</li>
-<li>图中褐色部分是你根据生成代码构建的客户端和服务器的代码</li>
-<li>红色的部分是两端产生的技术结果。</li>
-</ol>
-<h2 id="协议"><a href="#协议" class="headerlink" title="协议"></a>协议</h2><p>Thrift可以让你选择客户端与服务器之间的传输通信协议的类别，在传输协议上总体上划分为文本（text）和二进制（binary）传输协议，为节省带宽，提供传输效率，一般情况下使用二进制类型的传输协议为多数，但有时候还是会使用基于文本类型的协议，这些需要根据项目/产品中的实际需求：</p>
-<ol>
-<li>TBinaryProtocol： 二进制编码格式进行数据传输</li>
-<li>TCompactProtocol： 这种协议非常有效，使用Variable-Length Quantity(VLQ)编码对书籍进行压缩。</li>
-<li>TJSONProtocol： 使用JSON的数据编码进行数据传输。</li>
-<li>TSimpleJSONProtocol： 这种协议只提供JSON只写的协议，适用于通过脚本语言解析。</li>
-<li>TDebugProtocol： 在开发的过程中帮助开发人员调试使用，以文本的形式展现方便阅读。</li>
-</ol>
-<h2 id="传输层"><a href="#传输层" class="headerlink" title="传输层"></a>传输层</h2><ol>
-<li>TSocket： 使用阻塞式I/O进行传输，也是最常见的模式</li>
-<li>TFramedTransport： 使用非阻塞方式，按块的大小进行传输，类似于Java中的NIO。</li>
-<li>TFileTransport： 顾名思义按照文件的方式进行传输，虽然这种方式不提供Java的实现，但是实现起来非常简单。</li>
-<li>TmemoryTransport： 使用内存I/O，就好比Java中的ByteArrayOuputStream实现。</li>
-<li>TZibTransport： 使用只写zlib压缩，不提供Java的实现。</li>
-</ol>
-<h2 id="服务端类型"><a href="#服务端类型" class="headerlink" title="服务端类型"></a>服务端类型</h2><ol>
-<li>TSimpleServer： 单线程服务器端使用的标准的阻塞式I/O</li>
-<li>TThreadPoolServer: 多线程服务器端使用标准的阻塞式I/O。</li>
-<li>TNonblockingServer： 多线程服务器端使用的非阻塞式I/O，并实现了Java中的NIO通道。</li>
-</ol>
-<h1 id="gunicorn-thrift"><a href="#gunicorn-thrift" class="headerlink" title="gunicorn_thrift"></a>gunicorn_thrift</h1><h2 id="实际使用"><a href="#实际使用" class="headerlink" title="实际使用"></a>实际使用</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">/srv/tls/venv/bin/gunicorn_thrift tls.gateway.thrift:app -k thriftpy_gevent -b %(ENV_LAN_IP)s:8088 --thrift-protocol-factory thriftpy.protocol:TCyBinaryProtocolFactory --thrift-transport-factory thriftpy.transport:TCyBufferedTransportFactory -w 1</div><div class="line"></div><div class="line">thriftpy.protocol:TCyBinaryProtocolFactory</div><div class="line"></div><div class="line">thriftpy.transport:TCyBufferedTransportFactory</div></pre></td></tr></table></figure>
-<h1 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h1><p><a href="https://thrift.apache.org/" target="_blank" rel="external">https://thrift.apache.org/</a></p>
-<p><a href="https://thrift.apache.org/tutorial/py" target="_blank" rel="external">https://thrift.apache.org/tutorial/py</a></p>
-
-          
+          <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>The Apache Thrift software framework, for scalable cross-language services development, combines a software stack with a code generation engine to build services that work efficiently and seamlessly between C++, Java, Python, PHP, Ruby, Erlang, Perl, Haskell, C#, Cocoa, JavaScript, Node.js, Smalltalk, OCaml and Delphi and other languages.</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/12/08/thrift-thriftpy/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1088,7 +1081,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-count">26</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
