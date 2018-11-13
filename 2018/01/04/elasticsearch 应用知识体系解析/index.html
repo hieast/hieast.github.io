@@ -89,7 +89,7 @@
 <meta property="og:site_name" content="后山">
 <meta property="og:description" content="前言使用 elasticsearch 做开发一年多了，主要查的文档是权威指南和接口详情，这篇文章只是把相关的知识点和重点罗列一下。其中部分经验仅适用于资源较少的情况，资源较多、稳定性要求高的场景应设计更适合的配置和运维流程。 我没有升级过大版本，一直都是用的 5.x 版本。最开始查资料，很多查询都是基于 2.x 的接口写的，已经没有用了。所以以下内容仅基于 5.x 版本。 ES 相关的知识点主要可">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-22T06:00:19.899Z">
+<meta property="og:updated_time" content="2018-11-13T08:40:57.559Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="elasticsearch 应用知识体系解析">
 <meta name="twitter:description" content="前言使用 elasticsearch 做开发一年多了，主要查的文档是权威指南和接口详情，这篇文章只是把相关的知识点和重点罗列一下。其中部分经验仅适用于资源较少的情况，资源较多、稳定性要求高的场景应设计更适合的配置和运维流程。 我没有升级过大版本，一直都是用的 5.x 版本。最开始查资料，很多查询都是基于 2.x 的接口写的，已经没有用了。所以以下内容仅基于 5.x 版本。 ES 相关的知识点主要可">
@@ -520,7 +520,6 @@
 <li>部署后的维护，如 Rolling Restart 或备份你的集群</li>
 </ul>
 <h2 id="监控"><a href="#监控" class="headerlink" title="监控"></a>监控</h2><p><a href="https://www.elastic.co/guide/cn/elasticsearch/guide/cn/cluster-admin.html" target="_blank" rel="external">监控</a> 文档。权威指南中提到的 marvel 监控现在已经作为 x-pack 的一部分，集成到了 kibana 中，即 Monitoring 部分。Monitoring 的界面简单易懂，易于使用。</p>
-<p>当前我们自建集群的 kibana-monitoring 地址为 <a href="http://kibana.tarsocial.com/app/monitoring，使用公司的静态" target="_blank" rel="external">http://kibana.tarsocial.com/app/monitoring，使用公司的静态</a> IP 可以访问。</p>
 <p>当 Monitoring 卡死，很久打不开时，说明集群负载极高，或者已经挂掉了，这个时候需要使用一些简单的监控接口，直接获取集群的状态。</p>
 <p>集群的状态有三种：</p>
 <ul>
