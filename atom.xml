@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://hieast.github.io/"/>
-  <updated>2018-04-22T11:17:12.426Z</updated>
+  <updated>2019-06-04T06:48:13.449Z</updated>
   <id>https://hieast.github.io/</id>
   
   <author>
@@ -15,6 +15,56 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>使用 docker 快速搭建数据分析平台 BI 部分 superset</title>
+    <link href="https://hieast.github.io/2019/06/04/%E4%BD%BF%E7%94%A8-docker-%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BA%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E5%B9%B3%E5%8F%B0-BI-%E9%83%A8%E5%88%86-superset/"/>
+    <id>https://hieast.github.io/2019/06/04/使用-docker-快速搭建数据分析平台-BI-部分-superset/</id>
+    <published>2019-06-04T06:46:43.000Z</published>
+    <updated>2019-06-04T06:48:13.449Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;数据分析平台通常分为 BI 和数仓两部分，这次运行的 superset 是 BI 部分。&lt;/p&gt;
+&lt;p&gt;参考 &lt;a
+        
+      
+    
+    </summary>
+    
+    
+      <category term="数据" scheme="https://hieast.github.io/tags/%E6%95%B0%E6%8D%AE/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>代理工具及使用示例</title>
+    <link href="https://hieast.github.io/2019/06/04/%E4%BB%A3%E7%90%86%E5%B7%A5%E5%85%B7%E5%8F%8A%E4%BD%BF%E7%94%A8%E7%A4%BA%E4%BE%8B/"/>
+    <id>https://hieast.github.io/2019/06/04/代理工具及使用示例/</id>
+    <published>2019-06-04T02:45:54.000Z</published>
+    <updated>2019-06-04T02:47:08.837Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;应用示例&quot;&gt;&lt;a href=&quot;#应用示例&quot; class=&quot;headerlink&quot; title=&quot;应用示例&quot;&gt;&lt;/a&gt;应用示例&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;superset
+        
+      
+    
+    </summary>
+    
+    
+      <category term="代理" scheme="https://hieast.github.io/tags/%E4%BB%A3%E7%90%86/"/>
+    
+  </entry>
   
   <entry>
     <title>2019年王道单科计组-内容讨论</title>

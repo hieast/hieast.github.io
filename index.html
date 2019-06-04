@@ -263,6 +263,290 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://hieast.github.io/2019/06/04/使用-docker-快速搭建数据分析平台-BI-部分-superset/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Hieast">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="后山">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/06/04/使用-docker-快速搭建数据分析平台-BI-部分-superset/" itemprop="url">使用 docker 快速搭建数据分析平台 BI 部分 superset</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-04T14:46:43+08:00">
+                2019-06-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/06/04/使用-docker-快速搭建数据分析平台-BI-部分-superset/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2019/06/04/使用-docker-快速搭建数据分析平台-BI-部分-superset/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>数据分析平台通常分为 BI 和数仓两部分，这次运行的 superset 是 BI 部分。</p>
+<p>参考 <a href="https://superset.incubator.apache.org/installation.html#start-with-docker" target="_blank" rel="external">https://superset.incubator.apache.org/installation.html#start-with-docker</a></p>
+<ol>
+<li>安装 docker 基础环境</li>
+<li>执行以下指令<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span><span class="bash"> 下载修正过的代码</span></div><div class="line">git clone -b feature/docker https://github.com/hieast/incubator-superset.git</div><div class="line">cd incubator-superset/contrib/docker</div><div class="line"><span class="meta">#</span><span class="bash"> 初始化数据，中间有交互输入账户密码</span></div><div class="line">docker-compose run --rm -e SUPERSET_LOAD_EXAMPLES=yes superset ./docker-init.sh</div><div class="line"><span class="meta">#</span><span class="bash"> 每次查看 demo 执行</span></div><div class="line">docker-compose up</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>以上指令墙内使用代理可以提高至少 40 倍的下载速度，不用代理可能会失败。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://hieast.github.io/2019/06/04/代理工具及使用示例/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Hieast">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="后山">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/06/04/代理工具及使用示例/" itemprop="url">代理工具及使用示例</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-04T10:45:54+08:00">
+                2019-06-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/06/04/代理工具及使用示例/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2019/06/04/代理工具及使用示例/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="应用示例"><a href="#应用示例" class="headerlink" title="应用示例"></a>应用示例</h1><ol>
+<li>superset </li>
+</ol>
+<p>官方启动命令本来为<br>SUPERSET_LOAD_EXAMPLES=yes docker-compose run –rm superset ./docker-init.sh<br>但是相当慢，使用 proxychains4 则为<br>SUPERSET_LOAD_EXAMPLES=yes proxychains4 docker-compose run –rm superset ./docker-init.sh<br>网络速度提升了 43 倍<br>后经网友指正，应该是<br>proxychains4 docker-compose run –rm -e SUPERSET_LOAD_EXAMPLES=yes superset ./docker-init.sh</p>
+<h1 id="基本方法"><a href="#基本方法" class="headerlink" title="基本方法"></a>基本方法</h1><p>代理通常有应用层的 HTTP 代理，以及网络层的 SOCKS 代理。<br>虽然 HTTP 协议广泛使用，但是 TCP/IP 协议更是现在互联网根本基石。HTTP 代理适用性很弱，SOCKS 代理适应性很广，因此主要考虑 SOCKS 代理。<br>以下代理通常是指 HTTP 代理和 SOCKS 代理。</p>
+<p>MacOS：</p>
+<ol>
+<li>系统代理，通常 GUI 软件都默认使用该代理，如果 GUI 软件有配置界面则可以单独配置。</li>
+<li>命令行代理之环境变量，通过设置 http_proxy 等环境变量可以使一些请求走代理，</li>
+<li>命令行代理之工具，proxychain4 可以加载任何程序前面使用 SOCKS5 代理。</li>
+</ol>
+<p>Android：</p>
+<ol>
+<li>WI-FI 可以配置 HTTP 代理</li>
+<li>系统代理，通过其他应用将自己注册到 VPNService</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://hieast.github.io/2018/04/22/王道单科计组/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -666,286 +950,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://hieast.github.io/2018/01/04/elasticsearch 应用知识体系解析/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Hieast">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="后山">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/01/04/elasticsearch 应用知识体系解析/" itemprop="url">elasticsearch 应用知识体系解析</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-04T10:53:19+08:00">
-                2018-01-04
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/01/04/elasticsearch 应用知识体系解析/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/01/04/elasticsearch 应用知识体系解析/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>使用 elasticsearch 做开发一年多了，主要查的文档是权威指南和接口详情，这篇文章只是把相关的知识点和重点罗列一下。其中部分经验仅适用于资源较少的情况，资源较多、稳定性要求高的场景应设计更适合的配置和运维流程。</p>
-<p>我没有升级过大版本，一直都是用的 5.x 版本。最开始查资料，很多查询都是基于 2.x 的接口写的，已经没有用了。所以以下内容仅基于 5.x 版本。</p>
-<p>ES 相关的知识点主要可以分成以下几块：</p>
-<ol>
-<li>基本增删查改（类比 WHERE）和聚合查询语句（类比 GROUP）</li>
-<li>集群内的原理、分片内部原理、索引原理</li>
-<li>集群管理、监控和部署</li>
-<li>数据建模 （类比关系型数据库的表设计）</li>
-<li>其他高级特性（高级搜索、高级数据类型）</li>
-<li>elasticsearch-sql、elasticsearch-dsl 等扩展</li>
-</ol>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/01/04/elasticsearch 应用知识体系解析/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://hieast.github.io/2017/12/08/thrift-thriftpy/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Hieast">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="后山">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/12/08/thrift-thriftpy/" itemprop="url">thrift&thriftpy</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-08T14:30:46+08:00">
-                2017-12-08
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/12/08/thrift-thriftpy/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/12/08/thrift-thriftpy/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>The Apache Thrift software framework, for scalable cross-language services development, combines a software stack with a code generation engine to build services that work efficiently and seamlessly between C++, Java, Python, PHP, Ruby, Erlang, Perl, Haskell, C#, Cocoa, JavaScript, Node.js, Smalltalk, OCaml and Delphi and other languages.</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/12/08/thrift-thriftpy/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1000,7 +1004,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-count">19</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1022,7 +1026,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-count">31</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -1082,7 +1086,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; 2016 &mdash; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; 2016 &mdash; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
