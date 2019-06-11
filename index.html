@@ -263,6 +263,142 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://hieast.github.io/2019/06/11/上网故障恢复指南（持续更新）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Hieast">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="后山">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/06/11/上网故障恢复指南（持续更新）/" itemprop="url">上网故障恢复指南（持续更新）</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-11T20:53:55+08:00">
+                2019-06-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/06/11/上网故障恢复指南（持续更新）/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2019/06/11/上网故障恢复指南（持续更新）/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>由于网络环境变化，上网行为面临着很多挑战，传统上网软件流量特征有大概率被精准识别恶意攻击了。<br>为了保障网络空间的安全，维护个人隐私，保障网络空间主权，有必要更换更加先进的上网软件。</p>
+<p>就目前而言，v2ray 是一个可用的选择。<br><a href="https://www.v2ray.com/" target="_blank" rel="external">v2ray</a> 是 Project V 的核心工具。<br>Project V 这个名字让我想起《V for Vendetta》，不知是否有什么关联。</p>
+<h1 id="踩过的坑"><a href="#踩过的坑" class="headerlink" title="踩过的坑"></a>踩过的坑</h1><h2 id="端口占用"><a href="#端口占用" class="headerlink" title="端口占用"></a>端口占用</h2><p>环境：macOS 14</p>
+<p>相关软件大都为个人开发者开发，卸载极易存在残留。<br>mac 上安装的旧版本客户端在开启自启动之后直接在 application 中删除 app，会造成进程残留。<br>虽然应用已经不存在了，但是端口依旧会被占用。</p>
+<p>使用 <code>lsof -i:&lt;port&gt;</code> 指令检查端口是否被占用，如被占用，杀死即可暂时解决。如重启后又被占用，需要检查 plist 文件。</p>
+<p><a href="https://github.com/qinyuhang/ShadowsocksX-NG-R/issues/87" target="_blank" rel="external">这里</a>提到的三个 plist 是可能的残留，<br>使用 <code>launchctl unload -w &lt;path&gt;</code> 指令关闭这三个 plist。<a href="https://apple.stackexchange.com/questions/29056/launchctl-difference-between-load-and-start-unload-and-stop?rq=1" target="_blank" rel="external">launchctl 关闭指令的区别</a>。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://hieast.github.io/2019/06/04/使用-docker-快速搭建数据分析平台-BI-部分-superset/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -814,142 +950,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://hieast.github.io/2018/03/26/Airflow 工作原理/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Hieast">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="后山">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/03/26/Airflow 工作原理/" itemprop="url">Airflow 工作原理（未完成）</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-26T15:18:47+08:00">
-                2018-03-26
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/03/26/Airflow 工作原理/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/03/26/Airflow 工作原理/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>使用 airflow 一年，出现了以下几个问题，虽然不是非常致命，却时常影响效率，需要重启解决。因此这次梳理一下 airflow。</p>
-<p>注意以下阅读的是 1.8.0 的源码。安装包的名字由 <code>airflow</code> 变成了 <code>apache-airflow</code>，原来的安装包不支持后面的升级了。目前（2018年04月22日）发布的稳定版本是 1.9.0 ，正在开发的版本是 1.10.0。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/03/26/Airflow 工作原理/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1004,7 +1004,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-count">20</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1026,7 +1026,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">31</span>
+                  <span class="site-state-item-count">32</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
