@@ -6,10 +6,10 @@
 
 
 <html class="theme-next pisces use-motion" lang="zh-Hans">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="theme-color" content="#222">
 
 
@@ -20,8 +20,8 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -40,7 +40,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -48,9 +48,9 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css">
 
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=5.1.3">
@@ -68,13 +68,13 @@
 
 
 
-  <meta name="keywords" content="Python,workflow," />
+  <meta name="keywords" content="Python,workflow,">
 
 
 
 
 
-  <link rel="alternate" href="/atom.xml" title="后山" type="application/atom+xml" />
+  <link rel="alternate" href="/atom.xml" title="后山" type="application/atom+xml">
 
 
 
@@ -89,7 +89,7 @@
 <meta property="og:site_name" content="后山">
 <meta property="og:description" content="前言使用 airflow 一年，出现了以下几个问题，虽然不是非常致命，却时常影响效率，需要重启解决。因此这次梳理一下 airflow。 注意以下阅读的是 1.8.0 的源码。安装包的名字由 airflow 变成了 apache-airflow，原来的安装包不支持后面的升级了。目前（2018年04月22日）发布的稳定版本是 1.9.0 ，正在开发的版本是 1.10.0。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-22T05:36:45.916Z">
+<meta property="og:updated_time" content="2018-04-22T05:36:45.917Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Airflow 工作原理（未完成）">
 <meta name="twitter:description" content="前言使用 airflow 一年，出现了以下几个问题，虽然不是非常致命，却时常影响效率，需要重启解决。因此这次梳理一下 airflow。 注意以下阅读的是 1.8.0 的源码。安装包的名字由 airflow 变成了 apache-airflow，原来的安装包不支持后面的升级了。目前（2018年04月22日）发布的稳定版本是 1.9.0 ，正在开发的版本是 1.10.0。">
@@ -122,7 +122,7 @@
 
 
 
-  <link rel="canonical" href="https://hieast.github.io/2018/03/26/Airflow 工作原理/"/>
+  <link rel="canonical" href="https://hieast.github.io/2018/03/26/Airflow 工作原理/">
 
 
 
@@ -165,7 +165,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">后山</span>
         <span class="logo-line-after"><i></i></span>
@@ -195,7 +195,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             首页
           </a>
@@ -205,7 +205,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
             标签
           </a>
@@ -215,7 +215,7 @@
         <li class="menu-item menu-item-categories">
           <a href="/categories/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
             
             分类
           </a>
@@ -225,7 +225,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
           </a>
@@ -268,7 +268,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Hieast">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/images/avatar.jpg">
     </span>
 
@@ -313,8 +313,7 @@
                   <i class="fa fa-comment-o"></i>
                 </span>
                 <a href="/2018/03/26/Airflow 工作原理/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/03/26/Airflow 工作原理/" itemprop="commentCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/03/26/Airflow 工作原理/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -356,32 +355,32 @@
 <li>airflow 的 log 应当如何管理？</li>
 <li>如何优化以下 SQL 的查询速度？</li>
 </ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">SELECT dag_run.dag_id AS dag_run_dag_id, dag_run.state AS dag_run_state, count(&apos;*&apos;) AS count_1 FROM dag_run WHERE dag_run.dag_id != dag_run.dag_id GROUP BY dag_run.dag_id, dag_run.state</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT dag_run.dag_id AS dag_run_dag_id, dag_run.state AS dag_run_state, count(&apos;*&apos;) AS count_1 FROM dag_run WHERE dag_run.dag_id != dag_run.dag_id GROUP BY dag_run.dag_id, dag_run.state</span><br></pre></td></tr></table></figure>
 <h1 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h1><p>JOB：最上层的工作。分为 SchedulerJob、BackfillJob 和 LocalTaskJob。SchedulerJob 有由 schedule 创建，BackfillJob 由 backfill 创建，LocalTaskJob 由前面两种 Job 创建。</p>
 <p>DAG：有向无环图，用来表示工作流。</p>
 <p>DAG Run：工作流实例，表示某个工作流的一次运行。</p>
 <p>Task：任务，工作流的基本组成部分。</p>
 <p>Task Instance：任务实例，表示某个任务的一次运行。</p>
 <h2 id="airflow-的正常运行需要哪几个部分？如何协调的？"><a href="#airflow-的正常运行需要哪几个部分？如何协调的？" class="headerlink" title="airflow 的正常运行需要哪几个部分？如何协调的？"></a>airflow 的正常运行需要哪几个部分？如何协调的？</h2><p>首先，所有的后台服务都是通过托管 <code>airflow {serve_name}</code> 这样的指令启动的。因此有必要先看一下这个命令中的参数是如何映射到指定函数的参数中的。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">parser = CLIFactory.get_parser()</div><div class="line">args = parser.parse_args()</div><div class="line">args.func(args)</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">parser = CLIFactory.get_parser()</span><br><span class="line">args = parser.parse_args()</span><br><span class="line">args.func(args)</span><br></pre></td></tr></table></figure>
 <p><code>CLIFactory</code> 中有两个重要的映射，<code>args</code> 将命令行参数名映射到 <strong>默认值</strong>、帮助信息等，<code>subparsers_dict</code> 将目标函数的函数名映射到该目标函数相关的说明中。</p>
 <p><code>CLIFactory.get_parser()</code> 返回了一个 <code>argparse.ArgumentParser</code> 的实例 <code>parser</code> ，包含了所有相关参数信息，通过 <code>parser.parse_args()</code> 方法进行参数校验，将命令行参数转化为一个仅用于存储属性的对象实例  args 中。</p>
-<p>这一段可作为 <code>argparse</code> 的典型用法学习，<a href="https://docs.python.org/3/howto/argparse.html" target="_blank" rel="external">文档</a> 可供参考。对于小命令行工具，<a href="http://click.pocoo.org/5/" target="_blank" rel="external">click</a> 更值得推荐。</p>
+<p>这一段可作为 <code>argparse</code> 的典型用法学习，<a href="https://docs.python.org/3/howto/argparse.html" target="_blank" rel="noopener">文档</a> 可供参考。对于小命令行工具，<a href="http://click.pocoo.org/5/" target="_blank" rel="noopener">click</a> 更值得推荐。</p>
 <h3 id="webserver"><a href="#webserver" class="headerlink" title="webserver"></a>webserver</h3><p>首先，为了提供 UI 界面，airflow 是有一个 webserver 的服务，用于展示内部各个 DAG 和 TASK 的执行状态，还可以做一部分配置管理和任务管理的工作。其实就是用 gunicorn 启动了 airflow 中的 application。</p>
 <p>启动服务的指令定义在 <code>airflow.bin.cli.webserver</code>，涉及运行参数的代码如下，仅供理解，不能运行。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">run_args = [</div><div class="line">    <span class="string">'gunicorn'</span>,</div><div class="line">    <span class="string">'-w'</span>, str(num_workers),</div><div class="line">    <span class="string">'-k'</span>, str(args.workerclass),</div><div class="line">    <span class="string">'-t'</span>, str(worker_timeout),</div><div class="line">    <span class="string">'-b'</span>, args.hostname + <span class="string">':'</span> + str(args.port),</div><div class="line">    <span class="string">'-n'</span>, <span class="string">'airflow-webserver'</span>,</div><div class="line">    <span class="string">'-p'</span>, str(pid),</div><div class="line">    <span class="string">'-c'</span>, <span class="string">'python:airflow.www.gunicorn_config'</span>,</div><div class="line">]</div><div class="line"></div><div class="line"><span class="keyword">if</span> args.access_logfile:</div><div class="line">    run_args += [<span class="string">'--access-logfile'</span>, str(args.access_logfile)]</div><div class="line"></div><div class="line"><span class="keyword">if</span> args.error_logfile:</div><div class="line">    run_args += [<span class="string">'--error-logfile'</span>, str(args.error_logfile)]</div><div class="line"></div><div class="line"><span class="keyword">if</span> args.daemon:</div><div class="line">    run_args += [<span class="string">'-D'</span>]</div><div class="line"></div><div class="line"><span class="keyword">if</span> ssl_cert:</div><div class="line">    run_args += [<span class="string">'--certfile'</span>, ssl_cert, <span class="string">'--keyfile'</span>, ssl_key]</div><div class="line"></div><div class="line">webserver_module = <span class="string">'www_rbac'</span> <span class="keyword">if</span> settings.RBAC <span class="keyword">else</span> <span class="string">'www'</span></div><div class="line">run_args += [<span class="string">"airflow."</span> + webserver_module + <span class="string">".app:cached_app()"</span>]</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">run_args = [</span><br><span class="line">    <span class="string">'gunicorn'</span>,</span><br><span class="line">    <span class="string">'-w'</span>, str(num_workers),</span><br><span class="line">    <span class="string">'-k'</span>, str(args.workerclass),</span><br><span class="line">    <span class="string">'-t'</span>, str(worker_timeout),</span><br><span class="line">    <span class="string">'-b'</span>, args.hostname + <span class="string">':'</span> + str(args.port),</span><br><span class="line">    <span class="string">'-n'</span>, <span class="string">'airflow-webserver'</span>,</span><br><span class="line">    <span class="string">'-p'</span>, str(pid),</span><br><span class="line">    <span class="string">'-c'</span>, <span class="string">'python:airflow.www.gunicorn_config'</span>,</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> args.access_logfile:</span><br><span class="line">    run_args += [<span class="string">'--access-logfile'</span>, str(args.access_logfile)]</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> args.error_logfile:</span><br><span class="line">    run_args += [<span class="string">'--error-logfile'</span>, str(args.error_logfile)]</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> args.daemon:</span><br><span class="line">    run_args += [<span class="string">'-D'</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> ssl_cert:</span><br><span class="line">    run_args += [<span class="string">'--certfile'</span>, ssl_cert, <span class="string">'--keyfile'</span>, ssl_key]</span><br><span class="line"></span><br><span class="line">webserver_module = <span class="string">'www_rbac'</span> <span class="keyword">if</span> settings.RBAC <span class="keyword">else</span> <span class="string">'www'</span></span><br><span class="line">run_args += [<span class="string">"airflow."</span> + webserver_module + <span class="string">".app:cached_app()"</span>]</span><br></pre></td></tr></table></figure>
 <p>调用的接口 app 入口在 <code>airflow.www.app.cached_app</code>，是使用纯 flask 写前后端不分离的网站，<code>airflow.www.app.create_app</code> 中绑定了各个视图页，如需学习 flask 可深入研究。</p>
 <h3 id="scheduler"><a href="#scheduler" class="headerlink" title="scheduler"></a>scheduler</h3><p>调度器实际上就是一个 <code>airflow.jobs.SchedulerJob</code> 实例 <code>job</code> 持续运行 <code>run</code> 方法。<code>job.run()</code> 在开始时将自身的信息加入到 job 表中，并维护状态和心跳，预期能够正常结束，将结束时间也更新到表中。但是实际上往往因为异常中断，导致结束时间为空。不管是如何进行的退出，SchedulerJob 退出时会关闭所有子进程。</p>
 <p><code>job._execute_helper(processor_manager)</code> 内封装了主要的定时调度逻辑。</p>
 <p><code>airflow.utils.dag_processing.DagFileProcessorManager#heartbeat</code> 被周期性调用，将完成的 <code>processor</code> 从当前处理队列弹出，根据最大并发参数 <code>max_threads</code> 将待处理的文件加入当前处理队列。 返回值为 <code>list[SimpleDag]</code> ，即已经成功结束的处理。</p>
 <p>核心问题：scheduler 是如何做定时的，如何做并发控制的？</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">self.heartrate = conf.getint(<span class="string">'scheduler'</span>, <span class="string">'SCHEDULER_HEARTBEAT_SEC'</span>)</div><div class="line">self.max_threads = conf.getint(<span class="string">'scheduler'</span>, <span class="string">'max_threads'</span>)</div><div class="line"><span class="comment"># How often to scan the DAGs directory for new files. Default to 5 minutes.</span></div><div class="line">self.dag_dir_list_interval = conf.getint(<span class="string">'scheduler'</span>,</div><div class="line">                                         <span class="string">'dag_dir_list_interval'</span>)</div><div class="line"><span class="comment"># How often to print out DAG file processing stats to the log. Default to</span></div><div class="line"><span class="comment"># 30 seconds.</span></div><div class="line">self.print_stats_interval = conf.getint(<span class="string">'scheduler'</span>,</div><div class="line">                                        <span class="string">'print_stats_interval'</span>)</div><div class="line"><span class="comment"># Parse and schedule each file no faster than this interval. Default</span></div><div class="line"><span class="comment"># to 3 minutes.</span></div><div class="line">self.file_process_interval = file_process_interval</div><div class="line"></div><div class="line">self.max_tis_per_query = conf.getint(<span class="string">'scheduler'</span>, <span class="string">'max_tis_per_query'</span>)</div><div class="line"><span class="keyword">if</span> run_duration <span class="keyword">is</span> <span class="keyword">None</span>:</div><div class="line">    self.run_duration = conf.getint(<span class="string">'scheduler'</span>,</div><div class="line">                                    <span class="string">'run_duration'</span>)</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">self.heartrate = conf.getint(<span class="string">'scheduler'</span>, <span class="string">'SCHEDULER_HEARTBEAT_SEC'</span>)</span><br><span class="line">self.max_threads = conf.getint(<span class="string">'scheduler'</span>, <span class="string">'max_threads'</span>)</span><br><span class="line"><span class="comment"># How often to scan the DAGs directory for new files. Default to 5 minutes.</span></span><br><span class="line">self.dag_dir_list_interval = conf.getint(<span class="string">'scheduler'</span>,</span><br><span class="line">                                         <span class="string">'dag_dir_list_interval'</span>)</span><br><span class="line"><span class="comment"># How often to print out DAG file processing stats to the log. Default to</span></span><br><span class="line"><span class="comment"># 30 seconds.</span></span><br><span class="line">self.print_stats_interval = conf.getint(<span class="string">'scheduler'</span>,</span><br><span class="line">                                        <span class="string">'print_stats_interval'</span>)</span><br><span class="line"><span class="comment"># Parse and schedule each file no faster than this interval. Default</span></span><br><span class="line"><span class="comment"># to 3 minutes.</span></span><br><span class="line">self.file_process_interval = file_process_interval</span><br><span class="line"></span><br><span class="line">self.max_tis_per_query = conf.getint(<span class="string">'scheduler'</span>, <span class="string">'max_tis_per_query'</span>)</span><br><span class="line"><span class="keyword">if</span> run_duration <span class="keyword">is</span> <span class="keyword">None</span>:</span><br><span class="line">    self.run_duration = conf.getint(<span class="string">'scheduler'</span>,</span><br><span class="line">                                    <span class="string">'run_duration'</span>)</span><br></pre></td></tr></table></figure>
 <p>每隔 dag_dir_list_interval 重读 dags 文件夹。</p>
 <p>max_threads 在 <code>processor_manager.heartbeat()</code> 中限制并发的 <code>processor.start()</code> 数，每个 <code>processor</code> 对应着一个 dag 文件地址。</p>
 <p>parallelism 在 <code>executor.heartbeat()</code> 中限制并发的，<code>executor.start()</code> 后 executor 内生成了一个 <code>multiprocessing.JoinableQueue()</code> 的 queue 以及 worker 列表，worker 都执行了 start() 方法。</p>
 <p>在 <code>executor.queued_tasks</code> 中添加入队的 tis，等到 <code>executor.heartbeat()</code> 时使用 <code>executor.execute_async</code> 方法将该命令放入<code>QueuedLocalWorker</code> 实例中，然后在通过 <code>worker.execute_work(key, command)</code> 中执行 <code>airflow run</code> 指令。</p>
 <p>1 个 SchedulerJob 实例，对应 1 个 DefaultExecutor 实例，1 个 DagFileProcessorManager 实例，parallelism 个 QueuedLocalWorker 实例。</p>
-<p>这一段可作为 multiprocessing 的典型用法学习，<a href="https://docs.python.org/3/howto/argparse.html" target="_blank" rel="external">文档</a> 可供参考。</p>
+<p>这一段可作为 multiprocessing 的典型用法学习，<a href="https://docs.python.org/3/howto/argparse.html" target="_blank" rel="noopener">文档</a> 可供参考。</p>
 <h2 id="airflow-的-log-级别应当如何管理？"><a href="#airflow-的-log-级别应当如何管理？" class="headerlink" title="airflow 的 log 级别应当如何管理？"></a>airflow 的 log 级别应当如何管理？</h2><p>LEVEL：1.8 版本的 loglevel 写死为 <code>LOGGING_LEVEL = logging.INFO</code>，目前不可配置。后续将会升级，使其可配置。</p>
 <h2 id="如何优化以下-SQL-的查询速度？"><a href="#如何优化以下-SQL-的查询速度？" class="headerlink" title="如何优化以下 SQL 的查询速度？"></a>如何优化以下 SQL 的查询速度？</h2><p>升级版本，或者根据新版本的 model 自己加索引。这是最省事的办法。</p>
 <h2 id="subdag"><a href="#subdag" class="headerlink" title="subdag"></a>subdag</h2><p>subdag 是一个特殊的 DAG，主要的 task 有一个 log，记录了使用 backfill 指令运行的子DAG。而因此会单独创建一个 BackfillJob 运行所有的这些子DAG，并且其中的每个子 DAG 的子任务都有自己的 log。 </p>
@@ -390,12 +389,12 @@
 <h1 id="其他收获"><a href="#其他收获" class="headerlink" title="其他收获"></a>其他收获</h1><ol>
 <li>使用 sqlalchemy 的 polymorphic 特性实现模型多态</li>
 </ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">__mapper_args__ = &#123;</div><div class="line">    &apos;polymorphic_on&apos;: job_type,</div><div class="line">    &apos;polymorphic_identity&apos;: &apos;BaseJob&apos;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">__mapper_args__ = &#123;</span><br><span class="line">    &apos;polymorphic_on&apos;: job_type,</span><br><span class="line">    &apos;polymorphic_identity&apos;: &apos;BaseJob&apos;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="2">
 <li>使用 sqlalchemy 的 table_args 创建索引</li>
 </ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">__table_args__ = (</div><div class="line">    Index(&apos;job_type_heart&apos;, job_type, latest_heartbeat),</div><div class="line">)</div></pre></td></tr></table></figure>
-<ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">__table_args__ = (</span><br><span class="line">    Index(&apos;job_type_heart&apos;, job_type, latest_heartbeat),</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<ol start="3">
 <li>使用 sqlalchemy 的 <code>sqlalchemy.orm.session.make_transient</code> 和 <code>session.merge(model)</code> 来将这个类实例与会话的关系断开或重建。</li>
 </ol>
 <h1 id="简单总结"><a href="#简单总结" class="headerlink" title="简单总结"></a>简单总结</h1><p>airflow 目前还是处于高速开发中，当前版本的坑很多，版本升级也不是向后兼容的，变动很大。如果已经在生产环境使用了 airflow，因为一些原因想升级，需要对目标版本做充分的测试和了解。</p>
@@ -419,14 +418,14 @@
 
     
       <div id="wechat" style="display: inline-block">
-        <img id="wechat_qr" src="/images/wechatpay.png" alt="Hieast 微信支付"/>
+        <img id="wechat_qr" src="/images/wechatpay.png" alt="Hieast 微信支付">
         <p>微信支付</p>
       </div>
     
 
     
       <div id="alipay" style="display: inline-block">
-        <img id="alipay_qr" src="/images/alipay.jpg" alt="Hieast 支付宝"/>
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="Hieast 支付宝">
         <p>支付宝</p>
       </div>
     
@@ -545,9 +544,7 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image"
-                src="/images/avatar.jpg"
-                alt="Hieast" />
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Hieast">
             
               <p class="site-author-name" itemprop="name">Hieast</p>
               <p class="site-description motion-element" itemprop="description">快速学习者，高校慕课平台深度使用者，专注于挖掘数据的价值。目前从事 Python 数据开发，自媒体数据采集、分析和应用相关工作。</p>
@@ -560,7 +557,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">21</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

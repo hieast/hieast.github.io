@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://hieast.github.io/"/>
-  <updated>2019-06-11T06:38:43.361Z</updated>
+  <updated>2019-06-18T10:15:34.326Z</updated>
   <id>https://hieast.github.io/</id>
   
   <author>
@@ -17,11 +17,34 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>试用语雀</title>
+    <link href="https://hieast.github.io/2019/06/18/yuque/%E8%AF%95%E7%94%A8%E8%AF%AD%E9%9B%80/"/>
+    <id>https://hieast.github.io/2019/06/18/yuque/试用语雀/</id>
+    <published>2019-06-18T09:30:12.000Z</published>
+    <updated>2019-06-18T10:15:34.326Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;a name=&quot;sHi4K&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&quot;试用-markdown&quot;&gt;&lt;a href=&quot;#试用-markdown&quot; class=&quot;headerlink&quot; title=&quot;试用 markdown&quot;&gt;&lt;/a&gt;试用
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
     <title>上网故障恢复指南（持续更新）</title>
     <link href="https://hieast.github.io/2019/06/11/%E4%B8%8A%E7%BD%91%E6%95%85%E9%9A%9C%E6%81%A2%E5%A4%8D%E6%8C%87%E5%8D%97%EF%BC%88%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%EF%BC%89/"/>
     <id>https://hieast.github.io/2019/06/11/上网故障恢复指南（持续更新）/</id>
     <published>2019-06-11T12:53:55.000Z</published>
-    <updated>2019-06-11T06:38:43.361Z</updated>
+    <updated>2019-06-11T06:38:43.362Z</updated>
     
     <summary type="html">
     
@@ -95,7 +118,7 @@
     <link href="https://hieast.github.io/2018/04/22/%E7%8E%8B%E9%81%93%E5%8D%95%E7%A7%91%E8%AE%A1%E7%BB%84/"/>
     <id>https://hieast.github.io/2018/04/22/王道单科计组/</id>
     <published>2018-04-22T08:14:58.000Z</published>
-    <updated>2018-04-22T11:17:12.426Z</updated>
+    <updated>2018-04-22T11:17:12.427Z</updated>
     
     <summary type="html">
     
@@ -141,7 +164,7 @@
     <link href="https://hieast.github.io/2018/03/26/Airflow%20%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/"/>
     <id>https://hieast.github.io/2018/03/26/Airflow 工作原理/</id>
     <published>2018-03-26T07:18:47.000Z</published>
-    <updated>2018-04-22T05:36:45.916Z</updated>
+    <updated>2018-04-22T05:36:45.917Z</updated>
     
     <summary type="html">
     
@@ -162,7 +185,7 @@
     <link href="https://hieast.github.io/2018/01/04/elasticsearch%20%E5%BA%94%E7%94%A8%E7%9F%A5%E8%AF%86%E4%BD%93%E7%B3%BB%E8%A7%A3%E6%9E%90/"/>
     <id>https://hieast.github.io/2018/01/04/elasticsearch 应用知识体系解析/</id>
     <published>2018-01-04T02:53:19.000Z</published>
-    <updated>2018-11-13T08:40:57.559Z</updated>
+    <updated>2018-11-13T08:40:57.560Z</updated>
     
     <summary type="html">
     
@@ -286,7 +309,7 @@
     <link href="https://hieast.github.io/2017/11/21/coursera-enable-bilingual-subtitle/"/>
     <id>https://hieast.github.io/2017/11/21/coursera-enable-bilingual-subtitle/</id>
     <published>2017-11-20T16:12:07.000Z</published>
-    <updated>2017-11-20T16:21:42.982Z</updated>
+    <updated>2017-11-20T16:21:42.983Z</updated>
     
     <summary type="html">
     
@@ -361,7 +384,7 @@
     <link href="https://hieast.github.io/2017/11/17/%E8%BF%90%E5%8A%A8%E7%94%9F%E7%90%86%E5%AD%A6%E7%AC%94%E8%AE%B0/"/>
     <id>https://hieast.github.io/2017/11/17/运动生理学笔记/</id>
     <published>2017-11-17T06:30:10.000Z</published>
-    <updated>2018-04-22T06:51:22.895Z</updated>
+    <updated>2018-04-22T06:51:22.896Z</updated>
     
     <summary type="html">
     
@@ -412,7 +435,7 @@
 &lt;blockquote&gt;
 &lt;p&gt;只要能读懂 flask 的源码了，就能找到一份软件开发的工作。&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;网上关于 flask 源码的的教程很多，如：&lt;a href=&quot;http://cizixs.com/2017/01/10/flask-insight-introduction&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;flask 源码解析&lt;/a&gt;，大部分都是从 flask 某个版本（主要是 0.1）的代码结构入手，横向分析各个部分的功能。本文尝试从 flask 的代码提交入手，从第一个提交到 0.1 版本，纵向比较各个提交之间的差异，期望在 Python 代码以外，从 &lt;a href=&quot;https://github.com/mitsuhiko&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Armin Ronacher&lt;/a&gt; 大神身上学习到更多关于软件工程和开源项目相关的知识。每个知识点将独立成文，长短不一，每篇博文以用能用示例将概念理解透彻为目标。&lt;/p&gt;
+&lt;p&gt;网上关于 flask 源码的的教程很多，如：&lt;a href=&quot;http://cizixs.com/2017/01/10/flask-insight-introduction&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;flask 源码解析&lt;/a&gt;，大部分都是从 flask 某个版本（主要是 0.1）的代码结构入手，横向分析各个部分的功能。本文尝试从 flask 的代码提交入手，从第一个提交到 0.1 版本，纵向比较各个提交之间的差异，期望在 Python 代码以外，从 &lt;a href=&quot;https://github.com/mitsuhiko&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Armin Ronacher&lt;/a&gt; 大神身上学习到更多关于软件工程和开源项目相关的知识。每个知识点将独立成文，长短不一，每篇博文以用能用示例将概念理解透彻为目标。&lt;/p&gt;
 &lt;p&gt;传送门：&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&quot;/2017/11/11/flask-1/&quot; title=&quot;WSGI 和 Werkzeug ———— Flask 系列文章(一)&quot;&gt;WSGI 和 Werkzeug ———— Flask 系列文章(一)&lt;/a&gt;
@@ -489,35 +512,6 @@
       <category term="sqlalchemy" scheme="https://hieast.github.io/tags/sqlalchemy/"/>
     
       <category term="sql" scheme="https://hieast.github.io/tags/sql/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Guide for Hexo</title>
-    <link href="https://hieast.github.io/2017/10/22/Guide-for-Hexo/"/>
-    <id>https://hieast.github.io/2017/10/22/Guide-for-Hexo/</id>
-    <published>2017-10-22T15:16:31.000Z</published>
-    <updated>2017-10-24T11:53:45.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;之前用过 &lt;a href=&quot;http://jekyllcn.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Jekyll&lt;/a&gt;，也有过 &lt;a href=&quot;https://cn.vuejs.org/index.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Vue.js&lt;/a&gt; 拉 github issues api 的想法。但是因为前端功力不够，都没能继续下去。&lt;/p&gt;
-&lt;p&gt;决定用 Hexo 来搭建个人的博客了，个人的想法是：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Done is better then perfect. 不管怎么样，先上一个能用的博客再说，让自己把博客先更新起来。Hexo 的开发者很多，功能够用，也集成了很多第三方插件。&lt;/li&gt;
-&lt;li&gt;Keep it Simple and Stupid. 很喜欢 Hexo 里的一个主题，简洁大方，相当符合这个原则，而之前在 jekyll 里没看到。&lt;/li&gt;
-&lt;li&gt;Hexo 基于 node 运行，更有助于熟悉通用的 Web 开发。&lt;/li&gt;
-&lt;li&gt;静态网站不用折腾搞 SEO 了。&lt;/li&gt;
-&lt;/ol&gt;
-    
-    </summary>
-    
-      <category term="技术杂学" scheme="https://hieast.github.io/categories/%E6%8A%80%E6%9C%AF%E6%9D%82%E5%AD%A6/"/>
-    
-    
-      <category term="教程" scheme="https://hieast.github.io/tags/%E6%95%99%E7%A8%8B/"/>
-    
-      <category term="博客" scheme="https://hieast.github.io/tags/%E5%8D%9A%E5%AE%A2/"/>
     
   </entry>
   

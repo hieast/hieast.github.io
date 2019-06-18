@@ -6,10 +6,10 @@
 
 
 <html class="theme-next pisces use-motion" lang="zh-Hans">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="theme-color" content="#222">
 
 
@@ -20,8 +20,8 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -40,7 +40,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -48,9 +48,9 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css">
 
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=5.1.3">
@@ -68,13 +68,13 @@
 
 
 
-  <meta name="keywords" content="python,orm,sqlalchemy,sql," />
+  <meta name="keywords" content="python,orm,sqlalchemy,sql,">
 
 
 
 
 
-  <link rel="alternate" href="/atom.xml" title="后山" type="application/atom+xml" />
+  <link rel="alternate" href="/atom.xml" title="后山" type="application/atom+xml">
 
 
 
@@ -122,7 +122,7 @@
 
 
 
-  <link rel="canonical" href="https://hieast.github.io/2017/10/27/sqlalchemy-user-defined-type/"/>
+  <link rel="canonical" href="https://hieast.github.io/2017/10/27/sqlalchemy-user-defined-type/">
 
 
 
@@ -165,7 +165,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">后山</span>
         <span class="logo-line-after"><i></i></span>
@@ -195,7 +195,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             首页
           </a>
@@ -205,7 +205,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
             标签
           </a>
@@ -215,7 +215,7 @@
         <li class="menu-item menu-item-categories">
           <a href="/categories/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
             
             分类
           </a>
@@ -225,7 +225,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
           </a>
@@ -268,7 +268,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Hieast">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/images/avatar.jpg">
     </span>
 
@@ -304,7 +304,7 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -335,8 +335,7 @@
                   <i class="fa fa-comment-o"></i>
                 </span>
                 <a href="/2017/10/27/sqlalchemy-user-defined-type/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/10/27/sqlalchemy-user-defined-type/" itemprop="commentCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/10/27/sqlalchemy-user-defined-type/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -368,16 +367,16 @@
 <p>Mysql 这种数据库不支持 json 对象的存储，但是开发过程中又确实有这种需求。一种思路是使用字符串来存储该对象，入库时序列化，出库时反序列化。在业务代码中维护数据转换又很大的思维负担，还容易出错，因此这个功能的实现自然而然落在了 ORM 里。</p>
 <a id="more"></a>
 <h1 id="自定义类型"><a href="#自定义类型" class="headerlink" title="自定义类型"></a>自定义类型</h1><p>SQLAlchemy 支持自定义处理函数，继承 <code>TypeDecorator</code> 即可很方便得到用户自定义类型。代码如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> json</div><div class="line"><span class="keyword">from</span> sqlalchemy.types <span class="keyword">import</span> TypeDecorator, String</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">JSONEncodedDict</span><span class="params">(TypeDecorator)</span>:</span></div><div class="line">    <span class="string">"""Represents an immutable structure as a json-encoded string.</span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string">    Usage::</span></div><div class="line"><span class="string">        JSONEncodedDict(255)</span></div><div class="line"><span class="string">    """</span></div><div class="line"></div><div class="line">    impl = String</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">process_bind_param</span><span class="params">(self, value, dialect)</span>:</span></div><div class="line">      <span class="string">"""Receive a bound parameter value to be converted.</span></div><div class="line"><span class="string">      """</span></div><div class="line">        <span class="keyword">if</span> value <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">None</span>:</div><div class="line">            value = json.dumps(value)</div><div class="line"></div><div class="line">        <span class="keyword">return</span> value</div><div class="line">      </div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">process_result_value</span><span class="params">(self, value, dialect)</span>:</span></div><div class="line">      <span class="string">"""Receive a result-row column value to be converted.</span></div><div class="line"><span class="string">      """</span></div><div class="line">        <span class="keyword">if</span> value <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">None</span>:</div><div class="line">            value = json.loads(value)</div><div class="line">        <span class="keyword">return</span> value</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="keyword">from</span> sqlalchemy.types <span class="keyword">import</span> TypeDecorator, String</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">JSONEncodedDict</span><span class="params">(TypeDecorator)</span>:</span></span><br><span class="line">    <span class="string">"""Represents an immutable structure as a json-encoded string.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    Usage::</span></span><br><span class="line"><span class="string">        JSONEncodedDict(255)</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line"></span><br><span class="line">    impl = String</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">process_bind_param</span><span class="params">(self, value, dialect)</span>:</span></span><br><span class="line">      <span class="string">"""Receive a bound parameter value to be converted.</span></span><br><span class="line"><span class="string">      """</span></span><br><span class="line">        <span class="keyword">if</span> value <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">None</span>:</span><br><span class="line">            value = json.dumps(value)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> value</span><br><span class="line">      </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">process_result_value</span><span class="params">(self, value, dialect)</span>:</span></span><br><span class="line">      <span class="string">"""Receive a result-row column value to be converted.</span></span><br><span class="line"><span class="string">      """</span></span><br><span class="line">        <span class="keyword">if</span> value <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">None</span>:</span><br><span class="line">            value = json.loads(value)</span><br><span class="line">        <span class="keyword">return</span> value</span><br></pre></td></tr></table></figure>
 <p>这段代码扩展了原生的 String 类型，在处理 bind param 时将其序列化，在从数据库取出结果后反序列化。还有其他的可定义的步骤，如 <code>process_literal_param</code>，定义了如何处理一个 literal param。但是这里我用不到，就不定义了。</p>
 <h1 id="定义-Model"><a href="#定义-Model" class="headerlink" title="定义 Model"></a>定义 Model</h1><p>这里我踩到一个坑，结合 Model 定义来趟坑。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 定义数据库</span></div><div class="line"><span class="keyword">from</span> sqlalchemy <span class="keyword">import</span> create_engine</div><div class="line">engine = create_engine(<span class="string">'mysql+pymysql://root:123456@localhost:3306/public?charset=utf8mb4'</span>, echo=<span class="keyword">True</span>)</div><div class="line"></div><div class="line"><span class="comment"># 定义 Model</span></div><div class="line"><span class="keyword">from</span> sqlalchemy.ext.declarative <span class="keyword">import</span> declarative_base</div><div class="line">Base = declarative_base()</div><div class="line"><span class="keyword">from</span> sqlalchemy <span class="keyword">import</span> Column, Integer, String, text</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span><span class="params">(Base)</span>:</span></div><div class="line">    __tablename__ = <span class="string">'users'</span></div><div class="line">    id = Column(Integer, primary_key=<span class="keyword">True</span>)</div><div class="line">    name = Column(String(<span class="number">100</span>), nullable=<span class="keyword">True</span>)</div><div class="line">    fullname = Column(String(<span class="number">100</span>), server_default=text(<span class="string">"""'this is text default'"""</span>))</div><div class="line">    password = Column(String(<span class="number">100</span>), server_default=<span class="string">"'this is direct default'"</span>)</div><div class="line">    wrong_user_ids = Column(JSONEncodedDict(<span class="number">255</span>), default=<span class="string">'["this is default"]'</span>)</div><div class="line">    right_user_ids = Column(JSONEncodedDict(<span class="number">255</span>), default=[<span class="string">"this is default"</span>])</div><div class="line">Base.metadata.create_all(engine)</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 定义数据库</span></span><br><span class="line"><span class="keyword">from</span> sqlalchemy <span class="keyword">import</span> create_engine</span><br><span class="line">engine = create_engine(<span class="string">'mysql+pymysql://root:123456@localhost:3306/public?charset=utf8mb4'</span>, echo=<span class="keyword">True</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义 Model</span></span><br><span class="line"><span class="keyword">from</span> sqlalchemy.ext.declarative <span class="keyword">import</span> declarative_base</span><br><span class="line">Base = declarative_base()</span><br><span class="line"><span class="keyword">from</span> sqlalchemy <span class="keyword">import</span> Column, Integer, String, text</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span><span class="params">(Base)</span>:</span></span><br><span class="line">    __tablename__ = <span class="string">'users'</span></span><br><span class="line">    id = Column(Integer, primary_key=<span class="keyword">True</span>)</span><br><span class="line">    name = Column(String(<span class="number">100</span>), nullable=<span class="keyword">True</span>)</span><br><span class="line">    fullname = Column(String(<span class="number">100</span>), server_default=text(<span class="string">"""'this is text default'"""</span>))</span><br><span class="line">    password = Column(String(<span class="number">100</span>), server_default=<span class="string">"'this is direct default'"</span>)</span><br><span class="line">    wrong_user_ids = Column(JSONEncodedDict(<span class="number">255</span>), default=<span class="string">'["this is default"]'</span>)</span><br><span class="line">    right_user_ids = Column(JSONEncodedDict(<span class="number">255</span>), default=[<span class="string">"this is default"</span>])</span><br><span class="line">Base.metadata.create_all(engine)</span><br></pre></td></tr></table></figure>
 <p>以下为打印出来的建表语句，可以看出，<code>default</code> 参数不影响建表语句，<code>server_default</code> 会影响，<code>text()</code> 函数将后面的 <code>server_default</code> 直接放在生成 SQL 对应位置，不使用该函数则会对 <code>server_default</code> 进行对应的转义。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">CREATE TABLE users (</div><div class="line">	id INTEGER NOT NULL AUTO_INCREMENT, </div><div class="line">	name VARCHAR(100), </div><div class="line">	fullname VARCHAR(100) DEFAULT &apos;this is text default&apos;, </div><div class="line">	password VARCHAR(100) DEFAULT &apos;&apos;&apos;this is direct default&apos;&apos;&apos;, </div><div class="line">	right_user_ids VARCHAR(255), </div><div class="line">	wrong_user_ids VARCHAR(255), </div><div class="line">	PRIMARY KEY (id)</div><div class="line">)</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE users (</span><br><span class="line">	id INTEGER NOT NULL AUTO_INCREMENT, </span><br><span class="line">	name VARCHAR(100), </span><br><span class="line">	fullname VARCHAR(100) DEFAULT &apos;this is text default&apos;, </span><br><span class="line">	password VARCHAR(100) DEFAULT &apos;&apos;&apos;this is direct default&apos;&apos;&apos;, </span><br><span class="line">	right_user_ids VARCHAR(255), </span><br><span class="line">	wrong_user_ids VARCHAR(255), </span><br><span class="line">	PRIMARY KEY (id)</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
 <p>下面生成一个数据</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> sqlalchemy.orm <span class="keyword">import</span> sessionmaker</div><div class="line">Session = sessionmaker(bind=engine)</div><div class="line">session = Session()</div><div class="line">session.add(User(fullname=<span class="string">'Hieast'</span>, password=<span class="string">'123456'</span>))</div><div class="line">session.commit()</div><div class="line">obj = session.query(User).first()</div><div class="line">print(obj.right_user_ids)</div><div class="line">print(obj.wrong_user_ids)</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sqlalchemy.orm <span class="keyword">import</span> sessionmaker</span><br><span class="line">Session = sessionmaker(bind=engine)</span><br><span class="line">session = Session()</span><br><span class="line">session.add(User(fullname=<span class="string">'Hieast'</span>, password=<span class="string">'123456'</span>))</span><br><span class="line">session.commit()</span><br><span class="line">obj = session.query(User).first()</span><br><span class="line">print(obj.right_user_ids)</span><br><span class="line">print(obj.wrong_user_ids)</span><br></pre></td></tr></table></figure>
 <p><code>print</code> 的输出是 </p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">([<span class="string">u'this is default'</span>], &lt;type <span class="string">'list'</span>&gt;)</div><div class="line">(<span class="string">u'["this is default"]'</span>, &lt;type <span class="string">'unicode'</span>&gt;)</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">([<span class="string">u'this is default'</span>], &lt;type <span class="string">'list'</span>&gt;)</span><br><span class="line">(<span class="string">u'["this is default"]'</span>, &lt;type <span class="string">'unicode'</span>&gt;)</span><br></pre></td></tr></table></figure>
 <p> 可以看到，<code>default</code> 在写入数据库的时候，是作为 bind_param 传入的，因此要经过 <code>process_bind_param</code> 的处理。如果我们定义的 <code>process_bind_param</code> 期望的输入是一个数组或字典，那么 <code>default</code> 也要赋值一个数组或字典，而不是已经序列化之后的字符串。</p>
 
       
@@ -399,14 +398,14 @@
 
     
       <div id="wechat" style="display: inline-block">
-        <img id="wechat_qr" src="/images/wechatpay.png" alt="Hieast 微信支付"/>
+        <img id="wechat_qr" src="/images/wechatpay.png" alt="Hieast 微信支付">
         <p>微信支付</p>
       </div>
     
 
     
       <div id="alipay" style="display: inline-block">
-        <img id="alipay_qr" src="/images/alipay.jpg" alt="Hieast 支付宝"/>
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="Hieast 支付宝">
         <p>支付宝</p>
       </div>
     
@@ -529,9 +528,7 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image"
-                src="/images/avatar.jpg"
-                alt="Hieast" />
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Hieast">
             
               <p class="site-author-name" itemprop="name">Hieast</p>
               <p class="site-description motion-element" itemprop="description">快速学习者，高校慕课平台深度使用者，专注于挖掘数据的价值。目前从事 Python 数据开发，自媒体数据采集、分析和应用相关工作。</p>
@@ -544,7 +541,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">21</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
