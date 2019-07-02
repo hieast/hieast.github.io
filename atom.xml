@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://hieast.github.io/"/>
-  <updated>2019-06-18T10:15:34.326Z</updated>
+  <updated>2019-07-02T16:07:51.649Z</updated>
   <id>https://hieast.github.io/</id>
   
   <author>
@@ -17,11 +17,34 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>ssh 进阶使用技巧</title>
+    <link href="https://hieast.github.io/2019/07/02/yuque/ssh%20%E8%BF%9B%E9%98%B6%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7/"/>
+    <id>https://hieast.github.io/2019/07/02/yuque/ssh 进阶使用技巧/</id>
+    <published>2019-07-02T13:29:36.000Z</published>
+    <updated>2019-07-02T16:07:51.649Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;a name=&quot;oPfbJ&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;曾经我天真得以为所有的服务器都可以直接用 ssh
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
     <title>试用语雀</title>
     <link href="https://hieast.github.io/2019/06/18/yuque/%E8%AF%95%E7%94%A8%E8%AF%AD%E9%9B%80/"/>
     <id>https://hieast.github.io/2019/06/18/yuque/试用语雀/</id>
     <published>2019-06-18T09:30:12.000Z</published>
-    <updated>2019-06-18T10:15:34.326Z</updated>
+    <updated>2019-07-02T16:07:51.648Z</updated>
     
     <summary type="html">
     
@@ -485,33 +508,6 @@
       <category term="filco" scheme="https://hieast.github.io/tags/filco/"/>
     
       <category term="Mac" scheme="https://hieast.github.io/tags/Mac/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>SQLAlchemy 的用户自定义类型和 default 小坑</title>
-    <link href="https://hieast.github.io/2017/10/27/sqlalchemy-user-defined-type/"/>
-    <id>https://hieast.github.io/2017/10/27/sqlalchemy-user-defined-type/</id>
-    <published>2017-10-27T08:42:12.000Z</published>
-    <updated>2017-10-27T09:04:10.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;SQLAlchemy 版本：1.2&lt;/p&gt;
-&lt;p&gt;Mysql 这种数据库不支持 json 对象的存储，但是开发过程中又确实有这种需求。一种思路是使用字符串来存储该对象，入库时序列化，出库时反序列化。在业务代码中维护数据转换又很大的思维负担，还容易出错，因此这个功能的实现自然而然落在了 ORM 里。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="Python后端" scheme="https://hieast.github.io/categories/Python%E5%90%8E%E7%AB%AF/"/>
-    
-    
-      <category term="python" scheme="https://hieast.github.io/tags/python/"/>
-    
-      <category term="orm" scheme="https://hieast.github.io/tags/orm/"/>
-    
-      <category term="sqlalchemy" scheme="https://hieast.github.io/tags/sqlalchemy/"/>
-    
-      <category term="sql" scheme="https://hieast.github.io/tags/sql/"/>
     
   </entry>
   

@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="上网,">
+  <meta name="keywords" content="Hexo, NexT">
 
 
 
@@ -81,18 +81,17 @@
 
 
 
-<meta name="description" content="前言由于网络环境变化，上网行为面临着很多挑战，传统上网软件流量特征有大概率被精准识别恶意攻击了。为了保障网络空间的安全，维护个人隐私，保障网络空间主权，有必要更换更加先进的上网软件。 就目前而言，v2ray 是一个可用的选择。v2ray 是 Project V 的核心工具。Project V 这个名字让我想起《V for Vendetta》，不知是否有什么关联。 踩过的坑端口占用环境：macOS">
-<meta name="keywords" content="上网">
+<meta name="description" content="前言曾经我天真得以为所有的服务器都可以直接用 ssh username@hostname 直接登陆，后来发现我还是太天真了。 很多开发工具也像我一样天真，相关的配置项很少。只要使用一次跳板机的时候我凑合使用 -J 参数连上了，这次碰到需要使用两次跳板机的情况，我此前所有工具的远程管理都挂了，无法正常使用。 因此我决定系统学习一遍 ssh，争取在各种网络条件下都能通过配置 ~/.ssh/confi">
 <meta property="og:type" content="article">
-<meta property="og:title" content="上网故障恢复指南（持续更新）">
-<meta property="og:url" content="https://hieast.github.io/2019/06/11/上网故障恢复指南（持续更新）/index.html">
+<meta property="og:title" content="ssh 进阶使用技巧">
+<meta property="og:url" content="https://hieast.github.io/2019/07/02/yuque/ssh 进阶使用技巧/index.html">
 <meta property="og:site_name" content="后山">
-<meta property="og:description" content="前言由于网络环境变化，上网行为面临着很多挑战，传统上网软件流量特征有大概率被精准识别恶意攻击了。为了保障网络空间的安全，维护个人隐私，保障网络空间主权，有必要更换更加先进的上网软件。 就目前而言，v2ray 是一个可用的选择。v2ray 是 Project V 的核心工具。Project V 这个名字让我想起《V for Vendetta》，不知是否有什么关联。 踩过的坑端口占用环境：macOS">
+<meta property="og:description" content="前言曾经我天真得以为所有的服务器都可以直接用 ssh username@hostname 直接登陆，后来发现我还是太天真了。 很多开发工具也像我一样天真，相关的配置项很少。只要使用一次跳板机的时候我凑合使用 -J 参数连上了，这次碰到需要使用两次跳板机的情况，我此前所有工具的远程管理都挂了，无法正常使用。 因此我决定系统学习一遍 ssh，争取在各种网络条件下都能通过配置 ~/.ssh/confi">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-06-11T06:38:43.362Z">
+<meta property="og:updated_time" content="2019-07-02T16:07:51.649Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="上网故障恢复指南（持续更新）">
-<meta name="twitter:description" content="前言由于网络环境变化，上网行为面临着很多挑战，传统上网软件流量特征有大概率被精准识别恶意攻击了。为了保障网络空间的安全，维护个人隐私，保障网络空间主权，有必要更换更加先进的上网软件。 就目前而言，v2ray 是一个可用的选择。v2ray 是 Project V 的核心工具。Project V 这个名字让我想起《V for Vendetta》，不知是否有什么关联。 踩过的坑端口占用环境：macOS">
+<meta name="twitter:title" content="ssh 进阶使用技巧">
+<meta name="twitter:description" content="前言曾经我天真得以为所有的服务器都可以直接用 ssh username@hostname 直接登陆，后来发现我还是太天真了。 很多开发工具也像我一样天真，相关的配置项很少。只要使用一次跳板机的时候我凑合使用 -J 参数连上了，这次碰到需要使用两次跳板机的情况，我此前所有工具的远程管理都挂了，无法正常使用。 因此我决定系统学习一遍 ssh，争取在各种网络条件下都能通过配置 ~/.ssh/confi">
 
 
 
@@ -122,13 +121,13 @@
 
 
 
-  <link rel="canonical" href="https://hieast.github.io/2019/06/11/上网故障恢复指南（持续更新）/">
+  <link rel="canonical" href="https://hieast.github.io/2019/07/02/yuque/ssh 进阶使用技巧/">
 
 
 
 
 
-  <title>上网故障恢复指南（持续更新） | 后山</title>
+  <title>ssh 进阶使用技巧 | 后山</title>
   
 
 
@@ -264,7 +263,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://hieast.github.io/2019/06/11/上网故障恢复指南（持续更新）/">
+    <link itemprop="mainEntityOfPage" href="https://hieast.github.io/2019/07/02/yuque/ssh 进阶使用技巧/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Hieast">
@@ -281,7 +280,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">上网故障恢复指南（持续更新）</h1>
+          <h1 class="post-title" itemprop="name headline">ssh 进阶使用技巧</h1>
         
 
         <div class="post-meta">
@@ -293,8 +292,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-11T20:53:55+08:00">
-                2019-06-11
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-02T21:29:36+08:00">
+                2019-07-02
               </time>
             
 
@@ -312,8 +311,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2019/06/11/上网故障恢复指南（持续更新）/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/06/11/上网故障恢复指南（持续更新）/" itemprop="commentCount"></span>
+                <a href="/2019/07/02/yuque/ssh 进阶使用技巧/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/07/02/yuque/ssh 进阶使用技巧/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -341,12 +340,36 @@
       
 
       
-        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>由于网络环境变化，上网行为面临着很多挑战，传统上网软件流量特征有大概率被精准识别恶意攻击了。<br>为了保障网络空间的安全，维护个人隐私，保障网络空间主权，有必要更换更加先进的上网软件。</p>
-<p>就目前而言，v2ray 是一个可用的选择。<br><a href="https://www.v2ray.com/" target="_blank" rel="noopener">v2ray</a> 是 Project V 的核心工具。<br>Project V 这个名字让我想起《V for Vendetta》，不知是否有什么关联。</p>
-<h1 id="踩过的坑"><a href="#踩过的坑" class="headerlink" title="踩过的坑"></a>踩过的坑</h1><h2 id="端口占用"><a href="#端口占用" class="headerlink" title="端口占用"></a>端口占用</h2><p>环境：macOS 14</p>
-<p>相关软件大都为个人开发者开发，卸载极易存在残留。<br>mac 上安装的旧版本客户端在开启自启动之后直接在 application 中删除 app，会造成进程残留。<br>虽然应用已经不存在了，但是端口依旧会被占用。</p>
-<p>使用 <code>lsof -i:&lt;port&gt;</code> 指令检查端口是否被占用，如被占用，杀死即可暂时解决。如重启后又被占用，需要检查 plist 文件。</p>
-<p><a href="https://github.com/qinyuhang/ShadowsocksX-NG-R/issues/87" target="_blank" rel="noopener">这里</a>提到的三个 plist 是可能的残留，<br>使用 <code>launchctl unload -w &lt;path&gt;</code> 指令关闭这三个 plist。<a href="https://apple.stackexchange.com/questions/29056/launchctl-difference-between-load-and-start-unload-and-stop?rq=1" target="_blank" rel="noopener">launchctl 关闭指令的区别</a>。</p>
+        <p><a name="oPfbJ"></a></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>曾经我天真得以为所有的服务器都可以直接用 ssh username@hostname 直接登陆，后来发现我还是太天真了。</p>
+<p>很多开发工具也像我一样天真，相关的配置项很少。只要使用一次跳板机的时候我凑合使用 -J 参数连上了，这次碰到需要使用两次跳板机的情况，我此前所有工具的远程管理都挂了，无法正常使用。</p>
+<p>因此我决定系统学习一遍 ssh，争取在各种网络条件下都能通过配置 <code>~/.ssh/config</code> 的方式，使网络条件对开发工具透明化。</p>
+<p><a name="fJ8Ey"></a></p>
+<h1 id="什么是-SSH"><a href="#什么是-SSH" class="headerlink" title="什么是 SSH"></a>什么是 SSH</h1><p>维基百科的定义：<a href="https://zh.wikipedia.org/zh-hans/Secure_Shell" target="_blank" rel="noopener">https://zh.wikipedia.org/zh-hans/Secure_Shell</a><br>Secure Shell（安全外壳协议，简称SSH）是一种加密的网络传输协议，以非对称加密实现身份验证，可在不安全的网络中为网络服务提供安全的传输环境。</p>
+<p>我们常用的 ssh 指令是 OpenSSH SSH client，是 SSH 的一个实现，是一个远程登陆程序。今天提到的主人公也就是这个程序，将要学习的是这个程序的应用。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssh [-46AaCfGgKkMNnqsTtVvXxYy] [-B bind_interface] [-b bind_address] [-c cipher_spec] [-D [bind_address:]port] [-E log_file] [-e escape_char] [-F configfile] [-I pkcs11] [-i identity_file] [-J destination]</span><br><span class="line">    [-L address] [-l login_name] [-m mac_spec] [-O ctl_cmd] [-o option] [-p port] [-Q query_option] [-R address] [-S ctl_path] [-W host:port] [-w local_tun[:remote_tun]] destination [<span class="built_in">command</span>]</span><br></pre></td></tr></table></figure>
+<p><a name="Q7wTr"></a></p>
+<h1 id="ssh（OpenSSH-SSH-client）的用途"><a href="#ssh（OpenSSH-SSH-client）的用途" class="headerlink" title="ssh（OpenSSH SSH client）的用途"></a>ssh（OpenSSH SSH client）的用途</h1><p>阅读手册 <a href="http://linux.51yip.com/search/ssh" target="_blank" rel="noopener">http://linux.51yip.com/search/ssh</a> 或 <code>man ssh</code> 。</p>
+<p>通用的不常见的参数：<br>-f 后台运行<br>-a/A 禁止/开启客户端连接转发<br>-G 打印配置并退出<br>-g 允许远程主机连接到本地转发端口 <br>-N 不要远程执行指令<br>-v 冗余模式用于调试</p>
+<p><a name="rxuV9"></a></p>
+<h2 id="远程登录，执行命令"><a href="#远程登录，执行命令" class="headerlink" title="远程登录，执行命令"></a>远程登录，执行命令</h2><p>最基本用途。<br>-J destination 可以通过 destination 作为跳板机远程登陆其他主机。多次跳转使用逗号分隔。与 ProxyJump 配置相关。 <strong>若这里使用域名，则在对应一跳的服务器上进行解析。</strong> <br>-M 开启主模式，用于连接复用。与 ControlMaster 配置相关。</p>
+<p><a name="fWroN"></a></p>
+<h2 id="端口（TCP）转发"><a href="#端口（TCP）转发" class="headerlink" title="端口（TCP）转发"></a>端口（TCP）转发</h2><p>-D 本地动态应用层端口转发<br>-L 本地静态端口转发<br>-R 远程静态端口转发</p>
+<p><a name="oEGUI"></a></p>
+<h2 id="其他：隧道协议等奇怪的协议转发"><a href="#其他：隧道协议等奇怪的协议转发" class="headerlink" title="其他：隧道协议等奇怪的协议转发"></a>其他：隧道协议等奇怪的协议转发</h2><p>-w 隧道相关<br>-K -k 与 GSSAPI credentials 相关<br>-X -x X11 相关<br>还可以集成到其他工具的传输层，例如 sftp</p>
+<p><a name="3ncEx"></a></p>
+<h1 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h1><p>参数配置有三个层次，命令行参数 &gt; 某个用户的配置文件 &gt; 系统所有用户的配置文件。通常修改某个用户的配置文件较好，所以后面也都是指某个用户的配置文件。</p>
+<p>默认的相关文件目录为 <code>~/.ssh/</code> <br>配置文件为 <code>~/.ssh/config</code><br>授权公钥为 <code>~/.ssh/authorized_keys</code> <br>配置时注意一下文件的访问权限，网上到处都有。<br>别人的博客 <a href="https://www.hi-linux.com/posts/14346.html" target="_blank" rel="noopener">https://www.hi-linux.com/posts/14346.html</a> 很多讲的比较全面，这里只记我感兴趣的。<br>配置文件可以灵活配置所有主机的登陆参数，因此所有登陆参数放到这里可以将指令简化很多。</p>
+<p><a name="2PIm3"></a></p>
+<h2 id="常用配置"><a href="#常用配置" class="headerlink" title="常用配置"></a>常用配置</h2><p>StrictHostKeyChecking=no 自动接受新的公钥，这个会降低安全性<br>Host 配置项标识了一个配置区段，类似于配置路由。<br>HostName 远程主机名，可以直接使用数字IP地址。<br>IdentityFile 私钥文件路径。<br>Port 远程主机端口号<br>User 登陆用户名<br>UserKnownHostsFile 一个或多个用户认证主机缓存文件，全局为 GlobalKnownHostsFile</p>
+<p><a name="Jqci9"></a></p>
+<h2 id="通配符"><a href="#通配符" class="headerlink" title="通配符"></a>通配符</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'*'</span> 代表 0～n 个非空白字符。</span><br><span class="line"><span class="string">'?'</span> 代表一个非空白字符。</span><br><span class="line"><span class="string">'!'</span> 表示例外通配。</span><br></pre></td></tr></table></figure>
+<p><a name="KeVjd"></a></p>
+<h2 id="ControlMaster"><a href="#ControlMaster" class="headerlink" title="ControlMaster"></a>ControlMaster</h2><p>据说有很多好处，只要把下面一段拷进配置文件即可。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Host *</span><br><span class="line">  ServerAliveInterval 10</span><br><span class="line">  TCPKeepAlive yes</span><br><span class="line">  ControlPersist yes</span><br><span class="line">  ControlMaster auto</span><br><span class="line">  ControlPath ~/.ssh/master_%r_%h_%p</span><br></pre></td></tr></table></figure>
+<p><a href="https://www.ibm.com/developerworks/community/blogs/IBMzOS/entry/20150502?lang=en" target="_blank" rel="noopener">https://www.ibm.com/developerworks/community/blogs/IBMzOS/entry/20150502?lang=en</a></p>
+<p><a name="HB3XH"></a></p>
+<h2 id="ProxyJump"><a href="#ProxyJump" class="headerlink" title="ProxyJump"></a>ProxyJump</h2><p>可以配置上一跳服务器，解决嵌套的跳板机登陆配置复杂的问题。<br>别人的文章 <a href="https://zhuanlan.zhihu.com/p/55016458" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/55016458</a></p>
 
       
     </div>
@@ -391,12 +414,6 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/上网/" rel="tag"># 上网</a>
-          
-        </div>
-      
 
       
       
@@ -406,8 +423,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/06/04/使用-docker-快速搭建数据分析平台-BI-部分-superset/" rel="next" title="使用 docker 快速搭建数据分析平台 BI 部分 superset">
-                <i class="fa fa-chevron-left"></i> 使用 docker 快速搭建数据分析平台 BI 部分 superset
+              <a href="/2019/06/18/yuque/试用语雀/" rel="next" title="试用语雀">
+                <i class="fa fa-chevron-left"></i> 试用语雀
               </a>
             
           </div>
@@ -415,10 +432,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/06/18/yuque/试用语雀/" rel="prev" title="试用语雀">
-                试用语雀 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -582,7 +595,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#踩过的坑"><span class="nav-number">2.</span> <span class="nav-text">踩过的坑</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#端口占用"><span class="nav-number">2.1.</span> <span class="nav-text">端口占用</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是-SSH"><span class="nav-number">2.</span> <span class="nav-text">什么是 SSH</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ssh（OpenSSH-SSH-client）的用途"><span class="nav-number">3.</span> <span class="nav-text">ssh（OpenSSH SSH client）的用途</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#远程登录，执行命令"><span class="nav-number">3.1.</span> <span class="nav-text">远程登录，执行命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#端口（TCP）转发"><span class="nav-number">3.2.</span> <span class="nav-text">端口（TCP）转发</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他：隧道协议等奇怪的协议转发"><span class="nav-number">3.3.</span> <span class="nav-text">其他：隧道协议等奇怪的协议转发</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#配置文件"><span class="nav-number">4.</span> <span class="nav-text">配置文件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#常用配置"><span class="nav-number">4.1.</span> <span class="nav-text">常用配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#通配符"><span class="nav-number">4.2.</span> <span class="nav-text">通配符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ControlMaster"><span class="nav-number">4.3.</span> <span class="nav-text">ControlMaster</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ProxyJump"><span class="nav-number">4.4.</span> <span class="nav-text">ProxyJump</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -756,9 +769,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'https://hieast.github.io/2019/06/11/上网故障恢复指南（持续更新）/';
-          this.page.identifier = '2019/06/11/上网故障恢复指南（持续更新）/';
-          this.page.title = '上网故障恢复指南（持续更新）';
+          this.page.url = 'https://hieast.github.io/2019/07/02/yuque/ssh 进阶使用技巧/';
+          this.page.identifier = '2019/07/02/yuque/ssh 进阶使用技巧/';
+          this.page.title = 'ssh 进阶使用技巧';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://houshan.disqus.com/embed.js';
