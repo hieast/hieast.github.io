@@ -89,7 +89,7 @@
 <meta property="og:description" content="背景家里之前配了一个台式机，ms04 那样，amd 平台，CentOS 8。在配置学习开发环境的过程中遇到了几个问题，记录一下。 桌面安装安装 CentOS 8 自带的 gnome 桌面sudo yum group install &amp;quot;Server with GUI&amp;quot;修改桌面配置vim /etc/gdm/custom.conf日志位置/var/lib/gdm/.local/sha">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://cdn.nlark.com/yuque/0/2020/png/381088/1597577836816-14a145a6-7064-42af-9ea7-2d99fe05ac53.png#align=left&display=inline&height=213&margin=%5Bobject%20Object%5D&name=image.png&originHeight=213&originWidth=400&size=67983&status=done&style=none&width=400">
-<meta property="og:updated_time" content="2020-08-16T15:04:40.400Z">
+<meta property="og:updated_time" content="2020-08-16T15:23:26.815Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CentOS 8 桌面系统配置小记">
 <meta name="twitter:description" content="背景家里之前配了一个台式机，ms04 那样，amd 平台，CentOS 8。在配置学习开发环境的过程中遇到了几个问题，记录一下。 桌面安装安装 CentOS 8 自带的 gnome 桌面sudo yum group install &amp;quot;Server with GUI&amp;quot;修改桌面配置vim /etc/gdm/custom.conf日志位置/var/lib/gdm/.local/sha">
@@ -346,12 +346,20 @@
 <h1 id="桌面安装"><a href="#桌面安装" class="headerlink" title="桌面安装"></a>桌面安装</h1><p>安装 CentOS 8 自带的 gnome 桌面<br><code>sudo yum group install &quot;Server with GUI&quot;</code><br>修改桌面配置<br><code>vim /etc/gdm/custom.conf</code><br>日志位置<br><code>/var/lib/gdm/.local/share/xorg/Xorg.0.log</code></p>
 <p>这里放一个整个桌面的架构图，对技术细节和历史感兴趣的同学可以看这本<a href="https://i.linuxtoy.org/docs/guide/index.html" target="_blank" rel="noopener">开源世界旅行手册</a>。<br><img src="https://cdn.nlark.com/yuque/0/2020/png/381088/1597577836816-14a145a6-7064-42af-9ea7-2d99fe05ac53.png#align=left&amp;display=inline&amp;height=213&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=213&amp;originWidth=400&amp;size=67983&amp;status=done&amp;style=none&amp;width=400" alt="image.png"></p>
 <h1 id="桌面崩溃"><a href="#桌面崩溃" class="headerlink" title="桌面崩溃"></a>桌面崩溃</h1><p>由于个人也是第一次接触，所以只有三板斧，幸好解决了问题。<br>1。 彻底打不开<br>删除桌面后重新安装<br><code>sudo yum group remove &quot;Server with GUI&quot;</code><br>2。 重新安装后分辨率无法调整<br><code>xrandr</code>  可以返回显示器支持的分辨率，如果报错，应该就是驱动出问题了。<br>这里就可以看出 amd 不够 yes 的点了，通用驱动页面没有 linux 的支持信息，最好在谷歌找准关键词搜。<a href="https://www.amd.com/zh-hans/support/kb/release-notes/rn-amdgpu-unified-linux-20-20" target="_blank" rel="noopener">https://www.amd.com/zh-hans/support/kb/release-notes/rn-amdgpu-unified-linux-20-20</a> 可以在这里下载到。</p>
+<h1 id="CentOS-Win10-共用磁盘格式化"><a href="#CentOS-Win10-共用磁盘格式化" class="headerlink" title="CentOS/Win10 共用磁盘格式化"></a>CentOS/Win10 共用磁盘格式化</h1><p>为了提供一定的娱乐功能，我是装了双系统的。磁盘也计划用 NTFS 文件系统。</p>
+<p><code>fdisk -l</code>  列出所有硬盘<br><code>mkfs.ntfs -f -L data2 -v /dev/sdb1</code>  将 /dev/sdb1 分区快速格式化为 NTFS 格式，打上 data2 标签<br><code>parted /dev/sdb mklabel gpt</code> 将磁盘 <code>/dev/sdb</code> 以 GPT 格式建立分区表<br><code>parted /dev/sdb mkpart primary ntfs 4096s 100%</code>  将磁盘 <code>/dev/sdb</code> 从第 4096 个 sector 开始到 100% 的空间划做一个分区<br><code>vim /etc/fstab</code>  编辑自动 mount 设置</p>
+<p><strong>重要</strong>：</p>
+<ol>
+<li>直接使用 mkfs.ntfs 对整个设备操作导致 Win10 不认盘，并且最大只有 1.7TB。</li>
+<li>直接使用 parted 建立分区表后不进行格式化会导致开机直接进入 rescue 模式。</li>
+<li>正确的方式是先 <code>parted mklabel</code> 建立分区表，然后 <code>parted mkpart</code> 进行分区，最后 <code>mkfs.ntfs</code> 进行格式化。这样就得到了一个可以 mount 的文件设备。</li>
+</ol>
 <h1 id="快捷键修改"><a href="#快捷键修改" class="headerlink" title="快捷键修改"></a>快捷键修改</h1><p>不得不说 MacOS 的快捷键真的很舒服，常用的快捷键在各个软件里都是有实现并且基本统一的，而 gnome 里就各行其是，我常用的 terminal 和 chrome 就不一致。</p>
 <p>理论基础 B 站 <a href="https://www.bilibili.com/read/cv5124452/" target="_blank" rel="noopener">https://www.bilibili.com/read/cv5124452/</a> 这里讲的不错。<br>我这边不考虑 TTY，仅考虑 X11。</p>
 <h2 id="X11-层面"><a href="#X11-层面" class="headerlink" title="X11 层面"></a>X11 层面</h2><p>这个层面修改 keycode   –&gt;   keysymbol，也就是说我把 Win 和 Alt 键互换的话，在桌面的所有应用里这两个键都算是换掉了。</p>
-<p>安装 gnome-tweaks 可以很轻松完成这步修改。<br><strong>重要： </strong>gnome-tweaks<strong> 必须在当前 X11 登陆用户下启动，否则会找不到 DBus。以下两个指令应该能够正常返回，否则说明启动用户不对。</strong><br><code>gdbus introspect --session --dest org.gnome.SessionManager --object-path /org/gnome/SessionManager</code><br><code>gdbus introspect --session --dest org.gnome.Shell --object-path /org/gnome/Shell</code></p>
+<p>安装 gnome-tweaks 可以很轻松完成这步修改。<br><strong>重要： gnome-tweaks 必须在当前 X11 登陆用户下启动，否则会找不到 DBus。以下两个指令应该能够正常返回，否则说明启动用户不对。</strong><br><code>gdbus introspect --session --dest org.gnome.SessionManager --object-path /org/gnome/SessionManager</code><br><code>gdbus introspect --session --dest org.gnome.Shell --object-path /org/gnome/Shell</code></p>
 <h2 id="组合键解释层面"><a href="#组合键解释层面" class="headerlink" title="组合键解释层面"></a>组合键解释层面</h2><p>我们得到了一组按键组合，这个组合具体含义是由各个应用进行解释的，很可惜这里改不了，我能做的只有以下两点。<br>1 在系统配置里将常用的快捷键删掉，避免和个人习惯冲突。<br>2 安装 autokey，写脚本配置每一个按键组合在每个应用映射到不同的组合里</p>
-<p>以上操作可以达成不同应用使用同一个快捷键进行同一个操作，我最需要的就是在 terminal 和 chrome 里使用 MacOS 的复制和粘贴快捷键，这样就可以实现了。<br>**重要： autokey 尽量使用系统包管理工具安装，如果官方包管理工具不支持，也要尽量使用系统的 python。部分 sitepackage 只有系统 python 解释器能够直接找到。</p>
+<p>以上操作可以达成不同应用使用同一个快捷键进行同一个操作，我最需要的就是在 terminal 和 chrome 里使用 MacOS 的复制和粘贴快捷键，这样就可以实现了。<br><strong>重要： autokey 尽量使用系统包管理工具安装，如果官方包管理工具不支持，也要尽量使用系统的 python。部分 sitepackage 只有系统 python 解释器能够直接找到。</strong></p>
 
       
     </div>
@@ -577,7 +585,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#桌面安装"><span class="nav-number">2.</span> <span class="nav-text">桌面安装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#桌面崩溃"><span class="nav-number">3.</span> <span class="nav-text">桌面崩溃</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#快捷键修改"><span class="nav-number">4.</span> <span class="nav-text">快捷键修改</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#X11-层面"><span class="nav-number">4.1.</span> <span class="nav-text">X11 层面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#组合键解释层面"><span class="nav-number">4.2.</span> <span class="nav-text">组合键解释层面</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#桌面安装"><span class="nav-number">2.</span> <span class="nav-text">桌面安装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#桌面崩溃"><span class="nav-number">3.</span> <span class="nav-text">桌面崩溃</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CentOS-Win10-共用磁盘格式化"><span class="nav-number">4.</span> <span class="nav-text">CentOS/Win10 共用磁盘格式化</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#快捷键修改"><span class="nav-number">5.</span> <span class="nav-text">快捷键修改</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#X11-层面"><span class="nav-number">5.1.</span> <span class="nav-text">X11 层面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#组合键解释层面"><span class="nav-number">5.2.</span> <span class="nav-text">组合键解释层面</span></a></li></ol></li></ol></div>
             
 
           </div>
