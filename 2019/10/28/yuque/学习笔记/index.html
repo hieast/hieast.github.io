@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="后山" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="前言本笔记为 《Java 核心技术》和 《Java 编程思想》两本经典书籍的学习笔记。不期望读完这两本书就编程高手，但只求能对 Java 语言本身及其生态有正确的认识，以及找到一个合适的起点。 语言特色语言有累赘完整的平台、易于理解的语义、高质量的执行环境、庞大的库、虚拟机和垃圾收集不同版本的 Java 类库规模不一样即时编译-部分字节码翻译成机器码applet 过时了，Java 写 UI 过时了">
+<meta property="og:type" content="article">
+<meta property="og:title" content="学习笔记">
+<meta property="og:url" content="https://hieast.github.io/2019/10/28/yuque/学习笔记/index.html">
+<meta property="og:site_name" content="后山">
+<meta property="og:description" content="前言本笔记为 《Java 核心技术》和 《Java 编程思想》两本经典书籍的学习笔记。不期望读完这两本书就编程高手，但只求能对 Java 语言本身及其生态有正确的认识，以及找到一个合适的起点。 语言特色语言有累赘完整的平台、易于理解的语义、高质量的执行环境、庞大的库、虚拟机和垃圾收集不同版本的 Java 类库规模不一样即时编译-部分字节码翻译成机器码applet 过时了，Java 写 UI 过时了">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2019/png/381088/1572968984971-70175f8c-2b33-46f0-bb0c-00ccc82835e5.png#align=left&display=inline&height=380&name=image.png&originHeight=380&originWidth=638&size=61175&status=done&style=none&width=638">
+<meta property="og:updated_time" content="2020-08-16T15:04:40.998Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="学习笔记">
+<meta name="twitter:description" content="前言本笔记为 《Java 核心技术》和 《Java 编程思想》两本经典书籍的学习笔记。不期望读完这两本书就编程高手，但只求能对 Java 语言本身及其生态有正确的认识，以及找到一个合适的起点。 语言特色语言有累赘完整的平台、易于理解的语义、高质量的执行环境、庞大的库、虚拟机和垃圾收集不同版本的 Java 类库规模不一样即时编译-部分字节码翻译成机器码applet 过时了，Java 写 UI 过时了">
+<meta name="twitter:image" content="https://cdn.nlark.com/yuque/0/2019/png/381088/1572968984971-70175f8c-2b33-46f0-bb0c-00ccc82835e5.png#align=left&display=inline&height=380&name=image.png&originHeight=380&originWidth=638&size=61175&status=done&style=none&width=638">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://hieast.github.io/2019/10/28/yuque/学习笔记/">
+
+
+
+
+
+  <title>学习笔记 | 后山</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-108500679-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">后山</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://hieast.github.io/2019/10/28/yuque/学习笔记/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Hieast">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="后山">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">学习笔记</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-28T23:06:29+08:00">
+                2019-10-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/10/28/yuque/学习笔记/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/10/28/yuque/学习笔记/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本笔记为 《Java 核心技术》和 《Java 编程思想》两本经典书籍的学习笔记。<br>不期望读完这两本书就编程高手，但只求能对 Java 语言本身及其生态有正确的认识，以及找到一个合适的起点。</p>
+<h1 id="语言特色"><a href="#语言特色" class="headerlink" title="语言特色"></a>语言特色</h1><p>语言有累赘<br>完整的平台、易于理解的语义、高质量的执行环境、庞大的库、虚拟机和垃圾收集<br>不同版本的 Java 类库规模不一样<br>即时编译-部分字节码翻译成机器码<br>applet 过时了，Java 写 UI 过时了。</p>
+<h1 id="语言基础"><a href="#语言基础" class="headerlink" title="语言基础"></a>语言基础</h1><p>Unicode 转义序列会在解析代码之前得到处理。<br>char 类型描述了 UTF-16 编码中的一个代码单元，建议不要使用。用 String。<br>boolean 类型和整型值不能互换。<br>浮点数默认为 double，大数应用 BigInteger BigDecimal。<br>运算符不能重载，字符串不应使用 == 做比较。<br>变量类型是变量所引用的对象类型，长度不一致但是每个元素类型一致的数组类型视为同一种变量类型。<br>8 种基本类型以外都是对象变量。Java 种的引用相当于 C++ 的指针。<br>更改器方法修改原来的对象，访问器方法仅访问<br>静态域被成为类域。<br>本地方法可以绕过 Java 语言的存取控制机制。<br>Java 程序设计语言总是采用按值调用。<br>重载 overload 一个名字不同参数。重写 override 子类覆盖父类同名方法。</p>
+<h2 id="运行环境"><a href="#运行环境" class="headerlink" title="运行环境"></a>运行环境</h2><p>jdk，包括基础的编译器 javac、虚拟机 java、官方库和文档等。<br>IDE 集成开发环境可以支持多个版本的 jdk。一个项目包括多个模块 module，一个模块包括多个 package，一个 package 包括多个类文件 class，类文件的文件名与类名一致。<br>程序运行时必须有一个入口类。<br><a href="https://stackoverflow.com/questions/55834885/is-intellij-idea-project-module-different-concept-from-java-9-module" target="_blank" rel="noopener">IntelliJ IDEA project Module  &amp; Java 9 Module</a></p>
+<h2 id="基本特性"><a href="#基本特性" class="headerlink" title="基本特性"></a>基本特性</h2><p>基本数据类型 8 种：4 整型、2 浮点类型、1 char 类型、1 boolean 类型<br>变量<br>运算符<br>输入输出<br>控制流程<br>字符串、数组<br>对象与类，静态方法、对象构造<br>类的继承<br>反射（或自省）：能够分析类能力的程序<br>接口 interface<br>lambda 表达式：java 没有函数这一类型，只能用于函数式接口<br>方法引用：等价于同效果的  lambda 表达式<br>内部类<br>代理<br>异常<br>断言<br>日志<br>泛型<br>集合：接口有迭代器等，实现有链表、散列集、树集等</p>
+<h2 id="并发"><a href="#并发" class="headerlink" title="并发"></a>并发</h2><p>线程<br>线程状态<br>线程调度器<br>线程优先级<br>守护线程 daemon thread：计时线程<br>未捕获的异常处理器<br>线程组<br>竞争条件下同步存取<br>锁对象 ReentrantLock<br>阻塞队列<br>线程安全的数据结构实现<br>执行器-线程池<br>同步器</p>
+<h1 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h1><ol>
+<li>java version “1.8.0_131” 使用 IntelliJ IDE 运行会<a href="https://stackoverflow.com/questions/43003012/class-javalaunchhelper-is-implemented-in-two-places/43003231" target="_blank" rel="noopener">报错</a>，可安全忽略。安装最新的 Java 8 可解决。</li>
+</ol>
+<h1 id="IntelliJ-IDEA-运行-corejava-示例的方法"><a href="#IntelliJ-IDEA-运行-corejava-示例的方法" class="headerlink" title="IntelliJ IDEA 运行 corejava 示例的方法"></a>IntelliJ IDEA 运行 corejava 示例的方法</h1><ol>
+<li>open 打开示例文件夹</li>
+<li>Project Structure - Project 设置 JDK 版本、language level、output</li>
+<li>Project Structure - Modules 设置 Sources</li>
+<li>找到示例入口类，右击运行 Run</li>
+</ol>
+<p>可以将所有示例的 output 地址统一设置为 <code>/Users/caisudong/Projects/java/corejava/output</code></p>
+<h1 id="macOS-配置使用-IntelliJ-IDEA-右键打开目录的方法"><a href="#macOS-配置使用-IntelliJ-IDEA-右键打开目录的方法" class="headerlink" title="macOS 配置使用 IntelliJ IDEA  右键打开目录的方法"></a>macOS 配置使用 IntelliJ IDEA  右键打开目录的方法</h1><ol>
+<li>打开  Automator ，新建一个 Quick Action</li>
+<li>选择 Libirary-Utilities-Run Shell Script，配置 folders in Finder.app，as arguments</li>
+<li>在 shell 内容中输入</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> f <span class="keyword">in</span> <span class="string">"<span class="variable">$@</span>"</span></span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">	open -a <span class="string">"IntelliJ IDEA"</span> <span class="string">"<span class="variable">$f</span>"</span></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+<p>结果如下图<br><img src="https://cdn.nlark.com/yuque/0/2019/png/381088/1572968984971-70175f8c-2b33-46f0-bb0c-00ccc82835e5.png#align=left&amp;display=inline&amp;height=380&amp;name=image.png&amp;originHeight=380&amp;originWidth=638&amp;size=61175&amp;status=done&amp;style=none&amp;width=638" alt="image.png"></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.png" alt="Hieast 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="Hieast 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/09/24/yuque/程序设计语言——实践之路读书笔记/" rel="next" title="程序设计语言——实践之路读书笔记">
+                <i class="fa fa-chevron-left"></i> 程序设计语言——实践之路读书笔记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/11/20/yuque/Mac 下 Python 环境管理/" rel="prev" title="Mac 下 Python 环境管理">
+                Mac 下 Python 环境管理 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+  
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Hieast">
+            
+              <p class="site-author-name" itemprop="name">Hieast</p>
+              <p class="site-description motion-element" itemprop="description">快速学习者，高校慕课平台深度使用者，专注于挖掘数据的价值。目前从事 Python 数据开发，自媒体数据采集、分析和应用相关工作。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">44</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">32</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/hieast" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:caisudong@foxmail.com" target="_blank" title="E-Mail">
+                    
+                      <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#语言特色"><span class="nav-number">2.</span> <span class="nav-text">语言特色</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#语言基础"><span class="nav-number">3.</span> <span class="nav-text">语言基础</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#运行环境"><span class="nav-number">3.1.</span> <span class="nav-text">运行环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基本特性"><span class="nav-number">3.2.</span> <span class="nav-text">基本特性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#并发"><span class="nav-number">3.3.</span> <span class="nav-text">并发</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#注意事项"><span class="nav-number">4.</span> <span class="nav-text">注意事项</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#IntelliJ-IDEA-运行-corejava-示例的方法"><span class="nav-number">5.</span> <span class="nav-text">IntelliJ IDEA 运行 corejava 示例的方法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#macOS-配置使用-IntelliJ-IDEA-右键打开目录的方法"><span class="nav-number">6.</span> <span class="nav-text">macOS 配置使用 IntelliJ IDEA  右键打开目录的方法</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2016 &mdash; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Hieast</span>
+
+  
+</div>
+
+
+
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a></div>
+
+
+
+
+        
+
+
+<script>
+  	var _mtac = {};
+  	(function() {
+  		var mta = document.createElement("script");
+  		mta.src = "https://pingjs.qq.com/h5/stats.js?v2.0.4";
+  		mta.setAttribute("name", "MTAH5");
+  		mta.setAttribute("sid", "500538962");
+
+  		var s = document.getElementsByTagName("script")[0];
+  		s.parentNode.insertBefore(mta, s);
+  	})();
+</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=63947260";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://houshan.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'https://hieast.github.io/2019/10/28/yuque/学习笔记/';
+          this.page.identifier = '2019/10/28/yuque/学习笔记/';
+          this.page.title = '学习笔记';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://houshan.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

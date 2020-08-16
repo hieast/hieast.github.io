@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="后山" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="前言本来以为要实现局域网自动备份很简单，网上有现成的方案：在 NAS 设备上安装 netatalk 提供 afp 协议服务，在 macOS 系统自动挂载，然后在 Time Machine 中配置。下面三步都很简单，但是在配置 automount 的时候很艰难，一直报错。于是决心复习一遍 unix 系统的文件系统知识，研究一下最新的使用 NAS 配置 Time Machine 局域网备份的方法。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="文件系统概述 —— 从 Time Machine 备份磁盘开始">
+<meta property="og:url" content="https://hieast.github.io/2020/07/25/yuque/文件系统概述 —— 从 Time Machine 备份磁盘开始/index.html">
+<meta property="og:site_name" content="后山">
+<meta property="og:description" content="前言本来以为要实现局域网自动备份很简单，网上有现成的方案：在 NAS 设备上安装 netatalk 提供 afp 协议服务，在 macOS 系统自动挂载，然后在 Time Machine 中配置。下面三步都很简单，但是在配置 automount 的时候很艰难，一直报错。于是决心复习一遍 unix 系统的文件系统知识，研究一下最新的使用 NAS 配置 Time Machine 局域网备份的方法。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2020/png/381088/1595751944869-0f87b299-afd0-47bd-90c5-f28fc2c88e53.png#align=left&display=inline&height=659&margin=%5Bobject%20Object%5D&name=image.png&originHeight=659&originWidth=529&size=133251&status=done&style=none&width=529">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2020/png/381088/1595754529752-0c6f8a16-a170-469d-8a6d-8cd272b07e1a.png#align=left&display=inline&height=552&margin=%5Bobject%20Object%5D&name=image.png&originHeight=552&originWidth=675&size=156381&status=done&style=none&width=675">
+<meta property="og:updated_time" content="2020-08-16T15:04:40.500Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="文件系统概述 —— 从 Time Machine 备份磁盘开始">
+<meta name="twitter:description" content="前言本来以为要实现局域网自动备份很简单，网上有现成的方案：在 NAS 设备上安装 netatalk 提供 afp 协议服务，在 macOS 系统自动挂载，然后在 Time Machine 中配置。下面三步都很简单，但是在配置 automount 的时候很艰难，一直报错。于是决心复习一遍 unix 系统的文件系统知识，研究一下最新的使用 NAS 配置 Time Machine 局域网备份的方法。">
+<meta name="twitter:image" content="https://cdn.nlark.com/yuque/0/2020/png/381088/1595751944869-0f87b299-afd0-47bd-90c5-f28fc2c88e53.png#align=left&display=inline&height=659&margin=%5Bobject%20Object%5D&name=image.png&originHeight=659&originWidth=529&size=133251&status=done&style=none&width=529">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://hieast.github.io/2020/07/25/yuque/文件系统概述 —— 从 Time Machine 备份磁盘开始/">
+
+
+
+
+
+  <title>文件系统概述 —— 从 Time Machine 备份磁盘开始 | 后山</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-108500679-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">后山</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://hieast.github.io/2020/07/25/yuque/文件系统概述 —— 从 Time Machine 备份磁盘开始/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Hieast">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="后山">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">文件系统概述 —— 从 Time Machine 备份磁盘开始</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-25T13:20:24+08:00">
+                2020-07-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/07/25/yuque/文件系统概述 —— 从 Time Machine 备份磁盘开始/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/07/25/yuque/文件系统概述 —— 从 Time Machine 备份磁盘开始/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本来以为要实现局域网自动备份很简单，网上有现成的方案：在 NAS 设备上安装 netatalk 提供 afp 协议服务，在 macOS 系统自动挂载，然后在 Time Machine 中配置。<br>下面三步都很简单，但是在配置 automount 的时候很艰难，一直报错。于是决心复习一遍 unix 系统的文件系统知识，研究一下最新的使用 NAS 配置 Time Machine 局域网备份的方法。</p>
+<ul>
+<li><a href="https://wiki.archlinux.org/index.php/Netatalk_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87" target="_blank" rel="noopener">Netatalk</a>&gt;) 是一个 Apple Filing Protocol (AFP) 的开源实现。它为 Unix 风格系统提供了与 Macintosh 文件共享的功能。CentOS 系统服务端使用 yum install netatalk 轻松安装，修改配置文件重启。</li>
+<li>在 Finder 使用 Connect To Server 在界面上交互挂载。</li>
+<li>在 Time Machine 中配置。</li>
+</ul>
+<h1 id="Time-Machine-备份磁盘介绍和本次配置目标"><a href="#Time-Machine-备份磁盘介绍和本次配置目标" class="headerlink" title="Time Machine 备份磁盘介绍和本次配置目标"></a>Time Machine 备份磁盘介绍和本次配置目标</h1><p>早期的系统仅支持 AFP 网络文件协议<a href="https://support.apple.com/kb/PH4327?locale=zh_CN" target="_blank" rel="noopener">[1]</a>，但最新的官方支持文档<a href="https://support.apple.com/zh-cn/HT202784" target="_blank" rel="noopener">[2]</a>仅推荐了 SMB 网络文件协议。我这次选择按照最新推荐的协议进行配置。</p>
+<blockquote>
+<p>要使用“时间机器”备份您的 Mac，您需要以下任一类型的储存设备：</p>
+<ul>
+<li><a href="https://support.apple.com/zh-cn/HT202784#drive" target="_blank" rel="noopener">连接到 Mac 的外置 USB、雷雳或 FireWire 驱动器</a></li>
+<li><a href="https://support.apple.com/zh-cn/HT202784#router" target="_blank" rel="noopener">连接到 AirPort Extreme 基站 (802.11ac) 或 AirPort 时间返回舱的外置驱动器</a></li>
+<li><a href="https://support.apple.com/zh-cn/HT202784#airport" target="_blank" rel="noopener">AirPort 时间返回舱</a></li>
+<li><a href="https://support.apple.com/zh-cn/HT202784#mac" target="_blank" rel="noopener">共享为“时间机器”备份目标位置的 Mac</a></li>
+<li><a href="https://support.apple.com/zh-cn/HT202784#nas" target="_blank" rel="noopener">支持通过 SMB 进行“时间机器”备份的联网储存 (NAS) 设备</a></li>
+</ul>
+</blockquote>
+<p>本次配置的目标是</p>
+<blockquote>
+<p>许多第三方 NAS 设备支持<a href="https://developer.apple.com/library/archive/releasenotes/NetworkingInternetWeb/Time_Machine_SMB_Spec/index.html" target="_blank" rel="noopener">通过 SMB 进行的“时间机器”备份</a>。有关详细信息，请查看适用于您 NAS 设备的文稿。</p>
+</blockquote>
+<ul>
+<li>SMB protocol version 3.x, including SMB 3.x signing。NAS 服务需要支持 SMB 3.x 。</li>
+<li>Support for Bonjour discovery. NAS 服务需要支持 Bonjour discovery 。</li>
+</ul>
+<h1 id="Unix-文件系统架构简述"><a href="#Unix-文件系统架构简述" class="headerlink" title="Unix 文件系统架构简述"></a>Unix 文件系统架构简述</h1><p>文件系统是从 Unix/类 Unix 操作系统层面进行的描述，自上而下可以分为以下几个层面。</p>
+<h2 id="操作系统标准——人机交互"><a href="#操作系统标准——人机交互" class="headerlink" title="操作系统标准——人机交互"></a>操作系统标准——人机交互</h2><p>Unix 的标准化包括 ISO C、IEEE POSIX(Portable Operating System Interface 可移植操作系统界面)、SUS(Single Unix Specification 单一 Unix 规范) 等。</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2020/png/381088/1595751944869-0f87b299-afd0-47bd-90c5-f28fc2c88e53.png#align=left&amp;display=inline&amp;height=659&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=659&amp;originWidth=529&amp;size=133251&amp;status=done&amp;style=none&amp;width=529" alt="image.png"><br>标准约定了文件系统应该具备什么样的概念和功能，具体而言就是规定了有哪些系统例程以及相关参数。不关心具体的实现。</p>
+<h2 id="操作系统实现——系统与磁盘交互"><a href="#操作系统实现——系统与磁盘交互" class="headerlink" title="操作系统实现——系统与磁盘交互"></a>操作系统实现——系统与磁盘交互</h2><p>不同的操作系统有不同的文件系统实现，不同的文件系统有不同的特性，影响到文件操作性能和数据安全。<br>同一个操作系统运行时可以同时挂载多个文件系统。</p>
+<p>简单列举几种常见的实现。</p>
+<ul>
+<li>NTFS：NTFS（英語：New Technology File System），是 Microsoft 公司开发的专用文件系统，Mac OS X 内核能对 NTFS 进行有限的读操作。Linux 和 BSD 提供自由及开放源代码的软件，可用于读写 NTFS 文件。</li>
+<li>APFS：苹果文件系统（英語：Apple File System，APFS）是一个适用于 macOS、iOS、tvOS 和 watchOS 的文件系统，目前正在由苹果公司开发和部署。</li>
+<li>XFS：XFS，一种高性能的日志文件系统，特别擅长处理大文件，同时提供平滑的数据传输。目前 CentOS 7 也将 XFS+LVM 作为默认的文件系统。</li>
+<li>ext4：第四代扩展文件系统（英语：Fourth extended filesystem，缩写为 ext4）是 Linux 系统下的日志文件系统，是 ext3 文件系统的后继版本。</li>
+</ul>
+<p>除了单文件大小，个人用户通常不会碰到其他文件系统的问题。大量的云平台遮蔽了文件系统之间的差异，软件开发工程师通常无需关心底层使用的是哪种文件系统，架构师需要关心各文件系统的性能及其他特性。</p>
+<h1 id="网络存储"><a href="#网络存储" class="headerlink" title="网络存储"></a>网络存储</h1><p>这里所指的网络存储是指的不通过主板硬件接口连接存储设备，而是通过网络挂载的存储设备。</p>
+<ul>
+<li>NFS：网络文件系统（英语：Network File System，缩写作 NFS）是一种分布式文件系统，力求客户端主机可以访问服务器端文件，并且其过程与访问本地存储时一样，它由昇阳电脑（已被甲骨文公司收购）开发，于 1984 年发布</li>
+<li>SMB：伺服器讯息区块（Server Message Block，缩写为 SMB），又称网路文件共享系统（Common Internet File System，缩写为 CIFS, /ˈsɪfs/），一种应用层网络传输协议，由微软开发，主要功能是使网络上的机器能够共享计算机文件、打印机、串行端口和通讯等资源。</li>
+<li>AFP：苹果归档协议（英语：Apple Filing Protocol，缩写 AFP）也称 Apple 文件协议、Apple 归档协议，以前称为 AppleTalk Filing Protocol，它是一个专有网络协议，并且是 Apple File Service（苹果文件服务，缩写 AFS）的一部分，为 macOS 和经典 Mac OS 提供文件服务。目前在苹果文件系统（APFS）中已弃用。</li>
+<li>对象存储：无目录层次结构、无数据格式限制，可容纳海量数据且支持 HTTP/HTTPS 协议访问的分布式存储服务。不同的云厂商有不同的实现和产品名。</li>
+</ul>
+<p>最后是集各种接口于一身的新一代分布式存储。Linux 通过 Samba+Avahi 搭建 Time Machine 服务<img src="https://cdn.nlark.com/yuque/0/2020/png/381088/1595754529752-0c6f8a16-a170-469d-8a6d-8cd272b07e1a.png#align=left&amp;display=inline&amp;height=552&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=552&amp;originWidth=675&amp;size=156381&amp;status=done&amp;style=none&amp;width=675" alt="image.png"></p>
+<h2 id="磁盘驱动和实现"><a href="#磁盘驱动和实现" class="headerlink" title="磁盘驱动和实现"></a>磁盘驱动和实现</h2><p>磁盘包括软盘、磁带、机械硬盘、SSD 等。<br>磁盘的驱动和实现由存储设备厂商负责，通常都已经集成到了操作系统中，即插即用，普通用户无需关心。</p>
+<h1 id="最新-NAS-配置方法"><a href="#最新-NAS-配置方法" class="headerlink" title="最新 NAS 配置方法"></a>最新 NAS 配置方法</h1><p>需要配置：</p>
+<ol>
+<li>samba：提供 SMB 服务</li>
+<li>avahi-daemon：提供 Bonjour discovery 服务</li>
+</ol>
+<h2 id="samba"><a href="#samba" class="headerlink" title="samba"></a>samba</h2><p>安装 yum install samba<br>启动 systemctl start smb.service<br>配置 vim /etc/samba/smb.conf</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">[global]</span><br><span class="line">		<span class="comment"># 下面两个属性为添加</span></span><br><span class="line">    min protocol = SMB2</span><br><span class="line">    ea support = yes</span><br><span class="line"></span><br><span class="line">[tmbackup]</span><br><span class="line">    comment = macos time machine backup</span><br><span class="line">    path = 你的备份路径</span><br><span class="line">    browseable = yes</span><br><span class="line">    public = no</span><br><span class="line">    writable = yes</span><br><span class="line">    create mask = 0700</span><br><span class="line">    valid users = 授权用户名</span><br><span class="line">    <span class="comment"># 加载模块以支持AAPL拓展，注意顺序很重要！</span></span><br><span class="line">    <span class="comment"># catia: 兼容linux/macos中合法但在Windows/SMB中非法的字符</span></span><br><span class="line">    <span class="comment"># fruit: 增强macos的的兼容性，并提供Netatalk AFP服务</span></span><br><span class="line">    <span class="comment"># streams_xattr: 通过Linux文件系统提供Windows NTFS属性字段</span></span><br><span class="line">    vfs objects = catia fruit streams_xattr</span><br><span class="line">    <span class="comment"># 支持aapl</span></span><br><span class="line">    fruit:aapl = yes</span><br><span class="line">    <span class="comment"># 存储os x的元数据</span></span><br><span class="line">    fruit:metadata = stream</span><br><span class="line">    <span class="comment"># 设置服务器在finder中的图标</span></span><br><span class="line">    fruit:model = MacPro</span><br><span class="line">    <span class="comment"># 支持time machine，非常重要！</span></span><br><span class="line">    fruit:time machine = yes</span><br><span class="line">    <span class="comment"># 文件清理的一些配置</span></span><br><span class="line">    fruit:posix_rename = yes</span><br><span class="line">    fruit:veto_appledouble = no</span><br><span class="line">    fruit:wipe_intentionally_left_blank_rfork = yes</span><br><span class="line">    fruit:delete_empty_adfiles = yes</span><br></pre></td></tr></table></figure>
+<h2 id="avahi"><a href="#avahi" class="headerlink" title="avahi"></a>avahi</h2><p>Avahi 不需要配置。没错，直接启动就好了。</p>
+<table>
+<thead>
+<tr>
+<th># systemctl enable –now avahi-daemon</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>如果开启了防火墙，需要开启一下 mDNS 端口 5353，CentOS 8 的指令如下<br>firewall-cmd –zone=public –add-port=5353/udp</p>
+<p>个人初次使用 TimeMachine 第一选择硬盘时，必须先在 Finder 挂载才能看到，之后就能够自动连接了。</p>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ol>
+<li>OS X Lion: 您可以与 Time Machine 配合使用的磁盘 <a href="https://support.apple.com/kb/PH4327?locale=zh_CN" target="_blank" rel="noopener">https://support.apple.com/kb/PH4327?locale=zh_CN</a></li>
+<li>可与“时间机器”搭配使用的备份磁盘 <a href="https://support.apple.com/zh-cn/HT202784" target="_blank" rel="noopener">https://support.apple.com/zh-cn/HT202784</a></li>
+<li>Linux 通过 Samba+Avahi 搭建 Time Machine 服务 <a href="https://blog.dazzyd.org/providing-time-machine-on-linux/" target="_blank" rel="noopener">https://blog.dazzyd.org/providing-time-machine-on-linux/</a></li>
+<li>配置 samba 作为苹果电脑 time machine 的备份硬盘 <a href="https://tlanyan.me/setup-samba-as-time-machine-destination/" target="_blank" rel="noopener">https://tlanyan.me/setup-samba-as-time-machine-destination/</a></li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.png" alt="Hieast 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="Hieast 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/07/20/yuque/数据导出工具设计/" rel="next" title="数据导出工具设计">
+                <i class="fa fa-chevron-left"></i> 数据导出工具设计
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/08/16/yuque/CentOS 8 桌面系统配置小记/" rel="prev" title="CentOS 8 桌面系统配置小记">
+                CentOS 8 桌面系统配置小记 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+  
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Hieast">
+            
+              <p class="site-author-name" itemprop="name">Hieast</p>
+              <p class="site-description motion-element" itemprop="description">快速学习者，高校慕课平台深度使用者，专注于挖掘数据的价值。目前从事 Python 数据开发，自媒体数据采集、分析和应用相关工作。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">44</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">32</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/hieast" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:caisudong@foxmail.com" target="_blank" title="E-Mail">
+                    
+                      <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Time-Machine-备份磁盘介绍和本次配置目标"><span class="nav-number">2.</span> <span class="nav-text">Time Machine 备份磁盘介绍和本次配置目标</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Unix-文件系统架构简述"><span class="nav-number">3.</span> <span class="nav-text">Unix 文件系统架构简述</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#操作系统标准——人机交互"><span class="nav-number">3.1.</span> <span class="nav-text">操作系统标准——人机交互</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#操作系统实现——系统与磁盘交互"><span class="nav-number">3.2.</span> <span class="nav-text">操作系统实现——系统与磁盘交互</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#网络存储"><span class="nav-number">4.</span> <span class="nav-text">网络存储</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#磁盘驱动和实现"><span class="nav-number">4.1.</span> <span class="nav-text">磁盘驱动和实现</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#最新-NAS-配置方法"><span class="nav-number">5.</span> <span class="nav-text">最新 NAS 配置方法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#samba"><span class="nav-number">5.1.</span> <span class="nav-text">samba</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#avahi"><span class="nav-number">5.2.</span> <span class="nav-text">avahi</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他"><span class="nav-number">5.3.</span> <span class="nav-text">其他</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">6.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2016 &mdash; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Hieast</span>
+
+  
+</div>
+
+
+
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a></div>
+
+
+
+
+        
+
+
+<script>
+  	var _mtac = {};
+  	(function() {
+  		var mta = document.createElement("script");
+  		mta.src = "https://pingjs.qq.com/h5/stats.js?v2.0.4";
+  		mta.setAttribute("name", "MTAH5");
+  		mta.setAttribute("sid", "500538962");
+
+  		var s = document.getElementsByTagName("script")[0];
+  		s.parentNode.insertBefore(mta, s);
+  	})();
+</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=63947260";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://houshan.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'https://hieast.github.io/2020/07/25/yuque/文件系统概述 —— 从 Time Machine 备份磁盘开始/';
+          this.page.identifier = '2020/07/25/yuque/文件系统概述 —— 从 Time Machine 备份磁盘开始/';
+          this.page.title = '文件系统概述 —— 从 Time Machine 备份磁盘开始';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://houshan.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

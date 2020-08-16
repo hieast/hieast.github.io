@@ -263,7 +263,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://hieast.github.io/2019/07/02/yuque/ssh 进阶使用技巧/">
+    <link itemprop="mainEntityOfPage" href="https://hieast.github.io/2020/08/16/yuque/CentOS 8 桌面系统配置小记/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Hieast">
@@ -282,7 +282,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/07/02/yuque/ssh 进阶使用技巧/" itemprop="url">ssh 进阶使用技巧</a></h1>
+                <a class="post-title-link" href="/2020/08/16/yuque/CentOS 8 桌面系统配置小记/" itemprop="url">CentOS 8 桌面系统配置小记</a></h1>
         
 
         <div class="post-meta">
@@ -294,8 +294,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-02T21:29:36+08:00">
-                2019-07-02
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-16T19:14:11+08:00">
+                2020-08-16
               </time>
             
 
@@ -313,8 +313,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2019/07/02/yuque/ssh 进阶使用技巧/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/07/02/yuque/ssh 进阶使用技巧/" itemprop="commentCount"></span>
+                <a href="/2020/08/16/yuque/CentOS 8 桌面系统配置小记/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/08/16/yuque/CentOS 8 桌面系统配置小记/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -344,193 +344,219 @@
       
         
           
-            <p><a name="oPfbJ"></a></p>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>曾经我天真得以为所有的服务器都可以直接用 ssh username@hostname 直接登陆，后来发现我还是太天真了。</p>
-<p>很多开发工具也像我一样天真，相关的配置项很少。只要使用一次跳板机的时候我凑合使用 -J 参数连上了，这次碰到需要使用两次跳板机的情况，我此前所有工具的远程管理都挂了，无法正常使用。</p>
-<p>因此我决定系统学习一遍 ssh，争取在各种网络条件下都能通过配置 <code>~/.ssh/config</code> 的方式，使网络条件对开发工具透明化。</p>
-<p><a name="fJ8Ey"></a></p>
-<h1 id="什么是-SSH"><a href="#什么是-SSH" class="headerlink" title="什么是 SSH"></a>什么是 SSH</h1><p>维基百科的定义：<a href="https://zh.wikipedia.org/zh-hans/Secure_Shell" target="_blank" rel="noopener">https://zh.wikipedia.org/zh-hans/Secure_Shell</a><br>Secure Shell（安全外壳协议，简称SSH）是一种加密的网络传输协议，以非对称加密实现身份验证，可在不安全的网络中为网络服务提供安全的传输环境。</p>
-<p>我们常用的 ssh 指令是 OpenSSH SSH client，是 SSH 的一个实现，是一个远程登陆程序。今天提到的主人公也就是这个程序，将要学习的是这个程序的应用。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssh [-46AaCfGgKkMNnqsTtVvXxYy] [-B bind_interface] [-b bind_address] [-c cipher_spec] [-D [bind_address:]port] [-E log_file] [-e escape_char] [-F configfile] [-I pkcs11] [-i identity_file] [-J destination]</span><br><span class="line">    [-L address] [-l login_name] [-m mac_spec] [-O ctl_cmd] [-o option] [-p port] [-Q query_option] [-R address] [-S ctl_path] [-W host:port] [-w local_tun[:remote_tun]] destination [<span class="built_in">command</span>]</span><br></pre></td></tr></table></figure>
-<p><a name="D2l75"></a></p>
-<h2 id="术语解析"><a href="#术语解析" class="headerlink" title="术语解析"></a>术语解析</h2><p>这里有两个相关但又有区别的术语需要区分：端口映射和隧道协议</p>
+            <h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>家里之前配了一个台式机，ms04 那样，amd 平台，CentOS 8。<br>在配置学习开发环境的过程中遇到了几个问题，记录一下。</p>
+<h1 id="桌面安装"><a href="#桌面安装" class="headerlink" title="桌面安装"></a>桌面安装</h1><p>安装 CentOS 8 自带的 gnome 桌面<br><code>sudo yum group install &quot;Server with GUI&quot;</code><br>修改桌面配置<br><code>vim /etc/gdm/custom.conf</code><br>日志位置<br><code>/var/lib/gdm/.local/share/xorg/Xorg.0.log</code></p>
+<p>这里放一个整个桌面的架构图，对技术细节和历史感兴趣的同学可以看这本<a href="https://i.linuxtoy.org/docs/guide/index.html" target="_blank" rel="noopener">开源世界旅行手册</a>。<br><img src="https://cdn.nlark.com/yuque/0/2020/png/381088/1597577836816-14a145a6-7064-42af-9ea7-2d99fe05ac53.png#align=left&amp;display=inline&amp;height=213&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=213&amp;originWidth=400&amp;size=67983&amp;status=done&amp;style=none&amp;width=400" alt="image.png"></p>
+<h1 id="桌面崩溃"><a href="#桌面崩溃" class="headerlink" title="桌面崩溃"></a>桌面崩溃</h1><p>由于个人也是第一次接触，所以只有三板斧，幸好解决了问题。<br>1。 彻底打不开<br>删除桌面后重新安装<br><code>sudo yum group remove &quot;Server with GUI&quot;</code><br>2。 重新安装后分辨率无法调整<br><code>xrandr</code>  可以返回显示器支持的分辨率，如果报错，应该就是驱动出问题了。<br>这里就可以看出 amd 不够 yes 的点了，通用驱动页面没有 linux 的支持信息，最好在谷歌找准关键词搜。<a href="https://www.amd.com/zh-hans/support/kb/release-notes/rn-amdgpu-unified-linux-20-20" target="_blank" rel="noopener">https://www.amd.com/zh-hans/support/kb/release-notes/rn-amdgpu-unified-linux-20-20</a> 可以在这里下载到。</p>
+<h1 id="快捷键修改"><a href="#快捷键修改" class="headerlink" title="快捷键修改"></a>快捷键修改</h1><p>不得不说 MacOS 的快捷键真的很舒服，常用的快捷键在各个软件里都是有实现并且基本统一的，而 gnome 里就各行其是，我常用的 terminal 和 chrome 就不一致。</p>
+<p>理论基础 B 站 <a href="https://www.bilibili.com/read/cv5124452/" target="_blank" rel="noopener">https://www.bilibili.com/read/cv5124452/</a> 这里讲的不错。<br>我这边不考虑 TTY，仅考虑 X11。</p>
+<h2 id="X11-层面"><a href="#X11-层面" class="headerlink" title="X11 层面"></a>X11 层面</h2><p>这个层面修改 keycode   –&gt;   keysymbol，也就是说我把 Win 和 Alt 键互换的话，在桌面的所有应用里这两个键都算是换掉了。</p>
+<p>安装 gnome-tweaks 可以很轻松完成这步修改。<br><strong>重要： </strong>gnome-tweaks<strong> 必须在当前 X11 登陆用户下启动，否则会找不到 DBus。以下两个指令应该能够正常返回，否则说明启动用户不对。</strong><br><code>gdbus introspect --session --dest org.gnome.SessionManager --object-path /org/gnome/SessionManager</code><br><code>gdbus introspect --session --dest org.gnome.Shell --object-path /org/gnome/Shell</code></p>
+<h2 id="组合键解释层面"><a href="#组合键解释层面" class="headerlink" title="组合键解释层面"></a>组合键解释层面</h2><p>我们得到了一组按键组合，这个组合具体含义是由各个应用进行解释的，很可惜这里改不了，我能做的只有以下两点。<br>1 在系统配置里将常用的快捷键删掉，避免和个人习惯冲突。<br>2 安装 autokey，写脚本配置每一个按键组合在每个应用映射到不同的组合里</p>
+<p>以上操作可以达成不同应用使用同一个快捷键进行同一个操作，我最需要的就是在 terminal 和 chrome 里使用 MacOS 的复制和粘贴快捷键，这样就可以实现了。<br>**重要： autokey 尽量使用系统包管理工具安装，如果官方包管理工具不支持，也要尽量使用系统的 python。部分 sitepackage 只有系统 python 解释器能够直接找到。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://hieast.github.io/2020/07/25/yuque/文件系统概述 —— 从 Time Machine 备份磁盘开始/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Hieast">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="后山">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/07/25/yuque/文件系统概述 —— 从 Time Machine 备份磁盘开始/" itemprop="url">文件系统概述 —— 从 Time Machine 备份磁盘开始</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-25T13:20:24+08:00">
+                2020-07-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/07/25/yuque/文件系统概述 —— 从 Time Machine 备份磁盘开始/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/07/25/yuque/文件系统概述 —— 从 Time Machine 备份磁盘开始/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本来以为要实现局域网自动备份很简单，网上有现成的方案：在 NAS 设备上安装 netatalk 提供 afp 协议服务，在 macOS 系统自动挂载，然后在 Time Machine 中配置。<br>下面三步都很简单，但是在配置 automount 的时候很艰难，一直报错。于是决心复习一遍 unix 系统的文件系统知识，研究一下最新的使用 NAS 配置 Time Machine 局域网备份的方法。</p>
 <ul>
-<li>端口映射，英文为 port forwarding/port mapping，是 NAT 技术的应用，特征是在一个公网 IP 内部。</li>
-<li>隧道协议，是一种将另一种协议内容封装在负载部分的网络协议，特征是封装和加密。</li>
+<li><a href="https://wiki.archlinux.org/index.php/Netatalk_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87" target="_blank" rel="noopener">Netatalk</a>&gt;) 是一个 Apple Filing Protocol (AFP) 的开源实现。它为 Unix 风格系统提供了与 Macintosh 文件共享的功能。CentOS 系统服务端使用 yum install netatalk 轻松安装，修改配置文件重启。</li>
+<li>在 Finder 使用 Connect To Server 在界面上交互挂载。</li>
+<li>在 Time Machine 中配置。</li>
 </ul>
-<p>不论如何分类，ssh 都工作在 TCP/IP 参考模型的应用层，基于 TCP 协议工作，并且经常同时使用这两项技术。</p>
-<p><a name="Q7wTr"></a></p>
-<h1 id="ssh（OpenSSH-SSH-client）的用途"><a href="#ssh（OpenSSH-SSH-client）的用途" class="headerlink" title="ssh（OpenSSH SSH client）的用途"></a>ssh（OpenSSH SSH client）的用途</h1><p>阅读手册 <a href="http://linux.51yip.com/search/ssh" target="_blank" rel="noopener">http://linux.51yip.com/search/ssh</a> 或 <code>man ssh</code> 。</p>
-<p>通用的不常见的参数：<br>-f 后台运行<br>-a/A 禁止/开启客户端连接转发<br>-G 打印配置并退出<br>-g 允许远程主机连接到本地转发端口 <br>-N 不要远程执行指令<br>-v 冗余模式用于调试</p>
-<p><a name="rxuV9"></a></p>
-<h2 id="远程登录，执行命令"><a href="#远程登录，执行命令" class="headerlink" title="远程登录，执行命令"></a>远程登录，执行命令</h2><p>最基本用途。<br>-J destination 可以通过 destination 作为跳板机远程登陆其他主机。多次跳转使用逗号分隔。与 ProxyJump 配置相关。 <strong>若这里使用域名，则在对应一跳的服务器上进行解析。</strong> <br>-M 开启主模式，用于连接复用。与 ControlMaster 配置相关。</p>
-<p><a name="fWroN"></a></p>
-<h2 id="端口转发"><a href="#端口转发" class="headerlink" title="端口转发"></a>端口转发</h2><p>-D 本地动态应用层端口转发<br>-L 本地静态端口转发<br>-R 远程静态端口转发</p>
-<p><a name="oEGUI"></a></p>
-<h2 id="其他：隧道协议等奇怪的协议转发"><a href="#其他：隧道协议等奇怪的协议转发" class="headerlink" title="其他：隧道协议等奇怪的协议转发"></a>其他：隧道协议等奇怪的协议转发</h2><p>-w 隧道相关<br>-K -k 与 GSSAPI credentials 相关<br>-X -x X11 相关<br>还可以集成到其他工具的传输层，例如 sftp</p>
-<p><a name="3ncEx"></a></p>
-<h1 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h1><p>参数配置有三个层次，命令行参数 &gt; 某个用户的配置文件 &gt; 系统所有用户的配置文件。通常修改某个用户的配置文件较好，所以后面也都是指某个用户的配置文件。</p>
-<p>默认的相关文件目录为 <code>~/.ssh/</code> <br>配置文件为 <code>~/.ssh/config</code><br>授权公钥为 <code>~/.ssh/authorized_keys</code> <br>配置时注意一下文件的访问权限，网上到处都有。<br>别人的博客 <a href="https://www.hi-linux.com/posts/14346.html" target="_blank" rel="noopener">https://www.hi-linux.com/posts/14346.html</a> 很多讲的比较全面，这里只记我感兴趣的。<br>配置文件可以灵活配置所有主机的登陆参数，因此所有登陆参数放到这里可以将指令简化很多。</p>
-<p><a name="2PIm3"></a></p>
-<h2 id="常用配置"><a href="#常用配置" class="headerlink" title="常用配置"></a>常用配置</h2><p>StrictHostKeyChecking=no 自动接受新的公钥，这个会降低安全性<br>Host 配置项标识了一个配置区段，类似于配置路由。<br>HostName 远程主机名，可以直接使用数字IP地址。<br>IdentityFile 私钥文件路径。<br>Port 远程主机端口号<br>User 登陆用户名<br>UserKnownHostsFile 一个或多个用户认证主机缓存文件，全局为 GlobalKnownHostsFile</p>
-<p><a name="Jqci9"></a></p>
-<h2 id="通配符"><a href="#通配符" class="headerlink" title="通配符"></a>通配符</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'*'</span> 代表 0～n 个非空白字符。</span><br><span class="line"><span class="string">'?'</span> 代表一个非空白字符。</span><br><span class="line"><span class="string">'!'</span> 表示例外通配。</span><br></pre></td></tr></table></figure>
-<p><a name="KeVjd"></a></p>
-<h2 id="ControlMaster"><a href="#ControlMaster" class="headerlink" title="ControlMaster"></a>ControlMaster</h2><p>据说有很多好处，只要把下面一段拷进配置文件即可。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Host *</span><br><span class="line">  ServerAliveInterval 10</span><br><span class="line">  TCPKeepAlive yes</span><br><span class="line">  ControlPersist yes</span><br><span class="line">  ControlMaster auto</span><br><span class="line">  ControlPath ~/.ssh/master_%r_%h_%p</span><br></pre></td></tr></table></figure>
-<p><a href="https://www.ibm.com/developerworks/community/blogs/IBMzOS/entry/20150502?lang=en" target="_blank" rel="noopener">https://www.ibm.com/developerworks/community/blogs/IBMzOS/entry/20150502?lang=en</a></p>
-<p><a name="HB3XH"></a></p>
-<h2 id="ProxyJump"><a href="#ProxyJump" class="headerlink" title="ProxyJump"></a>ProxyJump</h2><p>可以配置上一跳服务器，解决嵌套的跳板机登陆配置复杂的问题。<br>别人的文章 <a href="https://zhuanlan.zhihu.com/p/55016458" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/55016458</a></p>
-<p>按照该方法配置 ProxyJump 后，ssh hostname 即可远程登陆。</p>
-<p><a name="hUlo1"></a></p>
-<h1 id="各种-Forward-参数"><a href="#各种-Forward-参数" class="headerlink" title="各种 Forward 参数"></a>各种 Forward 参数</h1><p>DynamicForward、LocalForward、RemoteForward 这三个参数就对应着端口转发的三种方式。<br>别人的文章 <a href="https://starkandwayne.com/blog/setting-up-an-ssh-tunnel-with-ssh-config/" target="_blank" rel="noopener">https://starkandwayne.com/blog/setting-up-an-ssh-tunnel-with-ssh-config/</a><br>根据我的需求，将本地 2222 转发到执行远程服务器的 22 端口，弄好配置文件<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Host my-proxy</span><br><span class="line">  Hostname x.x.x.x</span><br><span class="line">  User admin-user</span><br><span class="line">  IdentityFile ~/.ssh/id_rsa</span><br><span class="line">  LocalForward localhost:2222 remote_host:22</span><br><span class="line">  ControlMaster auto</span><br><span class="line">  ControlPath ~/.ssh/sockets/%r@%h:%p</span><br></pre></td></tr></table></figure></p>
-<p>以及快捷指令<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## For My Proxy Tunnel</span></span><br><span class="line"><span class="built_in">alias</span> proxy-on=<span class="string">'ssh -fN my-proxy'</span></span><br><span class="line"><span class="built_in">alias</span> proxy-check=<span class="string">'ssh -O check my-proxy'</span></span><br><span class="line"><span class="built_in">alias</span> proxy-off=<span class="string">'ssh -O exit my-proxy'</span></span><br></pre></td></tr></table></figure></p>
-<p>之后用到需要连接 remote_host:22 上 ssh tunnel 的地方都可以使用 localhost:2222 这个端口来代替</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://hieast.github.io/2019/06/18/yuque/试用语雀/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Hieast">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="后山">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/06/18/yuque/试用语雀/" itemprop="url">试用语雀</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-18T17:30:12+08:00">
-                2019-06-18
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2019/06/18/yuque/试用语雀/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/06/18/yuque/试用语雀/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><a name="sHi4K"></a></p>
-<h1 id="试用-markdown"><a href="#试用-markdown" class="headerlink" title="试用 markdown"></a>试用 markdown</h1><ul>
-<li>markdown 所见即所的</li>
-<li>列表写得很舒服</li>
+<h1 id="Time-Machine-备份磁盘介绍和本次配置目标"><a href="#Time-Machine-备份磁盘介绍和本次配置目标" class="headerlink" title="Time Machine 备份磁盘介绍和本次配置目标"></a>Time Machine 备份磁盘介绍和本次配置目标</h1><p>早期的系统仅支持 AFP 网络文件协议<a href="https://support.apple.com/kb/PH4327?locale=zh_CN" target="_blank" rel="noopener">[1]</a>，但最新的官方支持文档<a href="https://support.apple.com/zh-cn/HT202784" target="_blank" rel="noopener">[2]</a>仅推荐了 SMB 网络文件协议。我这次选择按照最新推荐的协议进行配置。</p>
+<blockquote>
+<p>要使用“时间机器”备份您的 Mac，您需要以下任一类型的储存设备：</p>
+<ul>
+<li><a href="https://support.apple.com/zh-cn/HT202784#drive" target="_blank" rel="noopener">连接到 Mac 的外置 USB、雷雳或 FireWire 驱动器</a></li>
+<li><a href="https://support.apple.com/zh-cn/HT202784#router" target="_blank" rel="noopener">连接到 AirPort Extreme 基站 (802.11ac) 或 AirPort 时间返回舱的外置驱动器</a></li>
+<li><a href="https://support.apple.com/zh-cn/HT202784#airport" target="_blank" rel="noopener">AirPort 时间返回舱</a></li>
+<li><a href="https://support.apple.com/zh-cn/HT202784#mac" target="_blank" rel="noopener">共享为“时间机器”备份目标位置的 Mac</a></li>
+<li><a href="https://support.apple.com/zh-cn/HT202784#nas" target="_blank" rel="noopener">支持通过 SMB 进行“时间机器”备份的联网储存 (NAS) 设备</a></li>
 </ul>
-<p><code>code</code> is fun.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="string">'hello yuque'</span>)</span><br></pre></td></tr></table></figure>
-<p><img src="https://cdn.nlark.com/yuque/0/2019/jpeg/381088/1560850327688-0ff66048-9f90-4de3-886e-25c940941826.jpeg#align=left&amp;display=inline&amp;height=200&amp;name=avatar.jpg&amp;originHeight=200&amp;originWidth=200&amp;size=11699&amp;status=done&amp;width=200" alt="avatar.jpg">试着插入图像看能否同步，简单的图文混排，比不上 word 但是够用了。</p>
-<p><img src="https://cdn.nlark.com/yuque/0/2019/png/381088/1560850675076-a74e265c-7ec6-4918-984e-635866544065.png" alt><br><a name="EtEuR"></a></p>
-<h1 id="更多高级功能试用"><a href="#更多高级功能试用" class="headerlink" title="更多高级功能试用"></a>更多高级功能试用</h1><p>插入一个大图片附件。<br><a href="https://www.yuque.com/attachments/yuque/0/2019/jpeg/381088/1560850429477-d45fd705-5bf5-4f88-a688-0529a0ce218b.jpeg?_lake_card=%7B%22uid%22%3A%22rc-upload-1560850384914-10%22%2C%22src%22%3A%22https%3A%2F%2Fwww.yuque.com%2Fattachments%2Fyuque%2F0%2F2019%2Fjpeg%2F381088%2F1560850429477-d45fd705-5bf5-4f88-a688-0529a0ce218b.jpeg%22%2C%22name%22%3A%22sicp+%E5%A4%A7%E5%8F%B7.jpg%22%2C%22size%22%3A1536010%2C%22type%22%3A%22image%2Fjpeg%22%2C%22ext%22%3A%22jpeg%22%2C%22progress%22%3A%7B%22percent%22%3A0%7D%2C%22status%22%3A%22done%22%2C%22percent%22%3A0%2C%22id%22%3A%22PVfVr%22%2C%22card%22%3A%22file%22%7D" target="_blank" rel="noopener">sicp 大号.jpg</a></p>
-<p>插入一个行业报告。</p>
-<p>插入加密文本，只能是简单文本</p>
-<p><a name="LJGTf"></a></p>
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p><a name="0Mhff"></a></p>
-<h2 id="支持-markdown-很好"><a href="#支持-markdown-很好" class="headerlink" title="支持 markdown 很好"></a>支持 markdown 很好</h2><p><a name="Dj1np"></a></p>
-<h2 id="附件方面又超越了-markdown"><a href="#附件方面又超越了-markdown" class="headerlink" title="附件方面又超越了 markdown"></a>附件方面又超越了 markdown</h2><p>挺好的。</p>
+</blockquote>
+<p>本次配置的目标是</p>
+<blockquote>
+<p>许多第三方 NAS 设备支持<a href="https://developer.apple.com/library/archive/releasenotes/NetworkingInternetWeb/Time_Machine_SMB_Spec/index.html" target="_blank" rel="noopener">通过 SMB 进行的“时间机器”备份</a>。有关详细信息，请查看适用于您 NAS 设备的文稿。</p>
+</blockquote>
+<ul>
+<li>SMB protocol version 3.x, including SMB 3.x signing。NAS 服务需要支持 SMB 3.x 。</li>
+<li>Support for Bonjour discovery. NAS 服务需要支持 Bonjour discovery 。</li>
+</ul>
+<h1 id="Unix-文件系统架构简述"><a href="#Unix-文件系统架构简述" class="headerlink" title="Unix 文件系统架构简述"></a>Unix 文件系统架构简述</h1><p>文件系统是从 Unix/类 Unix 操作系统层面进行的描述，自上而下可以分为以下几个层面。</p>
+<h2 id="操作系统标准——人机交互"><a href="#操作系统标准——人机交互" class="headerlink" title="操作系统标准——人机交互"></a>操作系统标准——人机交互</h2><p>Unix 的标准化包括 ISO C、IEEE POSIX(Portable Operating System Interface 可移植操作系统界面)、SUS(Single Unix Specification 单一 Unix 规范) 等。</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2020/png/381088/1595751944869-0f87b299-afd0-47bd-90c5-f28fc2c88e53.png#align=left&amp;display=inline&amp;height=659&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=659&amp;originWidth=529&amp;size=133251&amp;status=done&amp;style=none&amp;width=529" alt="image.png"><br>标准约定了文件系统应该具备什么样的概念和功能，具体而言就是规定了有哪些系统例程以及相关参数。不关心具体的实现。</p>
+<h2 id="操作系统实现——系统与磁盘交互"><a href="#操作系统实现——系统与磁盘交互" class="headerlink" title="操作系统实现——系统与磁盘交互"></a>操作系统实现——系统与磁盘交互</h2><p>不同的操作系统有不同的文件系统实现，不同的文件系统有不同的特性，影响到文件操作性能和数据安全。<br>同一个操作系统运行时可以同时挂载多个文件系统。</p>
+<p>简单列举几种常见的实现。</p>
+<ul>
+<li>NTFS：NTFS（英語：New Technology File System），是 Microsoft 公司开发的专用文件系统，Mac OS X 内核能对 NTFS 进行有限的读操作。Linux 和 BSD 提供自由及开放源代码的软件，可用于读写 NTFS 文件。</li>
+<li>APFS：苹果文件系统（英語：Apple File System，APFS）是一个适用于 macOS、iOS、tvOS 和 watchOS 的文件系统，目前正在由苹果公司开发和部署。</li>
+<li>XFS：XFS，一种高性能的日志文件系统，特别擅长处理大文件，同时提供平滑的数据传输。目前 CentOS 7 也将 XFS+LVM 作为默认的文件系统。</li>
+<li>ext4：第四代扩展文件系统（英语：Fourth extended filesystem，缩写为 ext4）是 Linux 系统下的日志文件系统，是 ext3 文件系统的后继版本。</li>
+</ul>
+<p>除了单文件大小，个人用户通常不会碰到其他文件系统的问题。大量的云平台遮蔽了文件系统之间的差异，软件开发工程师通常无需关心底层使用的是哪种文件系统，架构师需要关心各文件系统的性能及其他特性。</p>
+<h1 id="网络存储"><a href="#网络存储" class="headerlink" title="网络存储"></a>网络存储</h1><p>这里所指的网络存储是指的不通过主板硬件接口连接存储设备，而是通过网络挂载的存储设备。</p>
+<ul>
+<li>NFS：网络文件系统（英语：Network File System，缩写作 NFS）是一种分布式文件系统，力求客户端主机可以访问服务器端文件，并且其过程与访问本地存储时一样，它由昇阳电脑（已被甲骨文公司收购）开发，于 1984 年发布</li>
+<li>SMB：伺服器讯息区块（Server Message Block，缩写为 SMB），又称网路文件共享系统（Common Internet File System，缩写为 CIFS, /ˈsɪfs/），一种应用层网络传输协议，由微软开发，主要功能是使网络上的机器能够共享计算机文件、打印机、串行端口和通讯等资源。</li>
+<li>AFP：苹果归档协议（英语：Apple Filing Protocol，缩写 AFP）也称 Apple 文件协议、Apple 归档协议，以前称为 AppleTalk Filing Protocol，它是一个专有网络协议，并且是 Apple File Service（苹果文件服务，缩写 AFS）的一部分，为 macOS 和经典 Mac OS 提供文件服务。目前在苹果文件系统（APFS）中已弃用。</li>
+<li>对象存储：无目录层次结构、无数据格式限制，可容纳海量数据且支持 HTTP/HTTPS 协议访问的分布式存储服务。不同的云厂商有不同的实现和产品名。</li>
+</ul>
+<p>最后是集各种接口于一身的新一代分布式存储。Linux 通过 Samba+Avahi 搭建 Time Machine 服务<img src="https://cdn.nlark.com/yuque/0/2020/png/381088/1595754529752-0c6f8a16-a170-469d-8a6d-8cd272b07e1a.png#align=left&amp;display=inline&amp;height=552&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=552&amp;originWidth=675&amp;size=156381&amp;status=done&amp;style=none&amp;width=675" alt="image.png"></p>
+<h2 id="磁盘驱动和实现"><a href="#磁盘驱动和实现" class="headerlink" title="磁盘驱动和实现"></a>磁盘驱动和实现</h2><p>磁盘包括软盘、磁带、机械硬盘、SSD 等。<br>磁盘的驱动和实现由存储设备厂商负责，通常都已经集成到了操作系统中，即插即用，普通用户无需关心。</p>
+<h1 id="最新-NAS-配置方法"><a href="#最新-NAS-配置方法" class="headerlink" title="最新 NAS 配置方法"></a>最新 NAS 配置方法</h1><p>需要配置：</p>
+<ol>
+<li>samba：提供 SMB 服务</li>
+<li>avahi-daemon：提供 Bonjour discovery 服务</li>
+</ol>
+<h2 id="samba"><a href="#samba" class="headerlink" title="samba"></a>samba</h2><p>安装 yum install samba<br>启动 systemctl start smb.service<br>配置 vim /etc/samba/smb.conf</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">[global]</span><br><span class="line">		<span class="comment"># 下面两个属性为添加</span></span><br><span class="line">    min protocol = SMB2</span><br><span class="line">    ea support = yes</span><br><span class="line"></span><br><span class="line">[tmbackup]</span><br><span class="line">    comment = macos time machine backup</span><br><span class="line">    path = 你的备份路径</span><br><span class="line">    browseable = yes</span><br><span class="line">    public = no</span><br><span class="line">    writable = yes</span><br><span class="line">    create mask = 0700</span><br><span class="line">    valid users = 授权用户名</span><br><span class="line">    <span class="comment"># 加载模块以支持AAPL拓展，注意顺序很重要！</span></span><br><span class="line">    <span class="comment"># catia: 兼容linux/macos中合法但在Windows/SMB中非法的字符</span></span><br><span class="line">    <span class="comment"># fruit: 增强macos的的兼容性，并提供Netatalk AFP服务</span></span><br><span class="line">    <span class="comment"># streams_xattr: 通过Linux文件系统提供Windows NTFS属性字段</span></span><br><span class="line">    vfs objects = catia fruit streams_xattr</span><br><span class="line">    <span class="comment"># 支持aapl</span></span><br><span class="line">    fruit:aapl = yes</span><br><span class="line">    <span class="comment"># 存储os x的元数据</span></span><br><span class="line">    fruit:metadata = stream</span><br><span class="line">    <span class="comment"># 设置服务器在finder中的图标</span></span><br><span class="line">    fruit:model = MacPro</span><br><span class="line">    <span class="comment"># 支持time machine，非常重要！</span></span><br><span class="line">    fruit:time machine = yes</span><br><span class="line">    <span class="comment"># 文件清理的一些配置</span></span><br><span class="line">    fruit:posix_rename = yes</span><br><span class="line">    fruit:veto_appledouble = no</span><br><span class="line">    fruit:wipe_intentionally_left_blank_rfork = yes</span><br><span class="line">    fruit:delete_empty_adfiles = yes</span><br></pre></td></tr></table></figure>
+<h2 id="avahi"><a href="#avahi" class="headerlink" title="avahi"></a>avahi</h2><p>Avahi 不需要配置。没错，直接启动就好了。</p>
+<table>
+<thead>
+<tr>
+<th># systemctl enable –now avahi-daemon</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>如果开启了防火墙，需要开启一下 mDNS 端口 5353，CentOS 8 的指令如下<br>firewall-cmd –zone=public –add-port=5353/udp</p>
+<p>个人初次使用 TimeMachine 第一选择硬盘时，必须先在 Finder 挂载才能看到，之后就能够自动连接了。</p>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ol>
+<li>OS X Lion: 您可以与 Time Machine 配合使用的磁盘 <a href="https://support.apple.com/kb/PH4327?locale=zh_CN" target="_blank" rel="noopener">https://support.apple.com/kb/PH4327?locale=zh_CN</a></li>
+<li>可与“时间机器”搭配使用的备份磁盘 <a href="https://support.apple.com/zh-cn/HT202784" target="_blank" rel="noopener">https://support.apple.com/zh-cn/HT202784</a></li>
+<li>Linux 通过 Samba+Avahi 搭建 Time Machine 服务 <a href="https://blog.dazzyd.org/providing-time-machine-on-linux/" target="_blank" rel="noopener">https://blog.dazzyd.org/providing-time-machine-on-linux/</a></li>
+<li>配置 samba 作为苹果电脑 time machine 的备份硬盘 <a href="https://tlanyan.me/setup-samba-as-time-machine-destination/" target="_blank" rel="noopener">https://tlanyan.me/setup-samba-as-time-machine-destination/</a></li>
+</ol>
 
           
         
@@ -579,7 +605,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://hieast.github.io/2019/06/11/上网故障恢复指南（持续更新）/">
+    <link itemprop="mainEntityOfPage" href="https://hieast.github.io/2020/07/20/yuque/数据导出工具设计/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Hieast">
@@ -598,7 +624,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/06/11/上网故障恢复指南（持续更新）/" itemprop="url">上网故障恢复指南（持续更新）</a></h1>
+                <a class="post-title-link" href="/2020/07/20/yuque/数据导出工具设计/" itemprop="url">数据导出工具设计</a></h1>
         
 
         <div class="post-meta">
@@ -610,8 +636,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-11T20:53:55+08:00">
-                2019-06-11
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-20T14:03:35+08:00">
+                2020-07-20
               </time>
             
 
@@ -629,8 +655,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2019/06/11/上网故障恢复指南（持续更新）/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/06/11/上网故障恢复指南（持续更新）/" itemprop="commentCount"></span>
+                <a href="/2020/07/20/yuque/数据导出工具设计/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/07/20/yuque/数据导出工具设计/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -660,12 +686,12 @@
       
         
           
-            <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>由于网络环境变化，上网行为面临着很多挑战，传统上网软件流量特征有大概率被精准识别恶意攻击了。<br>为了保障网络空间的安全，维护个人隐私，保障网络空间主权，有必要更换更加先进的上网软件。</p>
-<p>就目前而言，v2ray 是一个可用的选择。<br><a href="https://www.v2ray.com/" target="_blank" rel="noopener">v2ray</a> 是 Project V 的核心工具。<br>Project V 这个名字让我想起《V for Vendetta》，不知是否有什么关联。</p>
-<h1 id="踩过的坑"><a href="#踩过的坑" class="headerlink" title="踩过的坑"></a>踩过的坑</h1><h2 id="端口占用"><a href="#端口占用" class="headerlink" title="端口占用"></a>端口占用</h2><p>环境：macOS 14</p>
-<p>相关软件大都为个人开发者开发，卸载极易存在残留。<br>mac 上安装的旧版本客户端在开启自启动之后直接在 application 中删除 app，会造成进程残留。<br>虽然应用已经不存在了，但是端口依旧会被占用。</p>
-<p>使用 <code>lsof -i:&lt;port&gt;</code> 指令检查端口是否被占用，如被占用，杀死即可暂时解决。如重启后又被占用，需要检查 plist 文件。</p>
-<p><a href="https://github.com/qinyuhang/ShadowsocksX-NG-R/issues/87" target="_blank" rel="noopener">这里</a>提到的三个 plist 是可能的残留，<br>使用 <code>launchctl unload -w &lt;path&gt;</code> 指令关闭这三个 plist。<a href="https://apple.stackexchange.com/questions/29056/launchctl-difference-between-load-and-start-unload-and-stop?rq=1" target="_blank" rel="noopener">launchctl 关闭指令的区别</a>。</p>
+            <h1 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h1><p>根据导出参数，将目标系统中的数据生成导出文件</p>
+<h1 id="接口设计"><a href="#接口设计" class="headerlink" title="接口设计"></a>接口设计</h1><h2 id="命令-入口名"><a href="#命令-入口名" class="headerlink" title="命令/入口名"></a>命令/入口名</h2><p>databox 数据工具箱</p>
+<h2 id="子命令"><a href="#子命令" class="headerlink" title="子命令"></a>子命令</h2><p>list 列举所有模块<br>show [module_name] 导出某个模块或所有模块的数据依赖图文本文件（mermaid 格式）到 ./graphs 目录<br>ripper company_code [module_name] 导出某个模块或所有模块的数据到 ./{company_code}_data 目录<br>clean company_code 清空公司的导出数据<br>stitcher dirpath [module_name] 恢复指定目录下的某个模块或所有模块的数据</p>
+<h1 id="技术方案"><a href="#技术方案" class="headerlink" title="技术方案"></a>技术方案</h1><p>命令行参数解析 python-fire：<br>考虑可扩展性和界面友好性，应该使用 click。但是考虑到 python-fire 更省时间，故仍然使用 python-fire。</p>
+<p>数据依赖图呈现 <a href="https://mermaid-js.github.io/mermaid-live-editor/" target="_blank" rel="noopener">https://mermaid-js.github.io/mermaid-live-editor/</a>：<br>语法上选择 mermaid，该语法既可以手写又可以代码生成。呈现上选择由命令行工具生成符合 mermaid 语法的文本文件，然后手动复制到在线编辑器中进行查看。<br>本地生成图片过于复杂耗时，本地 md 编辑器渲染字体过小，故弃而不用。</p>
+<p>数据导出：<br>ripper 在待导出的系统环境中运行，共享同一套环境。<br>同一个模块的数据导出到同一个模块中。</p>
 
           
         
@@ -714,7 +740,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://hieast.github.io/2019/06/04/使用-docker-快速搭建数据分析平台-BI-部分-superset/">
+    <link itemprop="mainEntityOfPage" href="https://hieast.github.io/2020/07/07/yuque/倍市得数据层——数据存储类型介绍/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Hieast">
@@ -733,7 +759,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/06/04/使用-docker-快速搭建数据分析平台-BI-部分-superset/" itemprop="url">使用 docker 快速搭建数据分析平台 BI 部分 superset</a></h1>
+                <a class="post-title-link" href="/2020/07/07/yuque/倍市得数据层——数据存储类型介绍/" itemprop="url">倍市得数据层——数据存储类型介绍</a></h1>
         
 
         <div class="post-meta">
@@ -745,8 +771,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-04T14:46:43+08:00">
-                2019-06-04
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-07T14:24:46+08:00">
+                2020-07-07
               </time>
             
 
@@ -764,8 +790,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2019/06/04/使用-docker-快速搭建数据分析平台-BI-部分-superset/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/06/04/使用-docker-快速搭建数据分析平台-BI-部分-superset/" itemprop="commentCount"></span>
+                <a href="/2020/07/07/yuque/倍市得数据层——数据存储类型介绍/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/07/07/yuque/倍市得数据层——数据存储类型介绍/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -795,14 +821,33 @@
       
         
           
-            <p>数据分析平台通常分为 BI 和数仓两部分，这次运行的 superset 是 BI 部分。</p>
-<p>参考 <a href="https://superset.incubator.apache.org/installation.html#start-with-docker" target="_blank" rel="noopener">https://superset.incubator.apache.org/installation.html#start-with-docker</a></p>
+            <h1 id="倍市得简介"><a href="#倍市得简介" class="headerlink" title="倍市得简介"></a>倍市得简介</h1><p>倍市得按照模块划分了多个子系统(subsystem，有时与 system 混用)，这些系统之间是独立的。<br>倍市得使用 <a href="https://code.wenjuan.com/harry.liang/CodeFactory" target="_blank" rel="noopener">CodeFactory</a> 代码生成工具从思维导图生成每个模块的以下这些文件。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">├── model_enums.py</span><br><span class="line">├── model_handlers.py</span><br><span class="line">├── model_utils.py</span><br><span class="line">├── model_utils_test.py</span><br><span class="line">└── models.py</span><br></pre></td></tr></table></figure>
+<p>生成的主要数据模型基本遵循数据库设计三大范式，因此从数据模型的角度既可以使用关系型数据库也可以使用非关系型数据库。<br>其他数据文件类型和地址也存在主要的数据模型中。</p>
+<h1 id="数据存储类型"><a href="#数据存储类型" class="headerlink" title="数据存储类型"></a>数据存储类型</h1><h2 id="主数据库-mongoDB"><a href="#主数据库-mongoDB" class="headerlink" title="主数据库 mongoDB"></a>主数据库 mongoDB</h2><p>当前版本（2020-07-16）使用 mongo 作为主要的数据库。mongoDB 是目前市场占有率最高的 noSQL 数据库。<br>使用 mongoDB 版本为 v4.0.8，官方文档 <a href="https://docs.mongodb.com/" target="_blank" rel="noopener">https://docs.mongodb.com/</a>。</p>
+<p>官方提供的数据工具 <a href="https://docs.mongodb.com/v4.0/reference/program/" target="_blank" rel="noopener">https://docs.mongodb.com/v4.0/reference/program/</a>：<br>mongodump 和 mongorestore ：<br>优点是输出格式为二进制，较为节省空间<br>缺点是 oplog 不适用于部分导出的场景<br>重点参数：<br>–query   对每个表的数据进行选择性导出</p>
+<p>mongoimport 和 mongoexport ：<br>优点是输出的文件人类可识别，缺点是占用空间大</p>
+<h2 id="Redis"><a href="#Redis" class="headerlink" title="Redis"></a>Redis</h2><p>当前版本 redis-cli 4.0.10。官方文档 <a href="https://redis.io/" target="_blank" rel="noopener">https://redis.io/</a>。</p>
+<p>用途包括：</p>
 <ol>
-<li>安装 docker 基础环境</li>
-<li>执行以下指令<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 下载修正过的代码</span></span><br><span class="line">git clone -b feature/docker https://github.com/hieast/incubator-superset.git</span><br><span class="line">cd incubator-superset/contrib/docker</span><br><span class="line"><span class="meta">#</span><span class="bash"> 初始化数据，中间有交互输入账户密码</span></span><br><span class="line">docker-compose run --rm -e SUPERSET_LOAD_EXAMPLES=yes superset ./docker-init.sh</span><br><span class="line"><span class="meta">#</span><span class="bash"> 每次查看 demo 执行</span></span><br><span class="line">docker-compose up</span><br></pre></td></tr></table></figure>
-</li>
+<li>用作缓存，这部分数据随意删除</li>
+<li>用作 celery 的 broker backend</li>
+<li>用作 mq 的消息队列</li>
+<li>用作分布式 id 生成工具，如 seq</li>
+<li>其他需要持久化的数据（暂不明确）</li>
 </ol>
-<p>以上指令墙内使用代理可以提高至少 40 倍的下载速度，不用代理可能会失败。</p>
+<p>部分数据备份和恢复方式暂不明确。</p>
+<h2 id="OS-filesystem"><a href="#OS-filesystem" class="headerlink" title="OS filesystem"></a>OS filesystem</h2><p>使用操作系统自带的文件系统进行存储</p>
+<p>用途包括：</p>
+<ol>
+<li>后端生成用由 nginx 直接代理的静态文件</li>
+<li>BI 数据文件，这部分数据有从数据库导出的也有用户上传的</li>
+<li>BI 缓存，这部分数据随意删除</li>
+<li>其他（暂不明确）</li>
+</ol>
+<h2 id="OSS"><a href="#OSS" class="headerlink" title="OSS"></a>OSS</h2><p>当前默认使用的对象存储是阿里云的 OSS，其他云平台的对象存储有不同的名字。<br>对象存储，也称为基于对象的存储，是一种扁平结构，其中的文件被拆分成多个部分并散布在多个硬件间。<br>对象存储的优点是有分布式系统的可靠性和效率，集成 CDN，但按需付费，性价比高，缺点是写入文件无法修改，适用于不经常变化的文件。 常见的存储内容包括网站静态文件、历史日志等。</p>
+<p>备份方式：<br>可以直接下载文件，恢复时再上传</p>
+<p>也可以使用复制方法，等到恢复数据时直接从原始 OSS 处拷贝过来 <a href="https://help.aliyun.com/document_detail/31979.html?spm=a2c4g.11186623.2.10.7d3a4bb2VlcJfc#reference-mvx-xxc-5db" target="_blank" rel="noopener">https://help.aliyun.com/document_detail/31979.html?spm=a2c4g.11186623.2.10.7d3a4bb2VlcJfc#reference-mvx-xxc-5db</a></p>
 
           
         
@@ -851,7 +896,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://hieast.github.io/2019/06/04/代理工具及使用示例/">
+    <link itemprop="mainEntityOfPage" href="https://hieast.github.io/2020/06/02/yuque/剑指笔记/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Hieast">
@@ -870,7 +915,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/06/04/代理工具及使用示例/" itemprop="url">代理工具及使用示例</a></h1>
+                <a class="post-title-link" href="/2020/06/02/yuque/剑指笔记/" itemprop="url">剑指笔记</a></h1>
         
 
         <div class="post-meta">
@@ -882,8 +927,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-04T10:45:54+08:00">
-                2019-06-04
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-06-02T20:59:26+08:00">
+                2020-06-02
               </time>
             
 
@@ -901,8 +946,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2019/06/04/代理工具及使用示例/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/06/04/代理工具及使用示例/" itemprop="commentCount"></span>
+                <a href="/2020/06/02/yuque/剑指笔记/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/06/02/yuque/剑指笔记/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -932,22 +977,32 @@
       
         
           
-            <h1 id="应用示例"><a href="#应用示例" class="headerlink" title="应用示例"></a>应用示例</h1><ol>
-<li>superset </li>
-</ol>
-<p>官方启动命令本来为<br>SUPERSET_LOAD_EXAMPLES=yes docker-compose run –rm superset ./docker-init.sh<br>但是相当慢，使用 proxychains4 则为<br>SUPERSET_LOAD_EXAMPLES=yes proxychains4 docker-compose run –rm superset ./docker-init.sh<br>网络速度提升了 43 倍<br>后经网友指正，应该是<br>proxychains4 docker-compose run –rm -e SUPERSET_LOAD_EXAMPLES=yes superset ./docker-init.sh</p>
-<h1 id="基本方法"><a href="#基本方法" class="headerlink" title="基本方法"></a>基本方法</h1><p>代理通常有应用层的 HTTP 代理，以及网络层的 SOCKS 代理。<br>虽然 HTTP 协议广泛使用，但是 TCP/IP 协议更是现在互联网根本基石。HTTP 代理适用性很弱，SOCKS 代理适应性很广，因此主要考虑 SOCKS 代理。<br>以下代理通常是指 HTTP 代理和 SOCKS 代理。</p>
-<p>MacOS：</p>
-<ol>
-<li>系统代理，通常 GUI 软件都默认使用该代理，如果 GUI 软件有配置界面则可以单独配置。</li>
-<li>命令行代理之环境变量，通过设置 http_proxy 等环境变量可以使一些请求走代理，</li>
-<li>命令行代理之工具，proxychain4 可以加载任何程序前面使用 SOCKS5 代理。</li>
-</ol>
-<p>Android：</p>
-<ol>
-<li>WI-FI 可以配置 HTTP 代理</li>
-<li>系统代理，通过其他应用将自己注册到 VPNService</li>
-</ol>
+            <h1 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h1><p>电话面试：尽可能形象，敢于确认细节<br>共享桌面远程面试：理清思路、良好的代码风格、进行单元测试、调试能力<br>现场面试：</p>
+<ul>
+<li>行为面试：准备项目经验</li>
+<li>技术面试：基础知识、高质量代码、清晰的思路、优化效率的能力、优秀的综合能力</li>
+<li>提问环节：准备与职位或者项目相关的问题</li>
+</ul>
+<h1 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h1><h2 id="编程语言"><a href="#编程语言" class="headerlink" title="编程语言"></a>编程语言</h2><p>概念理解<br>实现<br>空间、时间复杂度</p>
+<ul>
+<li style="list-style: none"><input type="checkbox"> 官方文档  <a href="https://docs.python.org/zh-cn/3.6/reference/" target="_blank" rel="noopener">https://docs.python.org/zh-cn/3.6/reference/</a></li>
+<li style="list-style: none"><input type="checkbox"> python cookbook</li>
+<li style="list-style: none"><input type="checkbox"> 流畅的 python</li>
+</ul>
+<h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><p>个人对 Python 比较熟悉，以下均为 Python 分析解法</p>
+<h2 id="赋值运算符函数"><a href="#赋值运算符函数" class="headerlink" title="赋值运算符函数"></a>赋值运算符函数</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">题目：如下为类型CMyString的声明，请为该类型添加赋值运算符函数。</span><br><span class="line">class CMyString</span><br><span class="line">&#123;</span><br><span class="line">public:</span><br><span class="line">CMyString(char *pData=NULL);//构造函数</span><br><span class="line">CMyString(const CMyString&amp; str);//拷贝构造函数</span><br><span class="line">~CMyString();//析构函数</span><br><span class="line">private:</span><br><span class="line">char* m_pData;//数据域，字符指针</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>Python 支持<a href="https://docs.python.org/zh-cn/3.6/reference/datamodel.html#special-method-names" target="_blank" rel="noopener">操作符重载</a> operator overloading。<br>网上有人总结如下，一言以蔽之就是只能重载部分现有的运算符。</p>
+<ul>
+<li>不能重载内置类型的运算符</li>
+<li>不能新建运算符，只能重载现有的</li>
+<li>某些运算符不能重载 例如 is, and, or 和 not(不过位运算符&amp;、|和~可以)</li>
+</ul>
+<p>#todo: 研究元类、类创建过程中的微妙细节<br>正确性<br>异常安全性</p>
+<h2 id="实现-Singleton-模式"><a href="#实现-Singleton-模式" class="headerlink" title="实现 Singleton 模式"></a>实现 Singleton 模式</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">题目：设计一个类，我们只能生成该类的一个实例</span><br><span class="line">扩展：定义一个 President 基类，从该类继承出的</span><br><span class="line">FrenchPresident 和 AmericanPresident 等</span><br><span class="line">类型都只能产生一个实例。</span><br></pre></td></tr></table></figure>
+<p>单例模式：单例对象的类必须保证只有一个实例存在。<br>思路：核心就是需要保存唯一的实例，并在第一次调用后找到该实例返回。</p>
+<p>解法一：<br>利用导入模块只运行一次的特性，将该类写在一个 module 中，通过 import 该实例使用。<br>解法二：<br>使用装饰器，将该实例保存在该类的环境中。<br>解法三：<br>将该实例存在类的变量空间中<br>解法四：<br>使用元类，将该实例保存在元类的变量空间中</p>
+<p>#todo: 熟悉类创建流程</p>
+<p>#todo：学习设计模式</p>
 
           
         
@@ -987,7 +1042,7 @@
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1035,7 +1090,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-count">44</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1117,7 +1172,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; 2016 &mdash; <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; 2016 &mdash; <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

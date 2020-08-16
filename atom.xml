@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://hieast.github.io/"/>
-  <updated>2019-07-03T06:22:58.030Z</updated>
+  <updated>2020-08-16T15:04:40.400Z</updated>
   <id>https://hieast.github.io/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>ssh 进阶使用技巧</title>
-    <link href="https://hieast.github.io/2019/07/02/yuque/ssh%20%E8%BF%9B%E9%98%B6%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7/"/>
-    <id>https://hieast.github.io/2019/07/02/yuque/ssh 进阶使用技巧/</id>
-    <published>2019-07-02T13:29:36.000Z</published>
-    <updated>2019-07-03T06:22:58.030Z</updated>
+    <title>CentOS 8 桌面系统配置小记</title>
+    <link href="https://hieast.github.io/2020/08/16/yuque/CentOS%208%20%E6%A1%8C%E9%9D%A2%E7%B3%BB%E7%BB%9F%E9%85%8D%E7%BD%AE%E5%B0%8F%E8%AE%B0/"/>
+    <id>https://hieast.github.io/2020/08/16/yuque/CentOS 8 桌面系统配置小记/</id>
+    <published>2020-08-16T11:14:11.000Z</published>
+    <updated>2020-08-16T15:04:40.400Z</updated>
     
     <summary type="html">
     
@@ -29,8 +29,7 @@
       
         
         
-          &lt;p&gt;&lt;a name=&quot;oPfbJ&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;曾经我天真得以为所有的服务器都可以直接用 ssh
+          &lt;h1 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot; title=&quot;背景&quot;&gt;&lt;/a&gt;背景&lt;/h1&gt;&lt;p&gt;家里之前配了一个台式机，ms04 那样，amd 平台，CentOS
         
       
     
@@ -40,11 +39,11 @@
   </entry>
   
   <entry>
-    <title>试用语雀</title>
-    <link href="https://hieast.github.io/2019/06/18/yuque/%E8%AF%95%E7%94%A8%E8%AF%AD%E9%9B%80/"/>
-    <id>https://hieast.github.io/2019/06/18/yuque/试用语雀/</id>
-    <published>2019-06-18T09:30:12.000Z</published>
-    <updated>2019-07-03T06:22:58.029Z</updated>
+    <title>文件系统概述 —— 从 Time Machine 备份磁盘开始</title>
+    <link href="https://hieast.github.io/2020/07/25/yuque/%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%BF%B0%20%E2%80%94%E2%80%94%20%E4%BB%8E%20Time%20Machine%20%E5%A4%87%E4%BB%BD%E7%A3%81%E7%9B%98%E5%BC%80%E5%A7%8B/"/>
+    <id>https://hieast.github.io/2020/07/25/yuque/文件系统概述 —— 从 Time Machine 备份磁盘开始/</id>
+    <published>2020-07-25T05:20:24.000Z</published>
+    <updated>2020-08-16T15:04:40.500Z</updated>
     
     <summary type="html">
     
@@ -52,8 +51,7 @@
       
         
         
-          &lt;p&gt;&lt;a name=&quot;sHi4K&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h1 id=&quot;试用-markdown&quot;&gt;&lt;a href=&quot;#试用-markdown&quot; class=&quot;headerlink&quot; title=&quot;试用 markdown&quot;&gt;&lt;/a&gt;试用
+          &lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;本来以为要实现局域网自动备份很简单，网上有现成的方案：在 NAS 设备上安装 netatalk 提供 afp 协议服务，在 macOS
         
       
     
@@ -63,11 +61,11 @@
   </entry>
   
   <entry>
-    <title>上网故障恢复指南（持续更新）</title>
-    <link href="https://hieast.github.io/2019/06/11/%E4%B8%8A%E7%BD%91%E6%95%85%E9%9A%9C%E6%81%A2%E5%A4%8D%E6%8C%87%E5%8D%97%EF%BC%88%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%EF%BC%89/"/>
-    <id>https://hieast.github.io/2019/06/11/上网故障恢复指南（持续更新）/</id>
-    <published>2019-06-11T12:53:55.000Z</published>
-    <updated>2019-06-11T06:38:43.362Z</updated>
+    <title>数据导出工具设计</title>
+    <link href="https://hieast.github.io/2020/07/20/yuque/%E6%95%B0%E6%8D%AE%E5%AF%BC%E5%87%BA%E5%B7%A5%E5%85%B7%E8%AE%BE%E8%AE%A1/"/>
+    <id>https://hieast.github.io/2020/07/20/yuque/数据导出工具设计/</id>
+    <published>2020-07-20T06:03:35.000Z</published>
+    <updated>2020-08-16T15:04:40.524Z</updated>
     
     <summary type="html">
     
@@ -75,23 +73,22 @@
       
         
         
-          &lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot;
+          &lt;h1 id=&quot;目标&quot;&gt;&lt;a href=&quot;#目标&quot; class=&quot;headerlink&quot; title=&quot;目标&quot;&gt;&lt;/a&gt;目标&lt;/h1&gt;&lt;p&gt;根据导出参数，将目标系统中的数据生成导出文件&lt;/p&gt;
+&lt;h1 id=&quot;接口设计&quot;&gt;&lt;a href=&quot;#接口设计&quot;
         
       
     
     </summary>
     
     
-      <category term="上网" scheme="https://hieast.github.io/tags/%E4%B8%8A%E7%BD%91/"/>
-    
   </entry>
   
   <entry>
-    <title>使用 docker 快速搭建数据分析平台 BI 部分 superset</title>
-    <link href="https://hieast.github.io/2019/06/04/%E4%BD%BF%E7%94%A8-docker-%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BA%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E5%B9%B3%E5%8F%B0-BI-%E9%83%A8%E5%88%86-superset/"/>
-    <id>https://hieast.github.io/2019/06/04/使用-docker-快速搭建数据分析平台-BI-部分-superset/</id>
-    <published>2019-06-04T06:46:43.000Z</published>
-    <updated>2019-06-04T06:48:13.449Z</updated>
+    <title>倍市得数据层——数据存储类型介绍</title>
+    <link href="https://hieast.github.io/2020/07/07/yuque/%E5%80%8D%E5%B8%82%E5%BE%97%E6%95%B0%E6%8D%AE%E5%B1%82%E2%80%94%E2%80%94%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8%E7%B1%BB%E5%9E%8B%E4%BB%8B%E7%BB%8D/"/>
+    <id>https://hieast.github.io/2020/07/07/yuque/倍市得数据层——数据存储类型介绍/</id>
+    <published>2020-07-07T06:24:46.000Z</published>
+    <updated>2020-08-16T15:04:40.563Z</updated>
     
     <summary type="html">
     
@@ -99,24 +96,21 @@
       
         
         
-          &lt;p&gt;数据分析平台通常分为 BI 和数仓两部分，这次运行的 superset 是 BI 部分。&lt;/p&gt;
-&lt;p&gt;参考 &lt;a
+          &lt;h1 id=&quot;倍市得简介&quot;&gt;&lt;a href=&quot;#倍市得简介&quot; class=&quot;headerlink&quot; title=&quot;倍市得简介&quot;&gt;&lt;/a&gt;倍市得简介&lt;/h1&gt;&lt;p&gt;倍市得按照模块划分了多个子系统(subsystem，有时与 system
         
       
     
     </summary>
     
     
-      <category term="数据" scheme="https://hieast.github.io/tags/%E6%95%B0%E6%8D%AE/"/>
-    
   </entry>
   
   <entry>
-    <title>代理工具及使用示例</title>
-    <link href="https://hieast.github.io/2019/06/04/%E4%BB%A3%E7%90%86%E5%B7%A5%E5%85%B7%E5%8F%8A%E4%BD%BF%E7%94%A8%E7%A4%BA%E4%BE%8B/"/>
-    <id>https://hieast.github.io/2019/06/04/代理工具及使用示例/</id>
-    <published>2019-06-04T02:45:54.000Z</published>
-    <updated>2019-06-04T02:47:08.837Z</updated>
+    <title>剑指笔记</title>
+    <link href="https://hieast.github.io/2020/06/02/yuque/%E5%89%91%E6%8C%87%E7%AC%94%E8%AE%B0/"/>
+    <id>https://hieast.github.io/2020/06/02/yuque/剑指笔记/</id>
+    <published>2020-06-02T12:59:26.000Z</published>
+    <updated>2020-08-16T15:04:40.589Z</updated>
     
     <summary type="html">
     
@@ -124,58 +118,36 @@
       
         
         
-          &lt;h1 id=&quot;应用示例&quot;&gt;&lt;a href=&quot;#应用示例&quot; class=&quot;headerlink&quot; title=&quot;应用示例&quot;&gt;&lt;/a&gt;应用示例&lt;/h1&gt;&lt;ol&gt;
-&lt;li&gt;superset
+          &lt;h1 id=&quot;流程&quot;&gt;&lt;a href=&quot;#流程&quot; class=&quot;headerlink&quot;
         
       
     
     </summary>
     
     
-      <category term="代理" scheme="https://hieast.github.io/tags/%E4%BB%A3%E7%90%86/"/>
-    
   </entry>
   
   <entry>
-    <title>2019年王道单科计组-内容讨论</title>
-    <link href="https://hieast.github.io/2018/04/22/%E7%8E%8B%E9%81%93%E5%8D%95%E7%A7%91%E8%AE%A1%E7%BB%84/"/>
-    <id>https://hieast.github.io/2018/04/22/王道单科计组/</id>
-    <published>2018-04-22T08:14:58.000Z</published>
-    <updated>2018-04-22T11:17:12.427Z</updated>
+    <title>不换源就不能用的工具们</title>
+    <link href="https://hieast.github.io/2020/05/14/yuque/%E4%B8%8D%E6%8D%A2%E6%BA%90%E5%B0%B1%E4%B8%8D%E8%83%BD%E7%94%A8%E7%9A%84%E5%B7%A5%E5%85%B7%E4%BB%AC/"/>
+    <id>https://hieast.github.io/2020/05/14/yuque/不换源就不能用的工具们/</id>
+    <published>2020-05-14T10:37:11.000Z</published>
+    <updated>2020-08-16T15:04:40.607Z</updated>
     
     <summary type="html">
     
-      &lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;准备把机器学习基础学一遍，顺便考个研。有点耽误赚钱，不过我还年轻。&lt;/p&gt;
-&lt;p&gt;这篇文章记录做 2019 年王道单科计组那本书的时候的一些疑问，有书里的错误，也有我的肤浅，希望和各位读者探讨考究一番。&lt;/p&gt;
-&lt;p&gt;我之前看过一次 CSAPP，做过练习题。这次大概花了 7 周的业余时间，跟着中国大学 MOOC 上刘宏伟老师和袁春风老师的视频和袁老师的教材过完了王道单科一轮，还剩 5~7 章的部分大题没做。&lt;/p&gt;
-&lt;p&gt;这门课给我最大的感受就是术语不统一，不同的教材（老师）对于术语的使用和少数概念的划分都有所不同。因此在学习过程中需要博采众长，真正理解计算机不同部分的功能和组成之间的关系，把术语进行归类，牢记同义术语和英文原文，做到以不变应万变。&lt;/p&gt;
-&lt;p&gt;建议第一次学的同学到中国大学 MOOC 去看刘宏伟老师的计组视频，课后习题质量很高。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="计算机基础" scheme="https://hieast.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/"/>
-    
-      <category term="计组" scheme="https://hieast.github.io/tags/%E8%AE%A1%E7%BB%84/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Airflow 时区故障</title>
-    <link href="https://hieast.github.io/2018/04/10/Airflow-%E6%97%B6%E5%8C%BA%E6%95%85%E9%9A%9C/"/>
-    <id>https://hieast.github.io/2018/04/10/Airflow-时区故障/</id>
-    <published>2018-04-10T07:17:24.000Z</published>
-    <updated>2018-04-22T06:58:20.329Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;关于时区的整理&quot;&gt;&lt;a href=&quot;#关于时区的整理&quot; class=&quot;headerlink&quot; title=&quot;关于时区的整理&quot;&gt;&lt;/a&gt;关于时区的整理&lt;/h2&gt;&lt;p&gt;一旦涉及跨服务器的服务，那么难免碰到时区同步的问题，而 Web 服务很少是单机提供的，因此做现在的 Web 架构中应当处理好时区问题。&lt;/p&gt;
-&lt;p&gt;之前在写业务接口的时候，将系统所有的入口和出口都做了时区转换的处理，在内部各函数之间使用无时区的 datetime 格式传递时间，避免一些常见的小错误：&lt;/p&gt;
+      
+      
+        
+        
+          &lt;p&gt;由于众多不同规模的防火墙存在，互联网不是总能互联的，有些工具在国内就很不好用。&lt;br&gt;通常有两种解决思路：&lt;/p&gt;
 &lt;ol&gt;
-&lt;li&gt;单方面使用 arrow 库的对象&lt;/li&gt;
-&lt;li&gt;将带时区和不带时区的 datetime 作比较&lt;/li&gt;
-&lt;li&gt;将零时区的日期入库导致差错&lt;/li&gt;
+&lt;li&gt;优化网络&lt;/li&gt;
+&lt;li&gt;换能访问的源&lt;/li&gt;
 &lt;/ol&gt;
+&lt;h1 id=&quot;brew&quot;&gt;&lt;a href=&quot;#brew&quot;
+        
+      
     
     </summary>
     
@@ -183,100 +155,11 @@
   </entry>
   
   <entry>
-    <title>Airflow 工作原理（未完成）</title>
-    <link href="https://hieast.github.io/2018/03/26/Airflow%20%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/"/>
-    <id>https://hieast.github.io/2018/03/26/Airflow 工作原理/</id>
-    <published>2018-03-26T07:18:47.000Z</published>
-    <updated>2018-04-22T05:36:45.917Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;使用 airflow 一年，出现了以下几个问题，虽然不是非常致命，却时常影响效率，需要重启解决。因此这次梳理一下 airflow。&lt;/p&gt;
-&lt;p&gt;注意以下阅读的是 1.8.0 的源码。安装包的名字由 &lt;code&gt;airflow&lt;/code&gt; 变成了 &lt;code&gt;apache-airflow&lt;/code&gt;，原来的安装包不支持后面的升级了。目前（2018年04月22日）发布的稳定版本是 1.9.0 ，正在开发的版本是 1.10.0。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="Python" scheme="https://hieast.github.io/tags/Python/"/>
-    
-      <category term="workflow" scheme="https://hieast.github.io/tags/workflow/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>elasticsearch 应用知识体系解析</title>
-    <link href="https://hieast.github.io/2018/01/04/elasticsearch%20%E5%BA%94%E7%94%A8%E7%9F%A5%E8%AF%86%E4%BD%93%E7%B3%BB%E8%A7%A3%E6%9E%90/"/>
-    <id>https://hieast.github.io/2018/01/04/elasticsearch 应用知识体系解析/</id>
-    <published>2018-01-04T02:53:19.000Z</published>
-    <updated>2018-11-13T08:40:57.560Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;使用 elasticsearch 做开发一年多了，主要查的文档是权威指南和接口详情，这篇文章只是把相关的知识点和重点罗列一下。其中部分经验仅适用于资源较少的情况，资源较多、稳定性要求高的场景应设计更适合的配置和运维流程。&lt;/p&gt;
-&lt;p&gt;我没有升级过大版本，一直都是用的 5.x 版本。最开始查资料，很多查询都是基于 2.x 的接口写的，已经没有用了。所以以下内容仅基于 5.x 版本。&lt;/p&gt;
-&lt;p&gt;ES 相关的知识点主要可以分成以下几块：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;基本增删查改（类比 WHERE）和聚合查询语句（类比 GROUP）&lt;/li&gt;
-&lt;li&gt;集群内的原理、分片内部原理、索引原理&lt;/li&gt;
-&lt;li&gt;集群管理、监控和部署&lt;/li&gt;
-&lt;li&gt;数据建模 （类比关系型数据库的表设计）&lt;/li&gt;
-&lt;li&gt;其他高级特性（高级搜索、高级数据类型）&lt;/li&gt;
-&lt;li&gt;elasticsearch-sql、elasticsearch-dsl 等扩展&lt;/li&gt;
-&lt;/ol&gt;
-    
-    </summary>
-    
-    
-      <category term="搜索" scheme="https://hieast.github.io/tags/%E6%90%9C%E7%B4%A2/"/>
-    
-      <category term="elasticsearch" scheme="https://hieast.github.io/tags/elasticsearch/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>thrift&amp;thriftpy</title>
-    <link href="https://hieast.github.io/2017/12/08/thrift-thriftpy/"/>
-    <id>https://hieast.github.io/2017/12/08/thrift-thriftpy/</id>
-    <published>2017-12-08T06:30:46.000Z</published>
-    <updated>2018-04-22T06:01:10.970Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot; title=&quot;简介&quot;&gt;&lt;/a&gt;简介&lt;/h1&gt;&lt;p&gt;The Apache Thrift software framework, for scalable cross-language services development, combines a software stack with a code generation engine to build services that work efficiently and seamlessly between C++, Java, Python, PHP, Ruby, Erlang, Perl, Haskell, C#, Cocoa, JavaScript, Node.js, Smalltalk, OCaml and Delphi and other languages.&lt;/p&gt;
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>初次使用 TensorFlow</title>
-    <link href="https://hieast.github.io/2017/12/07/tensorflow-demo/"/>
-    <id>https://hieast.github.io/2017/12/07/tensorflow-demo/</id>
-    <published>2017-12-07T11:56:16.000Z</published>
-    <updated>2018-04-22T06:58:41.631Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;TensorFlow™ 是一个使用数据流图进行数值计算的开源软件库。图中的节点代表数学运算， 而图中的边则代表在这些节点之间传递的多维数组（张量）。&lt;/p&gt;
-&lt;p&gt;TensorFlow 在机器学习、分布式系统方面都非常值得学习，而这些又是自然语言处理等领域的基础。此外，TensorFlow 还处在一个早期采用者使用的阶段，日后的应用前景广阔，目前可以做的工作还很多。因此 TensorFlow 值得深入学习。&lt;/p&gt;
-&lt;p&gt;本文针对 mac 10.13 python 3.6.1 版本，TensorFlow 1.3 版本。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="人工智能" scheme="https://hieast.github.io/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/"/>
-    
-    
-      <category term="机器学习" scheme="https://hieast.github.io/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>理想中的我</title>
-    <link href="https://hieast.github.io/2017/12/03/ideal-me/"/>
-    <id>https://hieast.github.io/2017/12/03/ideal-me/</id>
-    <published>2017-12-03T15:27:53.000Z</published>
-    <updated>2017-12-07T12:15:18.164Z</updated>
+    <title>计算机领域概念知识梳理（FAQ）</title>
+    <link href="https://hieast.github.io/2020/05/13/yuque/%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%A2%86%E5%9F%9F%E6%A6%82%E5%BF%B5%E7%9F%A5%E8%AF%86%E6%A2%B3%E7%90%86%EF%BC%88FAQ%EF%BC%89/"/>
+    <id>https://hieast.github.io/2020/05/13/yuque/计算机领域概念知识梳理（FAQ）/</id>
+    <published>2020-05-13T14:35:41.000Z</published>
+    <updated>2020-08-16T15:04:40.622Z</updated>
     
     <summary type="html">
     
@@ -284,25 +167,22 @@
       
         
         
-          &lt;h1 id=&quot;我要成为什么样的人&quot;&gt;&lt;a href=&quot;#我要成为什么样的人&quot; class=&quot;headerlink&quot;
+          &lt;h1 id=&quot;如何理解「定时」？&quot;&gt;&lt;a href=&quot;#如何理解「定时」？&quot; class=&quot;headerlink&quot; title=&quot;如何理解「定时」？&quot;&gt;&lt;/a&gt;如何理解「定时」？&lt;/h1&gt;&lt;p&gt;运输层协议概念上提供定时保证&lt;/p&gt;
+&lt;h1 id=&quot;如何理解「缓存」？&quot;&gt;&lt;a
         
       
     
     </summary>
     
-      <category term="日记" scheme="https://hieast.github.io/categories/%E6%97%A5%E8%AE%B0/"/>
-    
-    
-      <category term="日记" scheme="https://hieast.github.io/tags/%E6%97%A5%E8%AE%B0/"/>
     
   </entry>
   
   <entry>
-    <title>修了一个因为升级 High Sierra 解释器路径变化报错</title>
-    <link href="https://hieast.github.io/2017/11/22/fix-bad-interpreter-in-high-sierra/"/>
-    <id>https://hieast.github.io/2017/11/22/fix-bad-interpreter-in-high-sierra/</id>
-    <published>2017-11-22T06:40:23.000Z</published>
-    <updated>2017-11-23T15:57:41.630Z</updated>
+    <title>计算机网络知识梳理（FAQ）</title>
+    <link href="https://hieast.github.io/2020/05/12/yuque/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%9F%A5%E8%AF%86%E6%A2%B3%E7%90%86%EF%BC%88FAQ%EF%BC%89/"/>
+    <id>https://hieast.github.io/2020/05/12/yuque/计算机网络知识梳理（FAQ）/</id>
+    <published>2020-05-12T14:38:53.000Z</published>
+    <updated>2020-08-16T15:04:40.704Z</updated>
     
     <summary type="html">
     
@@ -310,29 +190,21 @@
       
         
         
-          &lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;之前试玩过 tmux 和  tmuxinator，用来配置特定环境的窗口挺方便的。High Sierra
+          &lt;h1 id=&quot;计算机网络概述&quot;&gt;&lt;a href=&quot;#计算机网络概述&quot; class=&quot;headerlink&quot; title=&quot;计算机网络概述&quot;&gt;&lt;/a&gt;计算机网络概述&lt;/h1&gt;&lt;p&gt;因特网的五个层次：&lt;br&gt;应用层 HTTP SMPT FTP&lt;br&gt;运输层 TCP
         
       
     
     </summary>
     
-      <category term="技术杂学" scheme="https://hieast.github.io/categories/%E6%8A%80%E6%9C%AF%E6%9D%82%E5%AD%A6/"/>
-    
-    
-      <category term="High Sierra" scheme="https://hieast.github.io/tags/High-Sierra/"/>
-    
-      <category term="Ruby" scheme="https://hieast.github.io/tags/Ruby/"/>
-    
-      <category term="tmuxinator" scheme="https://hieast.github.io/tags/tmuxinator/"/>
     
   </entry>
   
   <entry>
-    <title>临时开启 Coursera 双语字幕的方法</title>
-    <link href="https://hieast.github.io/2017/11/21/coursera-enable-bilingual-subtitle/"/>
-    <id>https://hieast.github.io/2017/11/21/coursera-enable-bilingual-subtitle/</id>
-    <published>2017-11-20T16:12:07.000Z</published>
-    <updated>2017-11-20T16:21:42.983Z</updated>
+    <title>Python 内存优化之 memory-profiler</title>
+    <link href="https://hieast.github.io/2020/04/10/yuque/Python%20%E5%86%85%E5%AD%98%E4%BC%98%E5%8C%96%E4%B9%8B%20memory-profiler/"/>
+    <id>https://hieast.github.io/2020/04/10/yuque/Python 内存优化之 memory-profiler/</id>
+    <published>2020-04-10T06:22:09.000Z</published>
+    <updated>2020-08-16T15:04:40.727Z</updated>
     
     <summary type="html">
     
@@ -340,29 +212,21 @@
       
         
         
-          &lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;偷了点闲在家看 Coursera
+          &lt;h1 id=&quot;概述&quot;&gt;&lt;a href=&quot;#概述&quot; class=&quot;headerlink&quot; title=&quot;概述&quot;&gt;&lt;/a&gt;概述&lt;/h1&gt;&lt;h2 id=&quot;简单用法&quot;&gt;&lt;a href=&quot;#简单用法&quot; class=&quot;headerlink&quot;
         
       
     
     </summary>
     
-      <category term="技术杂学" scheme="https://hieast.github.io/categories/%E6%8A%80%E6%9C%AF%E6%9D%82%E5%AD%A6/"/>
-    
-    
-      <category term="MOOC" scheme="https://hieast.github.io/tags/MOOC/"/>
-    
-      <category term="效率" scheme="https://hieast.github.io/tags/%E6%95%88%E7%8E%87/"/>
-    
-      <category term="Coursera" scheme="https://hieast.github.io/tags/Coursera/"/>
     
   </entry>
   
   <entry>
-    <title>tmux 常用指令</title>
-    <link href="https://hieast.github.io/2017/11/17/tmux-%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4/"/>
-    <id>https://hieast.github.io/2017/11/17/tmux-常用指令/</id>
-    <published>2017-11-17T07:00:13.000Z</published>
-    <updated>2018-04-22T07:01:07.497Z</updated>
+    <title>接口安全性设计</title>
+    <link href="https://hieast.github.io/2020/04/09/yuque/%E6%8E%A5%E5%8F%A3%E5%AE%89%E5%85%A8%E6%80%A7%E8%AE%BE%E8%AE%A1/"/>
+    <id>https://hieast.github.io/2020/04/09/yuque/接口安全性设计/</id>
+    <published>2020-04-09T06:52:13.000Z</published>
+    <updated>2020-08-16T15:04:40.739Z</updated>
     
     <summary type="html">
     
@@ -370,144 +234,234 @@
       
         
         
-          &lt;h1 id=&quot;tmux-常用命令&quot;&gt;&lt;a href=&quot;#tmux-常用命令&quot; class=&quot;headerlink&quot; title=&quot;tmux 常用命令&quot;&gt;&lt;/a&gt;tmux 常用命令&lt;/h1&gt;&lt;h2 id=&quot;为什么要用-tmux&quot;&gt;&lt;a href=&quot;#为什么要用-tmux&quot;
+          &lt;p&gt;通常接口安全性都是指的客户端与服务端交互，但是这里额外研究一下直接通过浏览器和服务端交互的方式。&lt;/p&gt;
+&lt;h1 id=&quot;需要防止的内容&quot;&gt;&lt;a href=&quot;#需要防止的内容&quot; class=&quot;headerlink&quot;
         
       
     
     </summary>
     
     
-      <category term="技术杂学" scheme="https://hieast.github.io/tags/%E6%8A%80%E6%9C%AF%E6%9D%82%E5%AD%A6/"/>
-    
   </entry>
   
   <entry>
-    <title>运动解剖学笔记</title>
-    <link href="https://hieast.github.io/2017/11/17/%E8%BF%90%E5%8A%A8%E8%A7%A3%E5%89%96%E5%AD%A6%E7%AC%94%E8%AE%B0/"/>
-    <id>https://hieast.github.io/2017/11/17/运动解剖学笔记/</id>
-    <published>2017-11-17T06:51:40.000Z</published>
-    <updated>2018-04-22T06:57:06.226Z</updated>
+    <title>系统文档</title>
+    <link href="https://hieast.github.io/2020/03/23/yuque/%E7%B3%BB%E7%BB%9F%E6%96%87%E6%A1%A3/"/>
+    <id>https://hieast.github.io/2020/03/23/yuque/系统文档/</id>
+    <published>2020-03-23T02:39:16.000Z</published>
+    <updated>2020-08-16T15:04:40.764Z</updated>
     
     <summary type="html">
     
-      &lt;p&gt;前言&lt;/p&gt;
-&lt;p&gt;2017年11月以前我偶尔用简书记录一下个人的笔记，11月17日由于《饱醉豚对简书的意义》 恶心到了我，于是删号走人。在那以前的笔记挑几个放在网上。&lt;/p&gt;
-&lt;p&gt;这篇运动生理学笔记是爱课程平台华东师范大学《运动解剖学》李世昌老师的课程笔记，由我在路上听视频、等电梯的时候记录完成，每节课只记录最重要的结论。&lt;/p&gt;
-&lt;p&gt;这篇文章希望可以帮助从解剖学的角度认识健身。由于导出丢失了所有图片，意义已经不是很大。如果有缘看到这儿，推荐一本书 《运动解剖学图谱》，看懂这本书就够了。&lt;/p&gt;
+      
+      
+        
+        
+          &lt;h1 id=&quot;当前资源&quot;&gt;&lt;a href=&quot;#当前资源&quot; class=&quot;headerlink&quot; title=&quot;当前资源&quot;&gt;&lt;/a&gt;当前资源&lt;/h1&gt;&lt;h2 id=&quot;域名&quot;&gt;&lt;a href=&quot;#域名&quot; class=&quot;headerlink&quot;
+        
+      
     
     </summary>
     
     
-      <category term="技术杂学" scheme="https://hieast.github.io/tags/%E6%8A%80%E6%9C%AF%E6%9D%82%E5%AD%A6/"/>
-    
   </entry>
   
   <entry>
-    <title>运动生理学笔记</title>
-    <link href="https://hieast.github.io/2017/11/17/%E8%BF%90%E5%8A%A8%E7%94%9F%E7%90%86%E5%AD%A6%E7%AC%94%E8%AE%B0/"/>
-    <id>https://hieast.github.io/2017/11/17/运动生理学笔记/</id>
-    <published>2017-11-17T06:30:10.000Z</published>
-    <updated>2018-04-22T06:51:22.896Z</updated>
+    <title>2020 年 OKR 试行</title>
+    <link href="https://hieast.github.io/2020/02/11/yuque/2020%20%E5%B9%B4%20OKR%20%E8%AF%95%E8%A1%8C/"/>
+    <id>https://hieast.github.io/2020/02/11/yuque/2020 年 OKR 试行/</id>
+    <published>2020-02-11T08:07:21.000Z</published>
+    <updated>2020-08-16T15:04:40.822Z</updated>
     
     <summary type="html">
     
-      &lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;2017年11月以前我偶尔用简书记录一下个人的笔记，11月17日由于《饱醉豚对简书的意义》 恶心到了我，于是删号走人。在那以前的笔记挑几个放在网上。&lt;/p&gt;
-&lt;p&gt;这篇运动生理学笔记是爱课程平台华南师范大学《运动生理学》郝选明老师的课程笔记，由我在路上听视频、等电梯的时候记录完成，每节课只记录最重要的结论。&lt;/p&gt;
-&lt;p&gt;这篇文章希望可以帮助从生理学的角度认识健身。&lt;/p&gt;
+      
+      
+        
+        
+          &lt;h1 id=&quot;概述&quot;&gt;&lt;a href=&quot;#概述&quot; class=&quot;headerlink&quot; title=&quot;概述&quot;&gt;&lt;/a&gt;概述&lt;/h1&gt;&lt;p&gt;由于当前公司决定尝试实施 OKR，所以我对 OKR
+        
+      
     
     </summary>
     
     
-      <category term="技术杂学" scheme="https://hieast.github.io/tags/%E6%8A%80%E6%9C%AF%E6%9D%82%E5%AD%A6/"/>
+  </entry>
+  
+  <entry>
+    <title>2020 技嘉+AMD+Win10/CentOS 启动知识整理</title>
+    <link href="https://hieast.github.io/2020/02/09/yuque/2020%20%E6%8A%80%E5%98%89+AMD+Win10!CentOS%20%E5%90%AF%E5%8A%A8%E7%9F%A5%E8%AF%86%E6%95%B4%E7%90%86/"/>
+    <id>https://hieast.github.io/2020/02/09/yuque/2020 技嘉+AMD+Win10!CentOS 启动知识整理/</id>
+    <published>2020-02-09T13:51:34.000Z</published>
+    <updated>2020-08-16T15:04:40.855Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;概述&quot;&gt;&lt;a href=&quot;#概述&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
     
   </entry>
   
   <entry>
-    <title>我的生产工具列表</title>
-    <link href="https://hieast.github.io/2017/11/12/my-productivity/"/>
-    <id>https://hieast.github.io/2017/11/12/my-productivity/</id>
-    <published>2017-11-12T08:52:55.000Z</published>
-    <updated>2017-11-13T08:47:22.281Z</updated>
+    <title>2020 年初攒机小记</title>
+    <link href="https://hieast.github.io/2020/01/26/yuque/2020%20%E5%B9%B4%E5%88%9D%E6%94%92%E6%9C%BA%E5%B0%8F%E8%AE%B0/"/>
+    <id>https://hieast.github.io/2020/01/26/yuque/2020 年初攒机小记/</id>
+    <published>2020-01-26T07:02:52.000Z</published>
+    <updated>2020-08-16T15:04:40.888Z</updated>
     
     <summary type="html">
     
-      &lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;本文仅仅是用来记录个人觉得能够提升生产效率的工具，以及个人的使用方式。提供传送门到工具的官方文档或者第三方教程。&lt;/p&gt;
-&lt;p&gt;仅考虑 macOS 10.12.6 系统。&lt;/p&gt;
+      
+      
+        
+        
+          &lt;h1 id=&quot;概述&quot;&gt;&lt;a href=&quot;#概述&quot; class=&quot;headerlink&quot; title=&quot;概述&quot;&gt;&lt;/a&gt;概述&lt;/h1&gt;&lt;p&gt;一开始计划配一套低功耗低性能大容量的 NAS
+        
+      
     
     </summary>
     
-      <category term="技术杂学" scheme="https://hieast.github.io/categories/%E6%8A%80%E6%9C%AF%E6%9D%82%E5%AD%A6/"/>
-    
-    
-      <category term="效率" scheme="https://hieast.github.io/tags/%E6%95%88%E7%8E%87/"/>
-    
-      <category term="Mac" scheme="https://hieast.github.io/tags/Mac/"/>
     
   </entry>
   
   <entry>
-    <title>WSGI 和 Werkzeug ———— Flask 系列文章(一)</title>
-    <link href="https://hieast.github.io/2017/11/11/flask-1/"/>
-    <id>https://hieast.github.io/2017/11/11/flask-1/</id>
-    <published>2017-11-11T10:55:53.000Z</published>
-    <updated>2017-11-16T16:55:50.424Z</updated>
+    <title>HTTPS 协议和 SSL 证书配置</title>
+    <link href="https://hieast.github.io/2020/01/03/yuque/HTTPS%20%E5%8D%8F%E8%AE%AE%E5%92%8C%20SSL%20%E8%AF%81%E4%B9%A6%E9%85%8D%E7%BD%AE/"/>
+    <id>https://hieast.github.io/2020/01/03/yuque/HTTPS 协议和 SSL 证书配置/</id>
+    <published>2020-01-03T05:37:29.000Z</published>
+    <updated>2020-08-16T15:04:40.914Z</updated>
     
     <summary type="html">
     
-      &lt;h1 id=&quot;Flask-系列文章前言&quot;&gt;&lt;a href=&quot;#Flask-系列文章前言&quot; class=&quot;headerlink&quot; title=&quot;Flask 系列文章前言&quot;&gt;&lt;/a&gt;Flask 系列文章前言&lt;/h1&gt;&lt;p&gt;记得差不多两年前第一次听说 flask 的时候，是在知乎@萧井陌的答案中&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;只要能读懂 flask 的源码了，就能找到一份软件开发的工作。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;网上关于 flask 源码的的教程很多，如：&lt;a href=&quot;http://cizixs.com/2017/01/10/flask-insight-introduction&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;flask 源码解析&lt;/a&gt;，大部分都是从 flask 某个版本（主要是 0.1）的代码结构入手，横向分析各个部分的功能。本文尝试从 flask 的代码提交入手，从第一个提交到 0.1 版本，纵向比较各个提交之间的差异，期望在 Python 代码以外，从 &lt;a href=&quot;https://github.com/mitsuhiko&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Armin Ronacher&lt;/a&gt; 大神身上学习到更多关于软件工程和开源项目相关的知识。每个知识点将独立成文，长短不一，每篇博文以用能用示例将概念理解透彻为目标。&lt;/p&gt;
-&lt;p&gt;传送门：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;a href=&quot;/2017/11/11/flask-1/&quot; title=&quot;WSGI 和 Werkzeug ———— Flask 系列文章(一)&quot;&gt;WSGI 和 Werkzeug ———— Flask 系列文章(一)&lt;/a&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
+      
+      
+        
+        
+          &lt;h1 id=&quot;HTTPS-HyperText-Transfer-Protocol-Secure&quot;&gt;&lt;a href=&quot;#HTTPS-HyperText-Transfer-Protocol-Secure&quot; class=&quot;headerlink&quot; title=&quot;HTTPS
+        
+      
     
     </summary>
     
-      <category term="Python后端" scheme="https://hieast.github.io/categories/Python%E5%90%8E%E7%AB%AF/"/>
-    
-    
-      <category term="python" scheme="https://hieast.github.io/tags/python/"/>
-    
-      <category term="http" scheme="https://hieast.github.io/tags/http/"/>
-    
-      <category term="flask" scheme="https://hieast.github.io/tags/flask/"/>
-    
-      <category term="wsgi" scheme="https://hieast.github.io/tags/wsgi/"/>
-    
-      <category term="werkzeug" scheme="https://hieast.github.io/tags/werkzeug/"/>
     
   </entry>
   
   <entry>
-    <title>Filco 圣手二代87键 Mac 按键适配指南（全是私货）</title>
-    <link href="https://hieast.github.io/2017/11/08/filco-FKBN87MC:EFB2/"/>
-    <id>https://hieast.github.io/2017/11/08/filco-FKBN87MC:EFB2/</id>
-    <published>2017-11-08T05:49:53.000Z</published>
-    <updated>2017-11-12T08:53:41.000Z</updated>
+    <title>基于 OpenAPI 撰写接口文档</title>
+    <link href="https://hieast.github.io/2019/12/24/yuque/%E5%9F%BA%E4%BA%8E%20OpenAPI%20%E6%92%B0%E5%86%99%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/"/>
+    <id>https://hieast.github.io/2019/12/24/yuque/基于 OpenAPI 撰写接口文档/</id>
+    <published>2019-12-24T06:54:24.000Z</published>
+    <updated>2020-08-16T15:04:40.941Z</updated>
     
     <summary type="html">
     
-      &lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;2016 款的 MBPR 15 选用了蝶式键盘，键程很短。刚用的时候感觉很硬，敲了一年感觉变软了很多，再用下去可能手感就不能接受了。正好买的转接头上还有多余的 USB 接口，所以打算买一个机械键盘改善工作条件。&lt;/p&gt;
-&lt;p&gt;非蓝牙、87键以内的小键盘，挑来挑去，我就在 大 F 的圣手二代 和 hhkb pro 2 之间纠结了好几天，最后买了 FKBN87MC/EFB2 黑色青轴入坑。&lt;/p&gt;
-&lt;p&gt;笔记本型号： 2016款 15寸 MBPR 带 touchbar&lt;/p&gt;
-&lt;p&gt;操作系统：10.12.6&lt;/p&gt;
+      
+      
+        
+        
+          &lt;h1 id=&quot;为什么要用-OpenAPI&quot;&gt;&lt;a href=&quot;#为什么要用-OpenAPI&quot; class=&quot;headerlink&quot; title=&quot;为什么要用 OpenAPI&quot;&gt;&lt;/a&gt;为什么要用 OpenAPI&lt;/h1&gt;&lt;p&gt;本来叫“基于 swagger
+        
+      
     
     </summary>
     
-      <category term="硬件外设" scheme="https://hieast.github.io/categories/%E7%A1%AC%E4%BB%B6%E5%A4%96%E8%AE%BE/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Mac 下 Python 环境管理</title>
+    <link href="https://hieast.github.io/2019/11/20/yuque/Mac%20%E4%B8%8B%20Python%20%E7%8E%AF%E5%A2%83%E7%AE%A1%E7%90%86/"/>
+    <id>https://hieast.github.io/2019/11/20/yuque/Mac 下 Python 环境管理/</id>
+    <published>2019-11-20T06:42:08.000Z</published>
+    <updated>2020-08-16T15:04:40.955Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;Mac-通用&quot;&gt;&lt;a href=&quot;#Mac-通用&quot; class=&quot;headerlink&quot; title=&quot;Mac 通用&quot;&gt;&lt;/a&gt;Mac
+        
+      
+    
+    </summary>
     
     
-      <category term="硬件" scheme="https://hieast.github.io/tags/%E7%A1%AC%E4%BB%B6/"/>
+  </entry>
+  
+  <entry>
+    <title>学习笔记</title>
+    <link href="https://hieast.github.io/2019/10/28/yuque/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    <id>https://hieast.github.io/2019/10/28/yuque/学习笔记/</id>
+    <published>2019-10-28T15:06:29.000Z</published>
+    <updated>2020-08-16T15:04:40.998Z</updated>
     
-      <category term="键盘" scheme="https://hieast.github.io/tags/%E9%94%AE%E7%9B%98/"/>
+    <summary type="html">
     
-      <category term="filco" scheme="https://hieast.github.io/tags/filco/"/>
+      
+      
+        
+        
+          &lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;本笔记为 《Java 核心技术》和 《Java 编程思想》两本经典书籍的学习笔记。&lt;br&gt;不期望读完这两本书就编程高手，但只求能对
+        
+      
     
-      <category term="Mac" scheme="https://hieast.github.io/tags/Mac/"/>
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>程序设计语言——实践之路读书笔记</title>
+    <link href="https://hieast.github.io/2019/09/24/yuque/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E8%AF%AD%E8%A8%80%E2%80%94%E2%80%94%E5%AE%9E%E8%B7%B5%E4%B9%8B%E8%B7%AF%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
+    <id>https://hieast.github.io/2019/09/24/yuque/程序设计语言——实践之路读书笔记/</id>
+    <published>2019-09-24T14:31:32.000Z</published>
+    <updated>2020-08-16T15:04:41.067Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;待复习，做复习题&quot;&gt;&lt;a href=&quot;#待复习，做复习题&quot; class=&quot;headerlink&quot; title=&quot;待复习，做复习题&quot;&gt;&lt;/a&gt;待复习，做复习题&lt;/h1&gt;&lt;h1 id=&quot;一：引言：本书的核心-3、6、7、8、10&quot;&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Java 学习之路</title>
+    <link href="https://hieast.github.io/2019/09/23/yuque/Java%20%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF/"/>
+    <id>https://hieast.github.io/2019/09/23/yuque/Java 学习之路/</id>
+    <published>2019-09-23T13:17:38.000Z</published>
+    <updated>2020-08-16T15:04:41.095Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;当前目标&quot;&gt;&lt;a href=&quot;#当前目标&quot; class=&quot;headerlink&quot; title=&quot;当前目标&quot;&gt;&lt;/a&gt;当前目标&lt;/h1&gt;&lt;p&gt;对《程序设计语言-实践之路》的进行学习，并参照 Java 的语法、虚拟机原理整理至少一篇学习笔记&lt;/p&gt;
+&lt;h1
+        
+      
+    
+    </summary>
+    
     
   </entry>
   

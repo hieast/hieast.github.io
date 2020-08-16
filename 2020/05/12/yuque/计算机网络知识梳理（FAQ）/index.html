@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="后山" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="计算机网络概述因特网的五个层次：应用层 HTTP SMPT FTP运输层 TCP UDP网络层 IP链路层物理层 七层 ISO OSI 参考模型：应用层表示层会话层运输层网络层链路层物理层 如何评价网络性能？时延、丢包、吞吐量时延、丢包：获取两个主机之间的 IP 连通情况可以使用 mtr（ping 和 traceroute），使用 ping.pe 可以评估目标主机在全球不同 ISP 的连通情况。吞">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计算机网络知识梳理（FAQ）">
+<meta property="og:url" content="https://hieast.github.io/2020/05/12/yuque/计算机网络知识梳理（FAQ）/index.html">
+<meta property="og:site_name" content="后山">
+<meta property="og:description" content="计算机网络概述因特网的五个层次：应用层 HTTP SMPT FTP运输层 TCP UDP网络层 IP链路层物理层 七层 ISO OSI 参考模型：应用层表示层会话层运输层网络层链路层物理层 如何评价网络性能？时延、丢包、吞吐量时延、丢包：获取两个主机之间的 IP 连通情况可以使用 mtr（ping 和 traceroute），使用 ping.pe 可以评估目标主机在全球不同 ISP 的连通情况。吞">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2020/png/381088/1589346076462-45144e91-4c3a-4d65-880d-f7f876a379d8.png#align=left&display=inline&height=137&margin=%5Bobject%20Object%5D&name=image.png&originHeight=274&originWidth=701&size=56025&status=done&style=none&width=350.5">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2020/png/381088/1589449344656-fa8be7fc-6aad-4301-a241-952f682003dc.png#align=left&display=inline&height=227&margin=%5Bobject%20Object%5D&name=image.png&originHeight=453&originWidth=800&size=165822&status=done&style=none&width=400">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2020/png/381088/1589987804955-9c83f1d2-1294-45ff-9ed7-4825cfdffec2.png#align=left&display=inline&height=427&margin=%5Bobject%20Object%5D&name=image.png&originHeight=427&originWidth=515&size=148126&status=done&style=none&width=515">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2020/png/381088/1589988102540-feffbcdd-98ef-4ada-8189-4360acaeefe5.png#align=left&display=inline&height=422&margin=%5Bobject%20Object%5D&name=image.png&originHeight=422&originWidth=507&size=137526&status=done&style=none&width=507">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2020/png/381088/1590371741102-406bb4e0-a54f-41a1-8b70-cca3af66566f.png#align=left&display=inline&height=661&margin=%5Bobject%20Object%5D&name=image.png&originHeight=1322&originWidth=1612&size=1337531&status=done&style=none&width=806">
+<meta property="og:updated_time" content="2020-08-16T15:04:40.704Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="计算机网络知识梳理（FAQ）">
+<meta name="twitter:description" content="计算机网络概述因特网的五个层次：应用层 HTTP SMPT FTP运输层 TCP UDP网络层 IP链路层物理层 七层 ISO OSI 参考模型：应用层表示层会话层运输层网络层链路层物理层 如何评价网络性能？时延、丢包、吞吐量时延、丢包：获取两个主机之间的 IP 连通情况可以使用 mtr（ping 和 traceroute），使用 ping.pe 可以评估目标主机在全球不同 ISP 的连通情况。吞">
+<meta name="twitter:image" content="https://cdn.nlark.com/yuque/0/2020/png/381088/1589346076462-45144e91-4c3a-4d65-880d-f7f876a379d8.png#align=left&display=inline&height=137&margin=%5Bobject%20Object%5D&name=image.png&originHeight=274&originWidth=701&size=56025&status=done&style=none&width=350.5">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://hieast.github.io/2020/05/12/yuque/计算机网络知识梳理（FAQ）/">
+
+
+
+
+
+  <title>计算机网络知识梳理（FAQ） | 后山</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-108500679-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">后山</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://hieast.github.io/2020/05/12/yuque/计算机网络知识梳理（FAQ）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Hieast">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="后山">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">计算机网络知识梳理（FAQ）</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-05-12T22:38:53+08:00">
+                2020-05-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/05/12/yuque/计算机网络知识梳理（FAQ）/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/05/12/yuque/计算机网络知识梳理（FAQ）/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="计算机网络概述"><a href="#计算机网络概述" class="headerlink" title="计算机网络概述"></a>计算机网络概述</h1><p>因特网的五个层次：<br>应用层 HTTP SMPT FTP<br>运输层 TCP UDP<br>网络层 IP<br>链路层<br>物理层</p>
+<p>七层 ISO OSI 参考模型：<br>应用层<br>表示层<br>会话层<br>运输层<br>网络层<br>链路层<br>物理层</p>
+<h1 id="如何评价网络性能？"><a href="#如何评价网络性能？" class="headerlink" title="如何评价网络性能？"></a>如何评价网络性能？</h1><p>时延、丢包、吞吐量<br>时延、丢包：获取两个主机之间的 IP 连通情况可以使用 mtr（ping 和 traceroute），使用 ping.pe 可以评估目标主机在全球不同 ISP 的连通情况。<br><img src="https://cdn.nlark.com/yuque/0/2020/png/381088/1589346076462-45144e91-4c3a-4d65-880d-f7f876a379d8.png#align=left&amp;display=inline&amp;height=137&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=274&amp;originWidth=701&amp;size=56025&amp;status=done&amp;style=none&amp;width=350.5" alt="image.png"><br>吞吐量：使用 iftop<br>TX：发送流量<br>RX：接收流量<br>TOTAL：总流量<br>Cumm：运行 iftop 到目前时间的总流量<br>peak：流量峰值<br>rates：分别表示过去 2s 10s 40s 的平均流量<br>DNS 情况：nslookup<br>TCP 端口：telnet</p>
+<p>实际案例：</p>
+<ol>
+<li>问卷投放后高峰期打开慢，经排查后台 IO 监控，使用网络检测工具实时查看网络情况，查看静态文件 js 文件容量，最终解决方案为将静态文件放到 CDN</li>
+<li>梯子不稳定，使用  <a href="https://ping.pe/" target="_blank" rel="noopener">https://ping.pe/</a>  发现是特定网络下不稳定，切换接入网即可使用。</li>
+</ol>
+<h1 id="HTTP2-相对于-HTTP1-x-有什么新特性，HTTP1-x-对应的优化方案是什么？"><a href="#HTTP2-相对于-HTTP1-x-有什么新特性，HTTP1-x-对应的优化方案是什么？" class="headerlink" title="HTTP2 相对于 HTTP1.x 有什么新特性，HTTP1.x 对应的优化方案是什么？"></a>HTTP2 相对于 HTTP1.x 有什么新特性，HTTP1.x 对应的优化方案是什么？</h1><p>HTTP2 通过支持完整的请求与响应复用来减少延迟，通过有效压缩 HTTP 报头字段将协议开销降至最低，同时增加对请求优先级和服务器推送的支持。</p>
+<ul>
+<li>单一长连接：减少建立连接的开销。三次握手在高延迟的场景下影响较明显，慢启动则对文件类大请求影响较大。</li>
+<li>二进制分帧层机制：实现了多路复用，去除线头阻塞（Head-Of-Line Blocking），请求重置，请求优先级等特性。</li>
+<li>报头压缩：采用 HPACK 来压缩请求头和响应头，降低协议开销</li>
+<li>服务端推送</li>
+</ul>
+<p>HTTP2 介绍：<a href="https://segmentfault.com/a/1190000015030944" target="_blank" rel="noopener">https://segmentfault.com/a/1190000015030944</a><br>对应优化方案：</p>
+<ul>
+<li>为了去除线头阻塞<ul>
+<li>并发请求：每个域名六个并发连接</li>
+<li>域名散列：一个网站使用多个域名</li>
+<li>阻塞渲染：css 放头部 js 放底部</li>
+</ul>
+</li>
+<li>为了减少协议开销<ul>
+<li>合并请求：异步接口合并，资源内联，减少请求数量</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://cdn.nlark.com/yuque/0/2020/png/381088/1589449344656-fa8be7fc-6aad-4301-a241-952f682003dc.png#align=left&amp;display=inline&amp;height=227&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=453&amp;originWidth=800&amp;size=165822&amp;status=done&amp;style=none&amp;width=400" alt="image.png"></p>
+<h1 id="FTP-协议与-HTTP-协议的区别？"><a href="#FTP-协议与-HTTP-协议的区别？" class="headerlink" title="FTP 协议与 HTTP 协议的区别？"></a>FTP 协议与 HTTP 协议的区别？</h1><p>FTP 使用两个并行的 TCP 连接来传输文件，一个是控制连接，一个是数据连接。FTP 的控制信息是带外传送的，HTTP 是带内发送控制信息的。<br>FTP 是有状态的，HTTP 是无状态的。</p>
+<h1 id="SMTP-协议与-HTTP-协议的区别？"><a href="#SMTP-协议与-HTTP-协议的区别？" class="headerlink" title="SMTP 协议与 HTTP 协议的区别？"></a>SMTP 协议与 HTTP 协议的区别？</h1><p>SMTP 是一个推协议，HTTP 是一个拉协议，要拉取邮件服务器里的邮件，需要使用 POP3、IMAP 或 HTTP 这种拉协议。<br>SMTP 的报文都使用 7 位 ASCII 码格式，HTTP 没有这个限制。</p>
+<h1 id="传输层的功能是什么？"><a href="#传输层的功能是什么？" class="headerlink" title="传输层的功能是什么？"></a>传输层的功能是什么？</h1><p>传输层解决的基本问题是 1. 进程间数据交付（多路复用多路分解） 2. 差错检测<br>可以解决问题是 1.拥塞控制 2. 流量控制 3. 可靠通信  4. 差错控制/差错恢复<br>流量控制和拥塞控制的区别在于，拥塞控制是应对 IP 网络拥塞，流量控制是应对发送方发送和接收方读取速率不一致。</p>
+<h1 id="简述-TCP-和-UDP-的区别"><a href="#简述-TCP-和-UDP-的区别" class="headerlink" title="简述 TCP 和 UDP 的区别"></a>简述 TCP 和 UDP 的区别</h1><p>面向连接的服务<br>无连接服务</p>
+<h1 id="可靠数据传输机制"><a href="#可靠数据传输机制" class="headerlink" title="可靠数据传输机制"></a>可靠数据传输机制</h1><p>检验和：检验错误<br>定时器：超时重传<br>序号：按顺序编号防止乱序<br>确认/否认：ack<br>窗口、流水线：提高发送效率，窗口长度必须小于等于序号空间大小的一半</p>
+<h1 id="TCP-三次握手和四次握手"><a href="#TCP-三次握手和四次握手" class="headerlink" title="TCP 三次握手和四次握手"></a>TCP 三次握手和四次握手</h1><p>建立连接 three-way handshake：</p>
+<ol>
+<li>客户端发出 SYN 报文段  Synchronize Sequence Numbers</li>
+<li>服务端接受 SYN 报文段，发出 SYN&amp;ACK 报文段</li>
+<li>客户端接受 SYN&amp;ACK 报文段，发出新报文段确认建立连接，可以携带数据</li>
+</ol>
+<p>关闭连接 ：</p>
+<ol>
+<li>客户端发出 FIN</li>
+<li>服务端接受 FIN，发出 ACK</li>
+<li>服务端发出 FIN</li>
+<li>客户端接受 FIN，发出 ACK</li>
+</ol>
+<p><img src="https://cdn.nlark.com/yuque/0/2020/png/381088/1589987804955-9c83f1d2-1294-45ff-9ed7-4825cfdffec2.png#align=left&amp;display=inline&amp;height=427&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=427&amp;originWidth=515&amp;size=148126&amp;status=done&amp;style=none&amp;width=515" alt="image.png"><br><img src="https://cdn.nlark.com/yuque/0/2020/png/381088/1589988102540-feffbcdd-98ef-4ada-8189-4360acaeefe5.png#align=left&amp;display=inline&amp;height=422&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=422&amp;originWidth=507&amp;size=137526&amp;status=done&amp;style=none&amp;width=507" alt="image.png"></p>
+<h1 id="TCP-拥塞控制机制"><a href="#TCP-拥塞控制机制" class="headerlink" title="TCP 拥塞控制机制"></a>TCP 拥塞控制机制</h1><p>加性增，乘性减<br>慢启动乘性增，拥塞避免加性增，重复包乘性减，超时从头开始</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2020/png/381088/1590371741102-406bb4e0-a54f-41a1-8b70-cca3af66566f.png#align=left&amp;display=inline&amp;height=661&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=1322&amp;originWidth=1612&amp;size=1337531&amp;status=done&amp;style=none&amp;width=806" alt="image.png"></p>
+<h1 id="IP-协议简述"><a href="#IP-协议简述" class="headerlink" title="IP 协议简述"></a>IP 协议简述</h1><h1 id="ARP-协议简述"><a href="#ARP-协议简述" class="headerlink" title="ARP 协议简述"></a>ARP 协议简述</h1><h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><p>端系统 end system<br>主机 host<br>客户机 client<br>服务器 server<br>通信链路 communication link<br>分组交换机 packet switch<br>路由器 router<br>链路层交换机 link-layer switch<br>因特网标准 internet standard<br>因特网工程任务组 IETE<br>请求评论 request for comment RFC<br>内联网 intranet<br>分布式应用程序 distributed application<br>对等应用程序 P2P application<br>协议 protocol<br>接入网 access network<br>边缘路由器 edge router<br>物理媒体 physical medium 双绞线、同轴电缆、光纤、无线电等等<br>尽力而为 best effort<br>电路交换 circuit switching<br>频分多路服用 FDM<br>时分多路服用 TDM<br>分组交换 packet switching<br>报文 message<br>报文段 segment<br>数据报 datagram<br>帧 frame<br>分组 packet<br>存储转发传输机制 store-and-forward transmission 存储转发时延<br>输出缓存 output buffer 输出队列 排队时延<br>丢包 packet lost<br>统计多路复用 statistical multiplexing<br>转发表 forwarding table<br>时延：节点总时延 total node delay 处理、排队、传输、传播<br>吞吐量 throughput<br>分层体系结构<br>协议栈 protocol stack</p>
+<p>套接字 socket<br>控制连接 control connection<br>数据连接 data connection<br>递归查询 recursive query<br>迭代查询 iterative query<br>资源记录 Resource Record RR<br>套接字编程=客户机/服务器应用程序开发<br>流 stream</p>
+<p>运输层/所有计算机网络的多路复用与多路分解 multiplexing demultiplexing<br>可靠数据传输 reliable data transfer<br>可靠数据传输协议-比特交替协议 alternating-bit protocal<br>流水线技术 pipelining<br>回退 N 步 Go-back-N GBN/滑动窗口 sliding window<br>选择重传 selective repeat SR<br>累计确认 cumulative acknowledgment<br>基于事件的编程 event-based programming 基于事件驱动 FSM 状态转移<br>最大报文段长度 maximum segment size MSS 应用层长度<br>最大传输单元 maximum transmission unit MTU<br>捎带 piggybacked<br>统计学 指数加权移动平均 EWMA<br>流量控制服务 flow-control service<br>拥塞控制 congestion control</p>
+<h1 id="其他工具"><a href="#其他工具" class="headerlink" title="其他工具"></a>其他工具</h1><p>nmap 端口扫描器</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.png" alt="Hieast 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="Hieast 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/04/10/yuque/Python 内存优化之 memory-profiler/" rel="next" title="Python 内存优化之 memory-profiler">
+                <i class="fa fa-chevron-left"></i> Python 内存优化之 memory-profiler
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/05/13/yuque/计算机领域概念知识梳理（FAQ）/" rel="prev" title="计算机领域概念知识梳理（FAQ）">
+                计算机领域概念知识梳理（FAQ） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+  
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Hieast">
+            
+              <p class="site-author-name" itemprop="name">Hieast</p>
+              <p class="site-description motion-element" itemprop="description">快速学习者，高校慕课平台深度使用者，专注于挖掘数据的价值。目前从事 Python 数据开发，自媒体数据采集、分析和应用相关工作。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">44</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">32</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/hieast" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:caisudong@foxmail.com" target="_blank" title="E-Mail">
+                    
+                      <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#计算机网络概述"><span class="nav-number">1.</span> <span class="nav-text">计算机网络概述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#如何评价网络性能？"><span class="nav-number">2.</span> <span class="nav-text">如何评价网络性能？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#HTTP2-相对于-HTTP1-x-有什么新特性，HTTP1-x-对应的优化方案是什么？"><span class="nav-number">3.</span> <span class="nav-text">HTTP2 相对于 HTTP1.x 有什么新特性，HTTP1.x 对应的优化方案是什么？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#FTP-协议与-HTTP-协议的区别？"><span class="nav-number">4.</span> <span class="nav-text">FTP 协议与 HTTP 协议的区别？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SMTP-协议与-HTTP-协议的区别？"><span class="nav-number">5.</span> <span class="nav-text">SMTP 协议与 HTTP 协议的区别？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#传输层的功能是什么？"><span class="nav-number">6.</span> <span class="nav-text">传输层的功能是什么？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#简述-TCP-和-UDP-的区别"><span class="nav-number">7.</span> <span class="nav-text">简述 TCP 和 UDP 的区别</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#可靠数据传输机制"><span class="nav-number">8.</span> <span class="nav-text">可靠数据传输机制</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#TCP-三次握手和四次握手"><span class="nav-number">9.</span> <span class="nav-text">TCP 三次握手和四次握手</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#TCP-拥塞控制机制"><span class="nav-number">10.</span> <span class="nav-text">TCP 拥塞控制机制</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#IP-协议简述"><span class="nav-number">11.</span> <span class="nav-text">IP 协议简述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ARP-协议简述"><span class="nav-number">12.</span> <span class="nav-text">ARP 协议简述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#其他"><span class="nav-number">13.</span> <span class="nav-text">其他</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#其他工具"><span class="nav-number">14.</span> <span class="nav-text">其他工具</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2016 &mdash; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Hieast</span>
+
+  
+</div>
+
+
+
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a></div>
+
+
+
+
+        
+
+
+<script>
+  	var _mtac = {};
+  	(function() {
+  		var mta = document.createElement("script");
+  		mta.src = "https://pingjs.qq.com/h5/stats.js?v2.0.4";
+  		mta.setAttribute("name", "MTAH5");
+  		mta.setAttribute("sid", "500538962");
+
+  		var s = document.getElementsByTagName("script")[0];
+  		s.parentNode.insertBefore(mta, s);
+  	})();
+</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=63947260";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://houshan.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'https://hieast.github.io/2020/05/12/yuque/计算机网络知识梳理（FAQ）/';
+          this.page.identifier = '2020/05/12/yuque/计算机网络知识梳理（FAQ）/';
+          this.page.title = '计算机网络知识梳理（FAQ）';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://houshan.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

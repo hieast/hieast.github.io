@@ -81,17 +81,17 @@
 
 
 
-<meta name="description" content="前言曾经我天真得以为所有的服务器都可以直接用 ssh username@hostname 直接登陆，后来发现我还是太天真了。 很多开发工具也像我一样天真，相关的配置项很少。只要使用一次跳板机的时候我凑合使用 -J 参数连上了，这次碰到需要使用两次跳板机的情况，我此前所有工具的远程管理都挂了，无法正常使用。 因此我决定系统学习一遍 ssh，争取在各种网络条件下都能通过配置 ~/.ssh/confi">
+<meta name="description" content="前言曾经我天真得以为所有的服务器都可以直接用 ssh username@hostname 直接登陆，后来发现我还是太天真了。 很多开发工具也像我一样天真，相关的配置项很少。只要使用一次跳板机的时候我凑合使用 -J 参数连上了，这次碰到需要使用两次跳板机的情况，我此前所有工具的远程管理都挂了，无法正常使用。 因此我决定系统学习一遍 ssh，争取在各种网络条件下都能通过配置 ~/.ssh/config">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ssh 进阶使用技巧">
 <meta property="og:url" content="https://hieast.github.io/2019/07/02/yuque/ssh 进阶使用技巧/index.html">
 <meta property="og:site_name" content="后山">
-<meta property="og:description" content="前言曾经我天真得以为所有的服务器都可以直接用 ssh username@hostname 直接登陆，后来发现我还是太天真了。 很多开发工具也像我一样天真，相关的配置项很少。只要使用一次跳板机的时候我凑合使用 -J 参数连上了，这次碰到需要使用两次跳板机的情况，我此前所有工具的远程管理都挂了，无法正常使用。 因此我决定系统学习一遍 ssh，争取在各种网络条件下都能通过配置 ~/.ssh/confi">
+<meta property="og:description" content="前言曾经我天真得以为所有的服务器都可以直接用 ssh username@hostname 直接登陆，后来发现我还是太天真了。 很多开发工具也像我一样天真，相关的配置项很少。只要使用一次跳板机的时候我凑合使用 -J 参数连上了，这次碰到需要使用两次跳板机的情况，我此前所有工具的远程管理都挂了，无法正常使用。 因此我决定系统学习一遍 ssh，争取在各种网络条件下都能通过配置 ~/.ssh/config">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-07-03T06:22:58.030Z">
+<meta property="og:updated_time" content="2020-08-16T15:04:41.167Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ssh 进阶使用技巧">
-<meta name="twitter:description" content="前言曾经我天真得以为所有的服务器都可以直接用 ssh username@hostname 直接登陆，后来发现我还是太天真了。 很多开发工具也像我一样天真，相关的配置项很少。只要使用一次跳板机的时候我凑合使用 -J 参数连上了，这次碰到需要使用两次跳板机的情况，我此前所有工具的远程管理都挂了，无法正常使用。 因此我决定系统学习一遍 ssh，争取在各种网络条件下都能通过配置 ~/.ssh/confi">
+<meta name="twitter:description" content="前言曾经我天真得以为所有的服务器都可以直接用 ssh username@hostname 直接登陆，后来发现我还是太天真了。 很多开发工具也像我一样天真，相关的配置项很少。只要使用一次跳板机的时候我凑合使用 -J 参数连上了，这次碰到需要使用两次跳板机的情况，我此前所有工具的远程管理都挂了，无法正常使用。 因此我决定系统学习一遍 ssh，争取在各种网络条件下都能通过配置 ~/.ssh/config">
 
 
 
@@ -340,48 +340,37 @@
       
 
       
-        <p><a name="oPfbJ"></a></p>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>曾经我天真得以为所有的服务器都可以直接用 ssh username@hostname 直接登陆，后来发现我还是太天真了。</p>
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>曾经我天真得以为所有的服务器都可以直接用 ssh username@hostname 直接登陆，后来发现我还是太天真了。</p>
 <p>很多开发工具也像我一样天真，相关的配置项很少。只要使用一次跳板机的时候我凑合使用 -J 参数连上了，这次碰到需要使用两次跳板机的情况，我此前所有工具的远程管理都挂了，无法正常使用。</p>
-<p>因此我决定系统学习一遍 ssh，争取在各种网络条件下都能通过配置 <code>~/.ssh/config</code> 的方式，使网络条件对开发工具透明化。</p>
-<p><a name="fJ8Ey"></a></p>
-<h1 id="什么是-SSH"><a href="#什么是-SSH" class="headerlink" title="什么是 SSH"></a>什么是 SSH</h1><p>维基百科的定义：<a href="https://zh.wikipedia.org/zh-hans/Secure_Shell" target="_blank" rel="noopener">https://zh.wikipedia.org/zh-hans/Secure_Shell</a><br>Secure Shell（安全外壳协议，简称SSH）是一种加密的网络传输协议，以非对称加密实现身份验证，可在不安全的网络中为网络服务提供安全的传输环境。</p>
-<p>我们常用的 ssh 指令是 OpenSSH SSH client，是 SSH 的一个实现，是一个远程登陆程序。今天提到的主人公也就是这个程序，将要学习的是这个程序的应用。</p>
+<p>因此我决定系统学习一遍 ssh，争取在各种网络条件下都能通过配置 <code>~/.ssh/config</code>  的方式，使网络条件对开发工具透明化。</p>
+<h1 id="什么是-SSH"><a href="#什么是-SSH" class="headerlink" title="什么是 SSH"></a>什么是 SSH</h1><p>维基百科的定义：<a href="https://zh.wikipedia.org/zh-hans/Secure_Shell" target="_blank" rel="noopener">https://zh.wikipedia.org/zh-hans/Secure_Shell</a><br>Secure Shell（安全外壳协议，简称 SSH）是一种加密的网络传输协议，以非对称加密实现身份验证，可在不安全的网络中为网络服务提供安全的传输环境。</p>
+<p>我们常用的 ssh 指令是  OpenSSH SSH client，是 SSH 的一个实现，是一个远程登陆程序。今天提到的主人公也就是这个程序，将要学习的是这个程序的应用。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssh [-46AaCfGgKkMNnqsTtVvXxYy] [-B bind_interface] [-b bind_address] [-c cipher_spec] [-D [bind_address:]port] [-E log_file] [-e escape_char] [-F configfile] [-I pkcs11] [-i identity_file] [-J destination]</span><br><span class="line">    [-L address] [-l login_name] [-m mac_spec] [-O ctl_cmd] [-o option] [-p port] [-Q query_option] [-R address] [-S ctl_path] [-W host:port] [-w local_tun[:remote_tun]] destination [<span class="built_in">command</span>]</span><br></pre></td></tr></table></figure>
-<p><a name="D2l75"></a></p>
 <h2 id="术语解析"><a href="#术语解析" class="headerlink" title="术语解析"></a>术语解析</h2><p>这里有两个相关但又有区别的术语需要区分：端口映射和隧道协议</p>
 <ul>
-<li>端口映射，英文为 port forwarding/port mapping，是 NAT 技术的应用，特征是在一个公网 IP 内部。</li>
+<li>端口映射，英文为 port forwarding/port mapping，是  NAT 技术的应用，特征是在一个公网 IP 内部。</li>
 <li>隧道协议，是一种将另一种协议内容封装在负载部分的网络协议，特征是封装和加密。</li>
 </ul>
-<p>不论如何分类，ssh 都工作在 TCP/IP 参考模型的应用层，基于 TCP 协议工作，并且经常同时使用这两项技术。</p>
-<p><a name="Q7wTr"></a></p>
-<h1 id="ssh（OpenSSH-SSH-client）的用途"><a href="#ssh（OpenSSH-SSH-client）的用途" class="headerlink" title="ssh（OpenSSH SSH client）的用途"></a>ssh（OpenSSH SSH client）的用途</h1><p>阅读手册 <a href="http://linux.51yip.com/search/ssh" target="_blank" rel="noopener">http://linux.51yip.com/search/ssh</a> 或 <code>man ssh</code> 。</p>
-<p>通用的不常见的参数：<br>-f 后台运行<br>-a/A 禁止/开启客户端连接转发<br>-G 打印配置并退出<br>-g 允许远程主机连接到本地转发端口 <br>-N 不要远程执行指令<br>-v 冗余模式用于调试</p>
-<p><a name="rxuV9"></a></p>
-<h2 id="远程登录，执行命令"><a href="#远程登录，执行命令" class="headerlink" title="远程登录，执行命令"></a>远程登录，执行命令</h2><p>最基本用途。<br>-J destination 可以通过 destination 作为跳板机远程登陆其他主机。多次跳转使用逗号分隔。与 ProxyJump 配置相关。 <strong>若这里使用域名，则在对应一跳的服务器上进行解析。</strong> <br>-M 开启主模式，用于连接复用。与 ControlMaster 配置相关。</p>
-<p><a name="fWroN"></a></p>
+<p>不论如何分类，ssh 都工作在  TCP/IP 参考模型的应用层，基于 TCP 协议工作，并且经常同时使用这两项技术。</p>
+<h1 id="ssh（OpenSSH-SSH-client）的用途"><a href="#ssh（OpenSSH-SSH-client）的用途" class="headerlink" title="ssh（OpenSSH SSH client）的用途"></a>ssh（OpenSSH SSH client）的用途</h1><p>阅读手册  <a href="http://linux.51yip.com/search/ssh" target="_blank" rel="noopener">http://linux.51yip.com/search/ssh</a>  或 <code>man ssh</code> 。</p>
+<p>通用的不常见的参数：<br>-f 后台运行<br>-a/A 禁止/开启客户端连接转发<br>-G 打印配置并退出<br>-g 允许远程主机连接到本地转发端口<br>-N 不要远程执行指令<br>-v 冗余模式用于调试</p>
+<h2 id="远程登录，执行命令"><a href="#远程登录，执行命令" class="headerlink" title="远程登录，执行命令"></a>远程登录，执行命令</h2><p>最基本用途。<br>-J destination 可以通过 destination 作为跳板机远程登陆其他主机。多次跳转使用逗号分隔。与  ProxyJump 配置相关。 <strong>若这里使用域名，则在对应一跳的服务器上进行解析。</strong><br>-M 开启主模式，用于连接复用。与  ControlMaster 配置相关。</p>
 <h2 id="端口转发"><a href="#端口转发" class="headerlink" title="端口转发"></a>端口转发</h2><p>-D 本地动态应用层端口转发<br>-L 本地静态端口转发<br>-R 远程静态端口转发</p>
-<p><a name="oEGUI"></a></p>
-<h2 id="其他：隧道协议等奇怪的协议转发"><a href="#其他：隧道协议等奇怪的协议转发" class="headerlink" title="其他：隧道协议等奇怪的协议转发"></a>其他：隧道协议等奇怪的协议转发</h2><p>-w 隧道相关<br>-K -k 与 GSSAPI credentials 相关<br>-X -x X11 相关<br>还可以集成到其他工具的传输层，例如 sftp</p>
-<p><a name="3ncEx"></a></p>
+<h2 id="其他：隧道协议等奇怪的协议转发"><a href="#其他：隧道协议等奇怪的协议转发" class="headerlink" title="其他：隧道协议等奇怪的协议转发"></a>其他：隧道协议等奇怪的协议转发</h2><p>-w 隧道相关<br>-K -k 与  GSSAPI credentials 相关<br>-X -x X11 相关<br>还可以集成到其他工具的传输层，例如 sftp</p>
 <h1 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h1><p>参数配置有三个层次，命令行参数 &gt; 某个用户的配置文件 &gt; 系统所有用户的配置文件。通常修改某个用户的配置文件较好，所以后面也都是指某个用户的配置文件。</p>
-<p>默认的相关文件目录为 <code>~/.ssh/</code> <br>配置文件为 <code>~/.ssh/config</code><br>授权公钥为 <code>~/.ssh/authorized_keys</code> <br>配置时注意一下文件的访问权限，网上到处都有。<br>别人的博客 <a href="https://www.hi-linux.com/posts/14346.html" target="_blank" rel="noopener">https://www.hi-linux.com/posts/14346.html</a> 很多讲的比较全面，这里只记我感兴趣的。<br>配置文件可以灵活配置所有主机的登陆参数，因此所有登陆参数放到这里可以将指令简化很多。</p>
-<p><a name="2PIm3"></a></p>
-<h2 id="常用配置"><a href="#常用配置" class="headerlink" title="常用配置"></a>常用配置</h2><p>StrictHostKeyChecking=no 自动接受新的公钥，这个会降低安全性<br>Host 配置项标识了一个配置区段，类似于配置路由。<br>HostName 远程主机名，可以直接使用数字IP地址。<br>IdentityFile 私钥文件路径。<br>Port 远程主机端口号<br>User 登陆用户名<br>UserKnownHostsFile 一个或多个用户认证主机缓存文件，全局为 GlobalKnownHostsFile</p>
-<p><a name="Jqci9"></a></p>
+<p>默认的相关文件目录为 <code>~/.ssh/</code><br>配置文件为 <code>~/.ssh/config</code><br>授权公钥为 <code>~/.ssh/authorized_keys</code><br>配置时注意一下文件的访问权限，网上到处都有。<br>别人的博客  <a href="https://www.hi-linux.com/posts/14346.html" target="_blank" rel="noopener">https://www.hi-linux.com/posts/14346.html</a>  很多讲的比较全面，这里只记我感兴趣的。<br>配置文件可以灵活配置所有主机的登陆参数，因此所有登陆参数放到这里可以将指令简化很多。</p>
+<h2 id="常用配置"><a href="#常用配置" class="headerlink" title="常用配置"></a>常用配置</h2><p>StrictHostKeyChecking=no 自动接受新的公钥，这个会降低安全性<br>Host 配置项标识了一个配置区段，类似于配置路由。<br>HostName  远程主机名，可以直接使用数字 IP 地址。<br>IdentityFile  私钥文件路径。<br>Port 远程主机端口号<br>User 登陆用户名<br>UserKnownHostsFile  一个或多个用户认证主机缓存文件，全局为  GlobalKnownHostsFile</p>
 <h2 id="通配符"><a href="#通配符" class="headerlink" title="通配符"></a>通配符</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'*'</span> 代表 0～n 个非空白字符。</span><br><span class="line"><span class="string">'?'</span> 代表一个非空白字符。</span><br><span class="line"><span class="string">'!'</span> 表示例外通配。</span><br></pre></td></tr></table></figure>
-<p><a name="KeVjd"></a></p>
 <h2 id="ControlMaster"><a href="#ControlMaster" class="headerlink" title="ControlMaster"></a>ControlMaster</h2><p>据说有很多好处，只要把下面一段拷进配置文件即可。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Host *</span><br><span class="line">  ServerAliveInterval 10</span><br><span class="line">  TCPKeepAlive yes</span><br><span class="line">  ControlPersist yes</span><br><span class="line">  ControlMaster auto</span><br><span class="line">  ControlPath ~/.ssh/master_%r_%h_%p</span><br></pre></td></tr></table></figure>
 <p><a href="https://www.ibm.com/developerworks/community/blogs/IBMzOS/entry/20150502?lang=en" target="_blank" rel="noopener">https://www.ibm.com/developerworks/community/blogs/IBMzOS/entry/20150502?lang=en</a></p>
-<p><a name="HB3XH"></a></p>
-<h2 id="ProxyJump"><a href="#ProxyJump" class="headerlink" title="ProxyJump"></a>ProxyJump</h2><p>可以配置上一跳服务器，解决嵌套的跳板机登陆配置复杂的问题。<br>别人的文章 <a href="https://zhuanlan.zhihu.com/p/55016458" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/55016458</a></p>
-<p>按照该方法配置 ProxyJump 后，ssh hostname 即可远程登陆。</p>
-<p><a name="hUlo1"></a></p>
-<h1 id="各种-Forward-参数"><a href="#各种-Forward-参数" class="headerlink" title="各种 Forward 参数"></a>各种 Forward 参数</h1><p>DynamicForward、LocalForward、RemoteForward 这三个参数就对应着端口转发的三种方式。<br>别人的文章 <a href="https://starkandwayne.com/blog/setting-up-an-ssh-tunnel-with-ssh-config/" target="_blank" rel="noopener">https://starkandwayne.com/blog/setting-up-an-ssh-tunnel-with-ssh-config/</a><br>根据我的需求，将本地 2222 转发到执行远程服务器的 22 端口，弄好配置文件<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Host my-proxy</span><br><span class="line">  Hostname x.x.x.x</span><br><span class="line">  User admin-user</span><br><span class="line">  IdentityFile ~/.ssh/id_rsa</span><br><span class="line">  LocalForward localhost:2222 remote_host:22</span><br><span class="line">  ControlMaster auto</span><br><span class="line">  ControlPath ~/.ssh/sockets/%r@%h:%p</span><br></pre></td></tr></table></figure></p>
-<p>以及快捷指令<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## For My Proxy Tunnel</span></span><br><span class="line"><span class="built_in">alias</span> proxy-on=<span class="string">'ssh -fN my-proxy'</span></span><br><span class="line"><span class="built_in">alias</span> proxy-check=<span class="string">'ssh -O check my-proxy'</span></span><br><span class="line"><span class="built_in">alias</span> proxy-off=<span class="string">'ssh -O exit my-proxy'</span></span><br></pre></td></tr></table></figure></p>
-<p>之后用到需要连接 remote_host:22 上 ssh tunnel 的地方都可以使用 localhost:2222 这个端口来代替</p>
+<h2 id="ProxyJump"><a href="#ProxyJump" class="headerlink" title="ProxyJump"></a>ProxyJump</h2><p>可以配置上一跳服务器，解决嵌套的跳板机登陆配置复杂的问题。<br>别人的文章  <a href="https://zhuanlan.zhihu.com/p/55016458" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/55016458</a></p>
+<p>按照该方法配置  ProxyJump 后，ssh hostname 即可远程登陆。</p>
+<h1 id="各种-Forward-参数"><a href="#各种-Forward-参数" class="headerlink" title="各种 Forward 参数"></a>各种 Forward 参数</h1><p>DynamicForward、LocalForward、RemoteForward 这三个参数就对应着端口转发的三种方式。<br>别人的文章  <a href="https://starkandwayne.com/blog/setting-up-an-ssh-tunnel-with-ssh-config/" target="_blank" rel="noopener">https://starkandwayne.com/blog/setting-up-an-ssh-tunnel-with-ssh-config/</a><br>根据我的需求，将本地 2222 转发到执行远程服务器的 22 端口，弄好配置文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Host my-proxy</span><br><span class="line">  Hostname x.x.x.x</span><br><span class="line">  User admin-user</span><br><span class="line">  IdentityFile ~/.ssh/id_rsa</span><br><span class="line">  LocalForward localhost:2222 remote_host:22</span><br><span class="line">  ControlMaster auto</span><br><span class="line">  ControlPath ~/.ssh/sockets/%r@%h:%p</span><br></pre></td></tr></table></figure>
+<p>以及快捷指令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## For My Proxy Tunnel</span></span><br><span class="line"><span class="built_in">alias</span> proxy-on=<span class="string">'ssh -fN my-proxy'</span></span><br><span class="line"><span class="built_in">alias</span> proxy-check=<span class="string">'ssh -O check my-proxy'</span></span><br><span class="line"><span class="built_in">alias</span> proxy-off=<span class="string">'ssh -O exit my-proxy'</span></span><br></pre></td></tr></table></figure>
+<p>之后用到需要连接  remote_host:22 上 ssh tunnel 的地方都可以使用  localhost:2222 这个端口来代替</p>
 
       
     </div>
@@ -444,6 +433,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/07/19/yuque/macOS 系统经验收集/" rel="prev" title="macOS 系统经验收集">
+                macOS 系统经验收集 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -529,7 +522,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-count">44</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -627,7 +620,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; 2016 &mdash; <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; 2016 &mdash; <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
